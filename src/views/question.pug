@@ -1,0 +1,19 @@
+extends layouts/main.pug
+
+block content
+    body.container
+        main.question_page.page.fade_in
+                .progress_question
+                    img#run(src='../static/images/running.gif')
+                    #heart_wrapper
+                        #heart
+                    #ground
+                #p_num
+                .question_wrapper.wrapper
+                    h2.question_title.title
+                    .question_btn_wrapper
+                        button#A.horizontalOverlay
+                        button#B.horizontalOverlay
+        main.loading_page.page.fade_in
+                div 탈출 시도 중 입니다..
+                .donutSpinner

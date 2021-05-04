@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "dev:server": "nodemon --exec npx babel-node src/init.js",
+    "dev:assets": "cross-env WEBPACK_ENV=development webpack -w --config src/webpack.config.js",
+    "build:server": "babel src --out-dir build --ignore 'src/assets','src/static','src/webpack.config.js'",
+    "build:assets": "cross-env WEBPACK_ENV=production webpack --config src/webpack.config.js",
+    "prebuild": "rm -rf build",
+    "build": "npm run build:server && npm run build:assets && cp -R src/static build && cp -R src/views build",
+    "start": "npm run build && pm2 start build/init.js"
+  }
+}

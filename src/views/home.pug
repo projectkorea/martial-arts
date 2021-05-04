@@ -1,0 +1,15 @@
+extends layouts/main.pug
+
+block content
+    body.container
+        main.start_page.page
+            .start_wrapper.wrapper
+                img#start_img(src='../static/images/ani.jpg')
+                h1.start_title.fade_in(style='font-weight: bolder')
+                    label(style='color: #be9bc0') 나도 탈출할래!!
+                    br
+                    | 나는 솔로지옥에서 탈출할 수 있을까?
+                    label#endLetter
+                .btn_wrapper
+                    #btn_start.fade_in 시작하기
+                    #btn_start_shadow.fade_in

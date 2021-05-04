@@ -1,0 +1,32 @@
+@media (max-width: 426px) {
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+  }
+  html {
+    overflow-y: scroll;
+  }
+  body {
+    overflow-y: auto;
+  }
+}
+
+@media (min-width: 427px) {
+  body {
+    width: 426px !important;
+    height: 625px;
+  }
+  html {
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+}
