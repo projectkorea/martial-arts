@@ -2,26 +2,30 @@ export const quest = {
   1: {
     "title": "한껏 꾸민 날,<br><span class='half_HL'>번호를 따였다.</span>",
     "A": {
-      "text": "쉽게 줄 수 없지. 죄송해요.🤨",
-      "type": "CA",
+      "text": "",
+      "type": "",
       "score": 0,
     },
     "B": {
-      "text": "괜찮은데? 여기요.😉",
+      "text": "",
+      "type": "",
+      "score": 1,
+    },
+    "C": {
+      "text": "",
       "type": "",
       "score": 1,
     },
   },
   2: {
-    "title":
-      "<span class='half_HL'>재미있어 보이는 대화</span>를<br>하는 무리에 나는",
+    "title": "<span class='half_HL'>내 매력을</span><br>",
     "A": {
-      "text": "끼어든다.",
+      "text": "ㅈ",
       "type": "PO",
       "score": 1,
     },
     "B": {
-      "text": "관심 없다.",
+      "text": "최종적인 순간을 위해 사용한다",
       "type": "",
       "score": -1,
     },
@@ -30,26 +34,26 @@ export const quest = {
     "title":
       "썸남/썸녀와의 대화 도중<br><span class='half_HL'>어색한 침묵</span>이 흐른다. ",
     "A": {
-      "text": "펜트 하우스 보셨어요?",
-      "type": "AC",
-      "score": 1,
-    },
-    "B": {
-      "text": "차분히 기다린다.",
+      "text": "자연스럽게 카톡을 확인한다",
       "type": "",
       "score": 0,
     },
+    "B": {
+      "text": "펜트 하우스 보셨어요?",
+      "type": "C",
+      "score": 1,
+    },
   },
   4: {
-    "title": "솔직히 <span class='half_HL'>주변을 둘러보면</span>",
+    "title": "<span class='half_HL'>나는 이상형이</span>",
     "A": {
-      "text": "괜찮은 사람이 없다😟",
-      "type": "AW",
-      "score": -1,
+      "text": "얼굴부터 성격까지 확고하다",
+      "type": "",
+      "score": 0,
     },
     "B": {
-      "text": "가끔식 눈길이 가는 사람이 있다.",
-      "type": "",
+      "text": "사람에 따라 매번 달라진다",
+      "type": "K",
       "score": 1,
     },
   },
@@ -135,8 +139,7 @@ export const quest = {
     },
   },
   11: {
-    "title":
-      "이상형을 말하면<br><span class='half_HL'>친구들은 나에게</span><br>",
+    "title": "나는 솔직히<br><span class='half_HL'>친구들은 나에게</span><br>",
     "A": {
       "text": "“야 너 눈이 너무 낮은거 아니야? ”",
       "type": "AW",
@@ -150,14 +153,14 @@ export const quest = {
   },
   12: {
     "title":
-      "썸남/썸녀에게 문자가 왔다.<br><span class='half_HL'>“같이 밥 먹을래요?”</span>",
+      "썸남/썸녀한테 카톡이 왔다<br><span class='half_HL'>같이 저녁 고?</span>",
     "A": {
-      "text": "좋아요!\n이곳저곳 맛집을 찾아본다.",
-      "type": "AC",
+      "text": "\n 여기 진짜 맛있다는데 가보자!",
+      "type": "C",
       "score": 1,
     },
     "B": {
-      "text": "그럴까요?\n상대방이 먼저 골라주길 기다린다.",
+      "text": "고고! 뭐 좋아해?",
       "type": "",
       "score": 0,
     },

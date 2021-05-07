@@ -91,9 +91,9 @@ const nextQuestion = () => {
     btn_wrapper.style.opacity = "0";
     question_wrapper.classList.add("fade-in");
     setTimeout(() => {
-      btn_wrapper.classList.add("fade-in");
       btn_wrapper.style.opacity = "1";
-      setTimeout(removeFadeIn, 200);
+      btn_wrapper.classList.add("fade-in");
+      setTimeout(removeFadeIn, 1000);
     }, 300);
 
     title.innerHTML = quest[page_num]["title"];

@@ -1,5 +1,5 @@
 {
-  "name": "testapp",
+  "name": "martial-arts",
   "version": "1.0.0",
   "description": "",
   "main": "init.js",
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/projectkorea/testApp.git"
+    "url": "git+https://github.com/projectkorea/martial-arts.git"
   },
   "author": "kjh",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/projectkorea/testApp/issues"
+    "url": "https://github.com/projectkorea/martial-arts/issues"
   },
-  "homepage": "https://github.com/projectkorea/testApp#readme",
+  "homepage": "https://github.com/projectkorea/martial-arts#readme",
   "dependencies": {
     "@babel/cli": "7.10.1",
     "@babel/core": "^7.13.10",

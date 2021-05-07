@@ -11130,9 +11130,9 @@ var nextQuestion = function nextQuestion() {
     btn_wrapper.style.opacity = "0";
     question_wrapper.classList.add("fade-in");
     setTimeout(function () {
-      btn_wrapper.classList.add("fade-in");
       btn_wrapper.style.opacity = "1";
-      setTimeout(removeFadeIn, 200);
+      btn_wrapper.classList.add("fade-in");
+      setTimeout(removeFadeIn, 1100);
     }, 300);
     title.innerHTML = _sentence__WEBPACK_IMPORTED_MODULE_0__.quest[page_num]["title"];
     A.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.quest[page_num]["A"]["text"];
