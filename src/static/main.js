@@ -11054,53 +11054,64 @@ try {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sentence__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sentence */ "./src/assets/js/sentence.js");
 
-var question_page = document.querySelector(".question_page"),
-    loading_page = document.querySelector(".loading_page"),
-    question_wrapper = document.querySelector(".question_wrapper"),
-    title = document.querySelector(".question_title"),
-    btn_wrapper = document.querySelector(".question_btn_wrapper"),
+var questionPage = document.querySelector(".question-page"),
+    loadingPage = document.querySelector(".loading-page"),
+    pageNum = document.querySelector(".progress-page-num"),
+    progressMoving = document.querySelector(".progress-moving"),
+    ground = document.querySelector(".progress-ground"),
+    question_wrapper = document.querySelector(".question-wrapper"),
+    questionTitle = document.querySelector(".question-title"),
+    questionBtn = document.querySelector(".question-btn"),
     A = document.querySelector("#A"),
-    B = document.querySelector("#B"),
-    p_num = document.querySelector("#p_num"),
-    run_img = document.querySelector("#run"),
-    heart_img = document.querySelector("#heart"),
-    ground = document.querySelector("#ground");
+    B = document.querySelector("#B");
 var finalResult = {
-  "CA": 0,
-  "PO": 0,
-  "AC": 0,
-  "AW": 0,
-  "SCORE": 0,
+  "E": 0,
+  "I": 0,
+  "S": 0,
+  "N": 0,
+  "F": 0,
+  "T": 0,
+  "P": 0,
+  "J": 0,
   "RESULT": ""
 },
     page_num = 1,
-    run_pos = 1,
-    heart_opa = 5;
+    run_pos = 1;
+
+var nextQuestion = function nextQuestion() {
+  if (page_num <= 12) {
+    questionTitle.innerHTML = _sentence__WEBPACK_IMPORTED_MODULE_0__.quest[page_num]["title"];
+    A.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.quest[page_num]["A"]["text"];
+    B.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.quest[page_num]["B"]["text"];
+    questionAnimation();
+    progressAnimation();
+  } else {
+    saveType();
+    postToUrl("/loading", finalResult);
+    questionPage.style.display = "none";
+    loadingPage.style.display = "flex";
+  }
+};
 
 var removeFadeIn = function removeFadeIn() {
   question_wrapper.classList.remove("fade-in");
-  btn_wrapper.classList.remove("fade-in");
+  questionBtn.classList.remove("fade-in");
 };
 
 var clickFunction = function clickFunction(e) {
+  e.target.style.background = "#ff7d4d";
   var idValue = e.target.id;
+  var type = _sentence__WEBPACK_IMPORTED_MODULE_0__.quest[page_num][idValue]["type"];
   A.disabled = "true";
   B.disabled = "true";
-  var typeResult = _sentence__WEBPACK_IMPORTED_MODULE_0__.quest[page_num][idValue]["type"];
-  if (typeResult != null) finalResult[typeResult] += 1;
-  finalResult["SCORE"] += _sentence__WEBPACK_IMPORTED_MODULE_0__.quest[page_num][idValue]["score"];
+  if (type != null) finalResult[type] += 1;
   setTimeout(function () {
-    e.target.classList.add("bold");
-  }, 100);
-  e.target.classList.add("magnifyBorder");
-  setTimeout(function () {
-    e.target.classList.remove("magnifyBorder");
-    e.target.classList.remove("bold");
+    e.target.style.background = "";
     page_num++;
     A.removeAttribute("disabled");
     B.removeAttribute("disabled");
     nextQuestion();
-  }, 500);
+  }, 300);
 };
 
 var postToUrl = function postToUrl(path, params, method) {
@@ -11122,63 +11133,45 @@ var postToUrl = function postToUrl(path, params, method) {
 };
 
 var saveType = function saveType() {
-  if (finalResult["SCORE"] >= 13) finalResult["RESULT"] = "a";else if (finalResult["SCORE"] >= 11) finalResult["RESULT"] = "b";else if (finalResult["SCORE"] >= 9) finalResult["RESULT"] = "c";else if (finalResult["SCORE"] >= 7) finalResult["RESULT"] = "d";else if (finalResult["SCORE"] >= 5) finalResult["RESULT"] = "e";else if (finalResult["SCORE"] >= 3) finalResult["RESULT"] = "f";else if (finalResult["SCORE"] >= 1) finalResult["RESULT"] = "g";else if (finalResult["SCORE"] >= 0) finalResult["RESULT"] = "h";else if (finalResult["SCORE"] >= -1) finalResult["RESULT"] = "i";else if (finalResult["SCORE"] >= -2) finalResult["RESULT"] = "j";
-};
-
-var nextQuestion = function nextQuestion() {
-  if (page_num <= 12) {
-    btn_wrapper.style.opacity = "0";
-    question_wrapper.classList.add("fade-in");
-    setTimeout(function () {
-      btn_wrapper.style.opacity = "1";
-      btn_wrapper.classList.add("fade-in");
-      setTimeout(removeFadeIn, 1100);
-    }, 300);
-    title.innerHTML = _sentence__WEBPACK_IMPORTED_MODULE_0__.quest[page_num]["title"];
-    A.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.quest[page_num]["A"]["text"];
-    B.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.quest[page_num]["B"]["text"];
-
-    if (btn_wrapper) {
-      setTimeout(function () {
-        A.addEventListener("click", clickFunction, {
-          once: true
-        });
-        B.addEventListener("click", clickFunction, {
-          once: true
-        });
-      }, 500);
-    }
-
-    progressAnimation();
-  } else {
-    saveType();
-    postToUrl("/loading", finalResult);
-    question_page.style.display = "none";
-    loading_page.style.display = "flex";
-  }
+  if (finalResult["E"] > finalResult["I"]) finalResult["RESULT"] += "E";else finalResult["RESULT"] += "I";
+  if (finalResult["S"] > finalResult["N"]) finalResult["RESULT"] += "S";else finalResult["RESULT"] += "N";
+  if (finalResult["F"] > finalResult["T"]) finalResult["RESULT"] += "F";else finalResult["RESULT"] += "T";
+  if (finalResult["P"] > finalResult["J"]) finalResult["RESULT"] += "P";else finalResult["RESULT"] += "J";
 };
 
 var progressAnimation = function progressAnimation() {
-  p_num.innerText = "".concat(page_num, " / 12");
-  run_img.style.left = "".concat(run_pos += (ground.clientWidth - 33) / 12, "px");
-  heart_img.style.opacity = "".concat(heart_opa += 6, "%");
+  pageNum.innerText = "".concat(page_num, " / 12");
+  progressMoving.style.left = "".concat(run_pos += (ground.clientWidth - 33) / 12, "px");
 };
 
-var heartAnimation = function heartAnimation() {
-  var flag = 1;
-  setInterval(function () {
-    if (flag == 1) heart_img.style.transform = "scale(1)";else heart_img.style.transform = "scale(0.8)";
-    flag *= -1;
-  }, 1000);
+var questionAnimation = function questionAnimation() {
+  questionBtn.style.opacity = "0";
+  question_wrapper.classList.add("fade-in");
+  A.style.pointerEvents = "none";
+  B.style.pointerEvents = "none";
+  setTimeout(function () {
+    questionBtn.style.opacity = "1";
+    questionBtn.classList.add("fade-in");
+    A.style.pointerEvents = "auto";
+    B.style.pointerEvents = "auto";
+    setTimeout(removeFadeIn, 1000);
+  }, 300);
+  setTimeout(function () {
+    A.addEventListener("click", clickFunction, {
+      once: true
+    });
+    B.addEventListener("click", clickFunction, {
+      once: true
+    });
+  }, 1300);
 };
 
 var init = function init() {
-  loading_page.style.display = "none";
-  heartAnimation();
+  loadingPage.style.display = "none";
   nextQuestion();
 };
 
-if (question_page) {
+if (questionPage) {
   init();
 }
 
@@ -11190,13 +11183,13 @@ if (question_page) {
   \*********************************/
 /***/ (() => {
 
-var rank = document.querySelector(".rank");
-var resultTop = document.querySelector(".resultTop");
-var resultMiddle = document.querySelector(".resultMiddle");
-var resultBottom = document.querySelector(".resultBottom");
-var html = document.querySelector("html");
-var result_wrapper = document.querySelector(".result_wrapper");
-var result_page = document.querySelector(".result_page");
+var rank = document.querySelector(".rank"),
+    resultTop = document.querySelector(".result-top"),
+    resultMiddle = document.querySelector(".result-middle"),
+    resultBottom = document.querySelector(".result-bottom"),
+    result_wrapper = document.querySelector(".result_wrapper"),
+    retest = document.querySelector(".retest-btn"),
+    resultPage = document.querySelector(".result-page");
 
 var init = function init() {
   retest.addEventListener("click", function () {
@@ -11204,7 +11197,7 @@ var init = function init() {
   });
 };
 
-if (result_page) {
+if (resultPage) {
   init();
 }
 
@@ -11219,205 +11212,140 @@ if (result_page) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "quest": () => (/* binding */ quest),
-/* harmony export */   "title": () => (/* binding */ title),
-/* harmony export */   "property": () => (/* binding */ property)
+/* harmony export */   "quest": () => (/* binding */ quest)
 /* harmony export */ });
 var quest = {
   1: {
-    "title": "한껏 꾸민 날,<br><span class='half_HL'>번호를 따였다.</span>",
+    "title": "<span class='half_HL'>싸움</span>에서 중요한 것은",
     "A": {
-      "text": "쉽게 줄 수 없지. 죄송해요.🤨",
-      "type": "CA",
-      "score": 0
+      "text": "피지컬",
+      "type": "S"
     },
     "B": {
-      "text": "괜찮은데? 여기요.😉",
-      "type": "",
-      "score": 1
+      "text": "기술",
+      "type": "N"
     }
   },
   2: {
-    "title": "<span class='half_HL'>재미있어 보이는 대화</span>를<br>하는 무리에 나는",
+    "title": "UFC경기를 보다가<br>  <span class='half_HL'>가장 짜릿할 때</span>는  ",
     "A": {
-      "text": "끼어든다.",
-      "type": "PO",
-      "score": 1
+      "text": "예상치도 못한 KO가 나올 때",
+      "type": "T"
     },
     "B": {
-      "text": "관심 없다.",
-      "type": "",
-      "score": -1
+      "text": "미친 경기력을 주고받을 때",
+      "type": "F"
     }
   },
   3: {
-    "title": "썸남/썸녀와의 대화 도중<br><span class='half_HL'>어색한 침묵</span>이 흐른다. ",
+    "title": "<span class='half_HL'>능력치</span>를<br>   분배할 수 있다면?   ",
     "A": {
-      "text": "펜트 하우스 보셨어요?",
-      "type": "AC",
-      "score": 1
+      "text": "하나에 올인",
+      "type": "I"
     },
     "B": {
-      "text": "차분히 기다린다.",
-      "type": "",
-      "score": 0
+      "text": "밸런스있게 찍기",
+      "type": "E"
     }
   },
   4: {
-    "title": "솔직히 <span class='half_HL'>주변을 둘러보면</span>",
+    "title": "총을 <span class='half_HL'>한 자루</span>만<br>    고를 수 있다면?    ",
     "A": {
-      "text": "괜찮은 사람이 없다😟",
-      "type": "AW",
-      "score": -1
+      "text": "강력한 샷건",
+      "type": "S"
     },
     "B": {
-      "text": "가끔식 눈길이 가는 사람이 있다.",
-      "type": "",
-      "score": 1
+      "text": "정교한 스나이퍼",
+      "type": "N"
     }
   },
   5: {
-    "title": "<span class='half_HL'>소개팅</span>이 들어왔다.",
+    "title": "경기중 상대보다 내가 <br><span class='half_HL'>훨씬 유리</span>하다고 느낄 때",
     "A": {
-      "text": "누군데? 이것저것 물어본다.",
-      "type": "PO",
-      "score": 1
+      "text": "빨리 이겨버리고 다음 경기를 한다",
+      "type": "T"
     },
     "B": {
-      "text": "나 자만추인거 몰라?😒",
-      "type": "",
-      "score": -1
+      "text": "새로운 기술을 사용해본다",
+      "type": "F"
     }
   },
   6: {
-    "title": "썸인지 아닌지 <br><span class='half_HL'>햇갈리면 나는</span>,",
+    "title": "<span class='half_HL'>처음 보는 몬스터</span>를<br> 봤을 때 나는",
     "A": {
-      "text": "멘붕에 빠진다😱",
-      "type": "",
-      "score": 0
+      "text": "일단 좀 맞자. 때려본다.",
+      "type": "P"
     },
     "B": {
-      "text": "더 다가가 본다🤭",
-      "type": "AC",
-      "score": 1
+      "text": "  구글링하고 온다. 딱 기다려  ",
+      "type": "J"
     }
   },
   7: {
-    "title": "평소 관심 있던 사람이<br><span class='half_HL'>오늘 술 한잔 어때요?</span>",
+    "title": "  나를 <span class='half_HL'>군대에 </span>비유하면  ",
     "A": {
-      "text": "기회다🤩\n같이 마셔요!",
-      "type": "",
-      "score": 1
+      "text": "전차, 자주포",
+      "type": "S"
     },
     "B": {
-      "text": "밥은 어때요?\n천천히 알아가고 싶다.",
-      "type": "CA",
-      "score": 0
+      "text": "전투기, 공격헬기",
+      "type": "N"
     }
   },
   8: {
-    "title": "내 스타일은 아닌데<br><span class='half_HL'>나를 너무 좋아한다.</span>",
+    "title": "<span class='half_HL'>게임이나 스포츠</span>를 할 때<br>나는",
     "A": {
-      "text": "굳이 눈을 낮춰서..🤔?",
-      "type": "",
-      "score": 0
+      "text": "이겨야 할 맛이 나지",
+      "type": "T"
     },
     "B": {
-      "text": "나를 그렇게 좋아한다는데..😥",
-      "type": "AW",
-      "score": 1
+      "text": "재밌으면 장땡",
+      "type": "F"
     }
   },
   9: {
-    "title": "<span class='half_HL'>썸남/썸녀와<br> 분위기가</span>달아올랐을 때 나는",
+    "title": "<span class='half_HL'>스승님의 설명</span>이<br>   이해가 안된다   ",
     "A": {
-      "text": "모 아니면 도!\n적극적으로 들이댄다.",
-      "type": "",
-      "score": 1
+      "text": "스승님! 다시 알려주십시오!",
+      "type": "E"
     },
     "B": {
-      "text": "오늘은 여기까지! \n 다음을 기약한다.",
-      "type": "CA",
-      "score": 0
+      "text": "생각을 정리하고 물어본다",
+      "type": "I"
     }
   },
   10: {
-    "title": "<span class='half_HL'>동아리에</span><br>뉴페이스가 보인다.",
+    "title": "<span class='half_HL'>새로운 무술</span>을 배울 때<br>나는",
     "A": {
-      "text": "별 관심없다.",
-      "type": "",
-      "score": -1
+      "text": " 블랙밸트를 목표로 하겠어  ",
+      "type": "J"
     },
     "B": {
-      "text": "쟤 누구야?",
-      "type": "PO",
-      "score": 1
+      "text": "해보면서 결정해야지",
+      "type": "P"
     }
   },
   11: {
-    "title": "이상형을 말하면<br><span class='half_HL'>친구들은 나에게</span><br>",
+    "title": "<span class='half_HL'>상금10억</span>이 걸린<br>경기를 준비 할 때 나는",
     "A": {
-      "text": "“야 너 눈이 너무 낮은거 아니야? ”",
-      "type": "AW",
-      "score": 1
+      "text": "파트너와 합을 맞춰가며 준비한다",
+      "type": "E"
     },
     "B": {
-      "text": "“제발 주제파악좀 해ㅠㅠ”",
-      "type": "",
-      "score": 0
+      "text": "혼자서 집중하며 준비한다",
+      "type": "I"
     }
   },
   12: {
-    "title": "썸남/썸녀에게 문자가 왔다.<br><span class='half_HL'>“같이 밥 먹을래요?”</span>",
+    "title": "다음 달에<br><span class='half_HL'>중요한 경기</span>가 잡혔다",
     "A": {
-      "text": "좋아요!\n이곳저곳 맛집을 찾아본다.",
-      "type": "AC",
-      "score": 1
+      "text": "연습장에서 바로 훈련한다",
+      "type": "P"
     },
     "B": {
-      "text": "그럴까요?\n상대방이 먼저 골라주길 기다린다.",
-      "type": "",
-      "score": 0
+      "text": "경기 전략을 먼저 세운다",
+      "type": "J"
     }
-  }
-};
-var title = {
-  "1": "벽돌 뚫고 하이킥",
-  "2": "메이즈러너",
-  "3": "위기탈출넘버원",
-  "4": "방탈출매니아",
-  "5": "길 잃은 아이",
-  "6": "알카트라즈 수감자",
-  "7": "무인도 원주민",
-  "8": "미노타우루스",
-  "9": "자유로운 영혼"
-};
-var property = {
-  "1": "한 수 알려주시죠.",
-  "2": "장난치신거죠? 그런거죠? ",
-  "CA": {
-    //철벽력
-    "0": "너님의 인생에서 철벽이란 단어는 없군요?",
-    "1": "철벽 수준의 흙벽이군요. 하지만 흙벽도 못넘는 상대가 있으니 벽을 허무세요.",
-    "2": "독거노인 각입니다. 조금만 더 열린자세로 상대방을 맞이해보세요."
-  },
-  "PO": {
-    //탐지력
-    "0": "사람 자체에 대한 관심이 필요해요;;;;",
-    "1": "이러면 곤란합니다. 밖으로 나가 노세요.",
-    "2": "좋은 더듬이를 갖고 계시군요."
-  },
-  "AC": {
-    //캐리력
-    "0": "냉동인간이세요? 적극적인 의사표현이 필요해욥.",
-    "1": "썸만 타고 흐지부지된 적이 많으실듯. 불쌍하다. ",
-    "2": "한 걸음만 더 먼저 다가가 보는건 어떠신지요?"
-  },
-  "AW": {
-    //주제파악능력
-    "0": "님 심각함. 매일매일 거울체크 필수!",
-    "1": "이건 자존감이 높다고 해야하나..",
-    "2": "주제 파악 좀 하시네요!"
   }
 };
 
@@ -11430,14 +11358,14 @@ var property = {
 /***/ (() => {
 
 var myURL = "https://www.whenismylove.com",
-    result_page = document.querySelector(".result_page"),
-    btnTwitter = document.querySelector("#btnTwitter"),
-    btnFacebook = document.querySelector("#btnFacebook"),
-    btnKakao = document.querySelector("#btnKakao"),
-    btnLink = document.querySelector("#btnLink");
+    resultPage = document.querySelector(".result-page"),
+    btnTwitter = document.querySelector(".twitter"),
+    btnFacebook = document.querySelector(".facebook"),
+    btnKakao = document.querySelector(".kakao"),
+    btnLink = document.querySelector(".link");
 
 var shareTwitter = function shareTwitter() {
-  var sendText = "솔로탈출 테스트";
+  var sendText = "격투기 테스트";
   var sendUrl = myURL;
   window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
 };
@@ -11454,8 +11382,8 @@ var shareKakao = function shareKakao() {
     // 카카오공유버튼ID
     objectType: "feed",
     content: {
-      title: "솔로탈출 테스트",
-      description: "솔로탈출 테스트",
+      title: "격투기 테스트",
+      description: "나랑 가장 잘 맞는 격투기 종목은 무엇일까?",
       imageUrl: myURL,
       link: {
         mobileWebUrl: myURL,
@@ -11473,17 +11401,21 @@ var shareLink = function shareLink() {
   dummy.select();
   document.execCommand("copy");
   document.body.removeChild(dummy);
-  alert("링크가 복사되었습니다.");
+  alert("링크가 복사되었습니다");
 };
 
 var init = function init() {
+  btnTwitter.style.backgroundImage = "url(../../static/images/icon-twitter.png)";
+  btnFacebook.style.backgroundImage = "url(../../static/images/icon-facebook.png)";
+  btnKakao.style.backgroundImage = "url(../../static/images/icon-kakao.png)";
+  btnLink.style.backgroundImage = "url(../../static/images/icon-link.png)";
   btnTwitter.addEventListener("click", shareTwitter);
   btnFacebook.addEventListener("click", shareFacebook);
   btnKakao.addEventListener("click", shareKakao);
   btnLink.addEventListener("click", shareLink);
 };
 
-if (result_page) {
+if (resultPage) {
   init();
 }
 
@@ -11495,13 +11427,19 @@ if (result_page) {
   \********************************/
 /***/ (() => {
 
-var btn_start = document.querySelector("#btn_start"),
-    start_page = document.querySelector(".start_page");
+var btnStart = document.querySelector(".start-btn"),
+    startPage = document.querySelector(".start-page");
 
-if (start_page) {
-  btn_start.addEventListener("click", function () {
-    location.href = "/question";
+var init = function init() {
+  btnStart.addEventListener("click", function () {
+    setTimeout(function () {
+      location.href = "/question";
+    }, 100);
   });
+};
+
+if (startPage) {
+  init();
 }
 
 /***/ }),
@@ -11516,148 +11454,12 @@ if (start_page) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sentence__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sentence */ "./src/assets/js/sentence.js");
 
-var charName = document.querySelector(".char_name"),
-    charPic = document.querySelector(".char_pic"),
-    abilityTip = document.querySelector(".ability_tip"),
-    result_page = document.querySelector(".result_page"),
-    CABar = document.querySelector(".bar_CA"),
-    POBar = document.querySelector(".bar_PO"),
-    ACBar = document.querySelector(".bar_AC"),
-    AWBar = document.querySelector(".bar_AW");
-var finalResult = {
-  "SCORE": 0,
-  "CA": 0,
-  "PO": 0,
-  "AC": 0,
-  "AW": 0
-};
+var resultPage = document.querySelector(".result-page"),
+    resultTitle = document.querySelector(".result-title"),
+    resultImg = document.querySelector(".result-img"),
+    resultDescrible = document.querySelector(".result-describe");
 
-var getFromServer = function getFromServer() {
-  var serverData = document.querySelector(".result-server");
-  serverData.style.display = "none";
-  var splitData = serverData.innerHTML.split("/");
-  finalResult["SCORE"] = splitData[0];
-  finalResult["CA"] = splitData[1];
-  finalResult["PO"] = splitData[2];
-  finalResult["AC"] = splitData[3];
-  finalResult["AW"] = splitData[4];
-};
-
-var valueTitle = function valueTitle() {
-  var score = finalResult["SCORE"];
-
-  if (score == 12) {
-    charName.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.title[1];
-    charPic.src = "../../static/images/Avocado_Fitness.png";
-  } else if (score >= 10) {
-    charName.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.title[2];
-    charPic.src = "../../static/images/Avocado_Fitness.png";
-  } else if (score >= 8) {
-    charName.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.title[3];
-    charPic.src = "../../static/images/Avocado_Fitness.png";
-  } else if (score >= 6) {
-    charName.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.title[4];
-    charPic.src = "../../static/images/Avocado_Fitness.png";
-  } else if (score >= 4) {
-    charName.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.title[5];
-    charPic.src = "../../static/images/Avocado_Fitness.png";
-  } else if (score >= 2) {
-    charName.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.title[6];
-    charPic.src = "../../static/images/Avocado_Fitness.png";
-  } else if (score >= 0) {
-    charName.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.title[7];
-    charPic.src = "../../static/images/Avocado_Fitness.png";
-  } else if (score >= -2) {
-    charName.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.title[8];
-    charPic.src = "../../static/images/Avocado_Fitness.png";
-  } else if (score == -3) {
-    charName.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.title[9];
-    charPic.src = "../../static/images/Avocado_Fitness.png";
-  }
-};
-
-var valueProperty = function valueProperty() {
-  var CA = finalResult["CA"],
-      PO = finalResult["PO"],
-      AC = finalResult["AC"],
-      AW = finalResult["AW"];
-
-  if (CA == 0 && PO == 3 && AC == 3 && AW == 3) {
-    abilityTip.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.property[1];
-    CABar.style.width = "100%";
-    POBar.style.width = "100%";
-    ACBar.style.width = "100%";
-    AWBar.style.width = "100%";
-  } else if (CA == 3 && PO == -3 && AC == 0 && AW == 0) {
-    abilityTip.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.property[2];
-    CABar.style.width = "25%";
-    POBar.style.width = "25%";
-    ACBar.style.width = "25%";
-    AWBar.style.width = "25%";
-  } else {
-    if (CA == 0) {
-      abilityTip.innerText += _sentence__WEBPACK_IMPORTED_MODULE_0__.property.CA[0];
-      CABar.style.width = "10%";
-    } else if (CA == 1) {
-      abilityTip.innerText += _sentence__WEBPACK_IMPORTED_MODULE_0__.property.CA[1];
-      CABar.style.width = "30%";
-    } else if (CA == 2) {
-      abilityTip.innerText += _sentence__WEBPACK_IMPORTED_MODULE_0__.property.CA[2];
-      CABar.style.width = "70%";
-    } else if (CA == 3) {
-      abilityTip.innerText += _sentence__WEBPACK_IMPORTED_MODULE_0__.property.CA[2];
-      CABar.style.width = "100%";
-    }
-
-    if (PO == 0) {
-      abilityTip.innerText += _sentence__WEBPACK_IMPORTED_MODULE_0__.property.PO[0];
-      POBar.style.width = "10%";
-    } else if (PO == 1) {
-      abilityTip.innerText += _sentence__WEBPACK_IMPORTED_MODULE_0__.property.PO[1];
-      POBar.style.width = "30%";
-    } else if (PO == 2) {
-      abilityTip.innerText += _sentence__WEBPACK_IMPORTED_MODULE_0__.property.PO[2];
-      POBar.style.width = "70%";
-    } else if (PO == 3) {
-      abilityTip.innerText += _sentence__WEBPACK_IMPORTED_MODULE_0__.property.PO[2];
-      POBar.style.width = "100%";
-    }
-
-    if (AC == 0) {
-      abilityTip.innerText += _sentence__WEBPACK_IMPORTED_MODULE_0__.property.AC[0];
-      ACBar.style.width = "10%";
-    } else if (AC == 1) {
-      abilityTip.innerText += _sentence__WEBPACK_IMPORTED_MODULE_0__.property.AC[1];
-      ACBar.style.width = "30%";
-    } else if (AC == 2) {
-      abilityTip.innerText += _sentence__WEBPACK_IMPORTED_MODULE_0__.property.AC[2];
-      ACBar.style.width = "70%";
-    } else if (AC == 3) {
-      abilityTip.innerText += _sentence__WEBPACK_IMPORTED_MODULE_0__.property.AC[2];
-      ACBar.style.width = "100%";
-    }
-
-    if (AW == 0) {
-      abilityTip.innerText += _sentence__WEBPACK_IMPORTED_MODULE_0__.property.AW[0];
-      AWBar.style.width = "10%";
-    } else if (AW == 1) {
-      abilityTip.innerText += _sentence__WEBPACK_IMPORTED_MODULE_0__.property.AW[1];
-      AWBar.style.width = "30%";
-    } else if (AW == 2) {
-      abilityTip.innerText += _sentence__WEBPACK_IMPORTED_MODULE_0__.property.AW[2];
-      AWBar.style.width = "70%";
-    } else if (AW == 3) {
-      abilityTip.innerText += _sentence__WEBPACK_IMPORTED_MODULE_0__.property.AW[2];
-      AWBar.style.width = "100%";
-    }
-  }
-};
-
-if (result_page) {
-  getFromServer();
-  valueTitle();
-  valueProperty();
-}
+if (resultPage) {}
 
 /***/ }),
 
@@ -11665,6 +11467,32 @@ if (result_page) {
 /*!**************************************!*\
   !*** ./src/assets/css/animation.css ***!
   \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/assets/css/btn.css":
+/*!********************************!*\
+  !*** ./src/assets/css/btn.css ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/assets/css/content.css":
+/*!************************************!*\
+  !*** ./src/assets/css/content.css ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11687,36 +11515,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/assets/css/progressbar.css":
-/*!****************************************!*\
-  !*** ./src/assets/css/progressbar.css ***!
-  \****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./src/assets/css/responsive.css":
-/*!***************************************!*\
-  !*** ./src/assets/css/responsive.css ***!
-  \***************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./src/assets/css/share.css":
-/*!**********************************!*\
-  !*** ./src/assets/css/share.css ***!
-  \**********************************/
+/***/ "./src/assets/css/page.css":
+/*!*********************************!*\
+  !*** ./src/assets/css/page.css ***!
+  \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11849,12 +11651,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sentence__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./sentence */ "./src/assets/js/sentence.js");
 /* harmony import */ var _share__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./share */ "./src/assets/js/share.js");
 /* harmony import */ var _share__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_share__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _css_responsive_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../css/responsive.css */ "./src/assets/css/responsive.css");
+/* harmony import */ var _css_content_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../css/content.css */ "./src/assets/css/content.css");
 /* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../css/style.css */ "./src/assets/css/style.css");
 /* harmony import */ var _css_font_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../css/font.css */ "./src/assets/css/font.css");
 /* harmony import */ var _css_animation_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../css/animation.css */ "./src/assets/css/animation.css");
-/* harmony import */ var _css_progressbar_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../css/progressbar.css */ "./src/assets/css/progressbar.css");
-/* harmony import */ var _css_share_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../css/share.css */ "./src/assets/css/share.css");
+/* harmony import */ var _css_page_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../css/page.css */ "./src/assets/css/page.css");
+/* harmony import */ var _css_btn_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../css/btn.css */ "./src/assets/css/btn.css");
 
 
 

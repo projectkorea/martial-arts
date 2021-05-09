@@ -1,60 +1,67 @@
 import { quest } from "./sentence";
 
-const question_page = document.querySelector(".question_page"),
-  loading_page = document.querySelector(".loading_page"),
-  question_wrapper = document.querySelector(".question_wrapper"),
-  title = document.querySelector(".question_title"),
-  btn_wrapper = document.querySelector(".question_btn_wrapper"),
+const questionPage = document.querySelector(".question-page"),
+  loadingPage = document.querySelector(".loading-page"),
+  pageNum = document.querySelector(".progress-page-num"),
+  progressMoving = document.querySelector(".progress-moving"),
+  ground = document.querySelector(".progress-ground"),
+  question_wrapper = document.querySelector(".question-wrapper"),
+  questionTitle = document.querySelector(".question-title"),
+  questionBtn = document.querySelector(".question-btn"),
   A = document.querySelector("#A"),
-  B = document.querySelector("#B"),
-  p_num = document.querySelector("#p_num"),
-  run_img = document.querySelector("#run"),
-  heart_img = document.querySelector("#heart"),
-  ground = document.querySelector("#ground");
+  B = document.querySelector("#B");
 
 let finalResult = {
-    "CA": 0,
-    "PO": 0,
-    "AC": 0,
-    "AW": 0,
-    "SCORE": 0,
+    "E": 0,
+    "I": 0,
+    "S": 0,
+    "N": 0,
+    "F": 0,
+    "T": 0,
+    "P": 0,
+    "J": 0,
     "RESULT": "",
   },
   page_num = 1,
-  run_pos = 1,
-  heart_opa = 5;
+  run_pos = 1;
+
+const nextQuestion = () => {
+  if (page_num <= 12) {
+    questionTitle.innerHTML = quest[page_num]["title"];
+    A.innerText = quest[page_num]["A"]["text"];
+    B.innerText = quest[page_num]["B"]["text"];
+    questionAnimation();
+    progressAnimation();
+  } else {
+    saveType();
+    postToUrl("/loading", finalResult);
+    questionPage.style.display = "none";
+    loadingPage.style.display = "flex";
+  }
+};
 
 const removeFadeIn = () => {
   question_wrapper.classList.remove("fade-in");
-  btn_wrapper.classList.remove("fade-in");
+  questionBtn.classList.remove("fade-in");
 };
 
 const clickFunction = (e) => {
+  e.target.style.background = "#ff7d4d";
   let idValue = e.target.id;
+  let type = quest[page_num][idValue]["type"];
 
   A.disabled = "true";
   B.disabled = "true";
 
-  let typeResult = quest[page_num][idValue]["type"];
-
-  if (typeResult != null) finalResult[typeResult] += 1;
-  finalResult["SCORE"] += quest[page_num][idValue]["score"];
+  if (type != null) finalResult[type] += 1;
 
   setTimeout(() => {
-    e.target.classList.add("bold");
-  }, 100);
-
-  e.target.classList.add("magnifyBorder");
-  setTimeout(() => {
-    e.target.classList.remove("magnifyBorder");
-    e.target.classList.remove("bold");
+    e.target.style.background = "";
     page_num++;
-
     A.removeAttribute("disabled");
     B.removeAttribute("disabled");
-
     nextQuestion();
-  }, 500);
+  }, 300);
 };
 
 const postToUrl = (path, params, method) => {
@@ -74,68 +81,47 @@ const postToUrl = (path, params, method) => {
 };
 
 const saveType = () => {
-  if (finalResult["SCORE"] >= 13) finalResult["RESULT"] = "a";
-  else if (finalResult["SCORE"] >= 11) finalResult["RESULT"] = "b";
-  else if (finalResult["SCORE"] >= 9) finalResult["RESULT"] = "c";
-  else if (finalResult["SCORE"] >= 7) finalResult["RESULT"] = "d";
-  else if (finalResult["SCORE"] >= 5) finalResult["RESULT"] = "e";
-  else if (finalResult["SCORE"] >= 3) finalResult["RESULT"] = "f";
-  else if (finalResult["SCORE"] >= 1) finalResult["RESULT"] = "g";
-  else if (finalResult["SCORE"] >= 0) finalResult["RESULT"] = "h";
-  else if (finalResult["SCORE"] >= -1) finalResult["RESULT"] = "i";
-  else if (finalResult["SCORE"] >= -2) finalResult["RESULT"] = "j";
-};
-
-const nextQuestion = () => {
-  if (page_num <= 12) {
-    btn_wrapper.style.opacity = "0";
-    question_wrapper.classList.add("fade-in");
-    setTimeout(() => {
-      btn_wrapper.style.opacity = "1";
-      btn_wrapper.classList.add("fade-in");
-      setTimeout(removeFadeIn, 1000);
-    }, 300);
-
-    title.innerHTML = quest[page_num]["title"];
-    A.innerText = quest[page_num]["A"]["text"];
-    B.innerText = quest[page_num]["B"]["text"];
-
-    if (btn_wrapper) {
-      setTimeout(() => {
-        A.addEventListener("click", clickFunction, { once: true });
-        B.addEventListener("click", clickFunction, { once: true });
-      }, 500);
-    }
-    progressAnimation();
-  } else {
-    saveType();
-    postToUrl("/loading", finalResult);
-    question_page.style.display = "none";
-    loading_page.style.display = "flex";
-  }
+  if (finalResult["E"] > finalResult["I"]) finalResult["RESULT"] += "E";
+  else finalResult["RESULT"] += "I";
+  if (finalResult["S"] > finalResult["N"]) finalResult["RESULT"] += "S";
+  else finalResult["RESULT"] += "N";
+  if (finalResult["F"] > finalResult["T"]) finalResult["RESULT"] += "F";
+  else finalResult["RESULT"] += "T";
+  if (finalResult["P"] > finalResult["J"]) finalResult["RESULT"] += "P";
+  else finalResult["RESULT"] += "J";
 };
 
 const progressAnimation = () => {
-  p_num.innerText = `${page_num} / 12`;
-  run_img.style.left = `${(run_pos += (ground.clientWidth - 33) / 12)}px`;
-  heart_img.style.opacity = `${(heart_opa += 6)}%`;
+  pageNum.innerText = `${page_num} / 12`;
+  progressMoving.style.left = `${(run_pos +=
+    (ground.clientWidth - 33) / 12)}px`;
 };
 
-const heartAnimation = () => {
-  let flag = 1;
-  setInterval(() => {
-    if (flag == 1) heart_img.style.transform = "scale(1)";
-    else heart_img.style.transform = "scale(0.8)";
-    flag *= -1;
-  }, 1000);
+const questionAnimation = () => {
+  questionBtn.style.opacity = "0";
+  question_wrapper.classList.add("fade-in");
+  A.style.pointerEvents = "none";
+  B.style.pointerEvents = "none";
+
+  setTimeout(() => {
+    questionBtn.style.opacity = "1";
+    questionBtn.classList.add("fade-in");
+    A.style.pointerEvents = "auto";
+    B.style.pointerEvents = "auto";
+    setTimeout(removeFadeIn, 1000);
+  }, 300);
+
+  setTimeout(() => {
+    A.addEventListener("click", clickFunction, { once: true });
+    B.addEventListener("click", clickFunction, { once: true });
+  }, 1300);
 };
 
 const init = () => {
-  loading_page.style.display = "none";
-  heartAnimation();
+  loadingPage.style.display = "none";
   nextQuestion();
 };
 
-if (question_page) {
+if (questionPage) {
   init();
 }

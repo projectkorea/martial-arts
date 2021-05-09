@@ -1,210 +1,139 @@
 export const quest = {
   1: {
-    "title": "한껏 꾸민 날,<br><span class='half_HL'>번호를 따였다.</span>",
+    "title": "<span class='half_HL'>싸움</span>에서 중요한 것은",
     "A": {
-      "text": "",
-      "type": "",
-      "score": 0,
+      "text": "피지컬",
+      "type": "S",
     },
     "B": {
-      "text": "",
-      "type": "",
-      "score": 1,
-    },
-    "C": {
-      "text": "",
-      "type": "",
-      "score": 1,
+      "text": "기술",
+      "type": "N",
     },
   },
   2: {
-    "title": "<span class='half_HL'>내 매력을</span><br>",
+    "title":
+      "UFC경기를 보다가<br>  <span class='half_HL'>가장 짜릿할 때</span>는  ",
     "A": {
-      "text": "ㅈ",
-      "type": "PO",
-      "score": 1,
+      "text": "예상치도 못한 KO가 나올 때",
+      "type": "T",
     },
     "B": {
-      "text": "최종적인 순간을 위해 사용한다",
-      "type": "",
-      "score": -1,
+      "text": "미친 경기력을 주고받을 때",
+      "type": "F",
     },
   },
   3: {
-    "title":
-      "썸남/썸녀와의 대화 도중<br><span class='half_HL'>어색한 침묵</span>이 흐른다. ",
+    "title": "<span class='half_HL'>능력치</span>를<br>   분배할 수 있다면?   ",
     "A": {
-      "text": "자연스럽게 카톡을 확인한다",
-      "type": "",
-      "score": 0,
+      "text": "하나에 올인",
+      "type": "I",
     },
     "B": {
-      "text": "펜트 하우스 보셨어요?",
-      "type": "C",
-      "score": 1,
+      "text": "밸런스있게 찍기",
+      "type": "E",
     },
   },
   4: {
-    "title": "<span class='half_HL'>나는 이상형이</span>",
+    "title":
+      "총을 <span class='half_HL'>한 자루</span>만<br>    고를 수 있다면?    ",
     "A": {
-      "text": "얼굴부터 성격까지 확고하다",
-      "type": "",
-      "score": 0,
+      "text": "강력한 샷건",
+      "type": "S",
     },
     "B": {
-      "text": "사람에 따라 매번 달라진다",
-      "type": "K",
-      "score": 1,
+      "text": "정교한 스나이퍼",
+      "type": "N",
     },
   },
   5: {
-    "title": "<span class='half_HL'>소개팅</span>이 들어왔다.",
+    "title":
+      "경기중 상대보다 내가 <br><span class='half_HL'>훨씬 유리</span>하다고 느낄 때",
     "A": {
-      "text": "누군데? 이것저것 물어본다.",
-      "type": "PO",
-      "score": 1,
+      "text": "빨리 이겨버리고 다음 경기를 한다",
+      "type": "T",
     },
     "B": {
-      "text": "나 자만추인거 몰라?😒",
-      "type": "",
-      "score": -1,
+      "text": "새로운 기술을 사용해본다",
+      "type": "F",
     },
   },
   6: {
-    "title": "썸인지 아닌지 <br><span class='half_HL'>햇갈리면 나는</span>,",
+    "title": "<span class='half_HL'>처음 보는 몬스터</span>를<br> 봤을 때 나는",
     "A": {
-      "text": "멘붕에 빠진다😱",
-      "type": "",
-      "score": 0,
+      "text": "일단 좀 맞자. 때려본다.",
+      "type": "P",
     },
     "B": {
-      "text": "더 다가가 본다🤭",
-      "type": "AC",
-      "score": 1,
+      "text": "  구글링하고 온다. 딱 기다려  ",
+      "type": "J",
     },
   },
   7: {
-    "title":
-      "평소 관심 있던 사람이<br><span class='half_HL'>오늘 술 한잔 어때요?</span>",
+    "title": "  나를 <span class='half_HL'>군대에 </span>비유하면  ",
     "A": {
-      "text": "기회다🤩\n같이 마셔요!",
-      "type": "",
-      "score": 1,
+      "text": "전차, 자주포",
+      "type": "S",
     },
     "B": {
-      "text": "밥은 어때요?\n천천히 알아가고 싶다.",
-      "type": "CA",
-      "score": 0,
+      "text": "전투기, 공격헬기",
+      "type": "N",
     },
   },
   8: {
-    "title":
-      "내 스타일은 아닌데<br><span class='half_HL'>나를 너무 좋아한다.</span>",
+    "title": "<span class='half_HL'>게임이나 스포츠</span>를 할 때<br>나는",
     "A": {
-      "text": "굳이 눈을 낮춰서..🤔?",
-      "type": "",
-      "score": 0,
+      "text": "이겨야 할 맛이 나지",
+      "type": "T",
     },
     "B": {
-      "text": "나를 그렇게 좋아한다는데..😥",
-      "type": "AW",
-      "score": 1,
+      "text": "재밌으면 장땡",
+      "type": "F",
     },
   },
   9: {
     "title":
-      "<span class='half_HL'>썸남/썸녀와<br> 분위기가</span>달아올랐을 때 나는",
+      "<span class='half_HL'>스승님의 설명</span>이<br>   이해가 안된다   ",
     "A": {
-      "text": "모 아니면 도!\n적극적으로 들이댄다.",
-      "type": "",
-      "score": 1,
+      "text": "스승님! 다시 알려주십시오!",
+      "type": "E",
     },
     "B": {
-      "text": "오늘은 여기까지! \n 다음을 기약한다.",
-      "type": "CA",
-      "score": 0,
+      "text": "생각을 정리하고 물어본다",
+      "type": "I",
     },
   },
   10: {
-    "title": "<span class='half_HL'>동아리에</span><br>뉴페이스가 보인다.",
+    "title": "<span class='half_HL'>새로운 무술</span>을 배울 때<br>나는",
     "A": {
-      "text": "별 관심없다.",
-      "type": "",
-      "score": -1,
+      "text": " 블랙밸트를 목표로 하겠어  ",
+      "type": "J",
     },
     "B": {
-      "text": "쟤 누구야?",
-      "type": "PO",
-      "score": 1,
+      "text": "해보면서 결정해야지",
+      "type": "P",
     },
   },
   11: {
-    "title": "나는 솔직히<br><span class='half_HL'>친구들은 나에게</span><br>",
+    "title":
+      "<span class='half_HL'>상금10억</span>이 걸린<br>경기를 준비 할 때 나는",
     "A": {
-      "text": "“야 너 눈이 너무 낮은거 아니야? ”",
-      "type": "AW",
-      "score": 1,
+      "text": "파트너와 합을 맞춰가며 준비한다",
+      "type": "E",
     },
     "B": {
-      "text": "“제발 주제파악좀 해ㅠㅠ”",
-      "type": "",
-      "score": 0,
+      "text": "혼자서 집중하며 준비한다",
+      "type": "I",
     },
   },
   12: {
-    "title":
-      "썸남/썸녀한테 카톡이 왔다<br><span class='half_HL'>같이 저녁 고?</span>",
+    "title": "다음 달에<br><span class='half_HL'>중요한 경기</span>가 잡혔다",
     "A": {
-      "text": "\n 여기 진짜 맛있다는데 가보자!",
-      "type": "C",
-      "score": 1,
+      "text": "연습장에서 바로 훈련한다",
+      "type": "P",
     },
     "B": {
-      "text": "고고! 뭐 좋아해?",
-      "type": "",
-      "score": 0,
+      "text": "경기 전략을 먼저 세운다",
+      "type": "J",
     },
-  },
-};
-
-export const title = {
-  "1": "벽돌 뚫고 하이킥",
-  "2": "메이즈러너",
-  "3": "위기탈출넘버원",
-  "4": "방탈출매니아",
-  "5": "길 잃은 아이",
-  "6": "알카트라즈 수감자",
-  "7": "무인도 원주민",
-  "8": "미노타우루스",
-  "9": "자유로운 영혼",
-};
-
-export const property = {
-  "1": "한 수 알려주시죠.",
-  "2": "장난치신거죠? 그런거죠? ",
-  "CA": {
-    //철벽력
-    "0": "너님의 인생에서 철벽이란 단어는 없군요?",
-    "1":
-      "철벽 수준의 흙벽이군요. 하지만 흙벽도 못넘는 상대가 있으니 벽을 허무세요.",
-    "2": "독거노인 각입니다. 조금만 더 열린자세로 상대방을 맞이해보세요.",
-  },
-  "PO": {
-    //탐지력
-    "0": "사람 자체에 대한 관심이 필요해요;;;;",
-    "1": "이러면 곤란합니다. 밖으로 나가 노세요.",
-    "2": "좋은 더듬이를 갖고 계시군요.",
-  },
-  "AC": {
-    //캐리력
-    "0": "냉동인간이세요? 적극적인 의사표현이 필요해욥.",
-    "1": "썸만 타고 흐지부지된 적이 많으실듯. 불쌍하다. ",
-    "2": "한 걸음만 더 먼저 다가가 보는건 어떠신지요?",
-  },
-  "AW": {
-    //주제파악능력
-    "0": "님 심각함. 매일매일 거울체크 필수!",
-    "1": "이건 자존감이 높다고 해야하나..",
-    "2": "주제 파악 좀 하시네요!",
   },
 };

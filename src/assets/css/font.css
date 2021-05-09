@@ -1,11 +1,4 @@
 @charset "UTF-8";
-@font-face {
-  font-family: "RIDIBatang";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
 
 @font-face {
   font-family: "IBMPlexSansKR-Regular";
@@ -26,30 +19,6 @@
 @font-face {
   font-family: "IBMPlexSansKR-Bold";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Bold.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "LAB디지털";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/LAB디지털.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "GyeonggiBatang";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GyeonggiBatang.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "MaruBuri-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/MaruBuri-Regular.woff")
     format("woff");
   font-weight: normal;
   font-style: normal;
@@ -79,48 +48,8 @@
   font-style: normal;
 }
 
-@font-face {
-  font-family: "JSDongkang-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "HangeulNuri-Bold";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/HangeulNuri-Bold.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "NanumBarunpen";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Goyang";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Goyang.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "NanumSquareRound";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
 button {
-  font-family: "S-CoreDream-3Light";
+  font-family: "IBMPlexSansKR-SemiBold";
 }
 
 .container {
@@ -128,19 +57,19 @@ button {
 }
 
 .bold {
-  font-family: "S-CoreDream-4Regular";
+  font-family: "IBMPlexSansKR-SemiBold";
 }
 
 .start_title {
-  font-family: "NanumSquareRound";
+  font-family: "IBMPlexSansKR-SemiBold";
 }
 
 #btn_start {
-  font-family: "S-CoreDream-4Regular";
+  font-family: "IBMPlexSansKR-SemiBold";
 }
 
 .question_title {
-  font-family: "NanumBarunpen";
+  font-family: "IBMPlexSansKR-SemiBoldn";
 }
 
 .result_title {
@@ -148,7 +77,7 @@ button {
 }
 
 .rank label {
-  font-family: "LAB디지털";
+  font-family: "IBMPlexSansKR-SemiBold";
 }
 
 #par {
@@ -160,11 +89,11 @@ button {
 }
 
 #wait_num {
-  font-family: "HangeulNuri-Bold";
+  font-family: "IBMPlexSansKR-SemiBold";
 }
 
 #now {
-  font-family: "HangeulNuri-Bold";
+  font-family: "IBMPlexSansKR-SemiBold";
 }
 
 #after {

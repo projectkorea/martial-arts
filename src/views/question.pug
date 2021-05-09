@@ -1,19 +1,18 @@
 extends layouts/main.pug
 
 block content
-    body.container
-        main.question_page.page.fade_in
-                .progress_question
-                    img#run(src='../static/images/running.gif')
-                    #heart_wrapper
-                        #heart
-                    #ground
-                #p_num
-                .question_wrapper.wrapper
-                    h2.question_title.title
-                    .question_btn_wrapper
-                        button#A.horizontalOverlay
-                        button#B.horizontalOverlay
-        main.loading_page.page.fade_in
-                div 탈출 시도 중 입니다..
+    body.container.fade-in--quick
+        main.question-page
+            .progress-wrapper
+                img.progress-moving(src='../static/images/running.gif')
+                img.progress-arrived(src='../static/images/heart.png')
+                .progress-ground
+                .progress-page-num
+            .question-wrapper
+                .question-title
+                .question-btn
+                    button#A.btn-fade
+                    button#B.btn-fade
+        main.loading-page
+            div 전투력 측정 중..
                 .donutSpinner

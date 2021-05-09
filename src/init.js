@@ -2,7 +2,7 @@ import "@babel/polyfill";
 import dotenv from "dotenv";
 import "./db";
 import app from "./app";
-import "./models/Result";
+import "./models/MartialArtsResult";
 
 dotenv.config();
 

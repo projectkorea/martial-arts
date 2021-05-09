@@ -1,0 +1,24 @@
+extends layouts/main.pug
+
+block content
+    body.container.fade-in
+        main.result-page
+            .result-top.wrapper
+                .result.char_result 
+                    .result-subtitle 나랑 가장 잘 맞는 격투기 종목은
+                    .result-title 종합격투기
+                    img.result-img(src='../static/images/mma.jpg')
+                    br
+                    | 전체 참여자 #{totalNumber}명 중
+                    br
+                    | 나와 같은 유형은
+                    label.percentage #{(sameNumber/totalNumber*100).toFixed(2)}%
+                    | 입니다.
+            .result-middle.wrapper
+                .result.tip_result
+                    .result-describe "Adaptability and improvisation. Larger than life personalities. Tactical ability and game-planning.",
+            .result-middle2.wrapper
+                .result-bold-text  최고의 파트너
+            .result-middle3.wrapper
+                .result-bold-text  최악의 파트너
+            include ./partials/result

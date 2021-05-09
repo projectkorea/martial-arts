@@ -1,12 +1,10 @@
-const rank = document.querySelector(".rank");
-const resultTop = document.querySelector(".resultTop");
-const resultMiddle = document.querySelector(".resultMiddle");
-const resultBottom = document.querySelector(".resultBottom");
-
-const html = document.querySelector("html");
-
-const result_wrapper = document.querySelector(".result_wrapper");
-const result_page = document.querySelector(".result_page");
+const rank = document.querySelector(".rank"),
+  resultTop = document.querySelector(".result-top"),
+  resultMiddle = document.querySelector(".result-middle"),
+  resultBottom = document.querySelector(".result-bottom"),
+  result_wrapper = document.querySelector(".result_wrapper"),
+  retest = document.querySelector(".retest-btn"),
+  resultPage = document.querySelector(".result-page");
 
 const init = () => {
   retest.addEventListener("click", () => {
@@ -14,6 +12,6 @@ const init = () => {
   });
 };
 
-if (result_page) {
+if (resultPage) {
   init();
 }

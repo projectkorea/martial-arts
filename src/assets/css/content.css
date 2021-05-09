@@ -1,0 +1,80 @@
+.start-img {
+  width: 120%;
+  max-width: 250px;
+  margin: 0px;
+}
+
+.start-title {
+  font-size: 36px;
+  margin-bottom: 10px;
+  line-height: 40px;
+  font-weight: 100;
+}
+
+.progress-moving {
+  width: 30px;
+  height: 40px;
+  position: absolute;
+  top: 60px;
+}
+
+.progress-arrived {
+  width: 20px;
+  height: 20px;
+  right: 40px;
+  top: 70px;
+  position: absolute;
+}
+
+.progress-ground {
+  position: absolute;
+  width: 87%;
+  height: 1.5px;
+  background: black;
+  top: 100px;
+  left: 6%;
+  opacity: 0.6;
+}
+
+.progress-page-num {
+  color: darkgray;
+  position: absolute;
+  top: 110px;
+  right: 35px;
+}
+
+.question-title {
+  font-size: 28px;
+  padding: 20px 20px;
+  line-height: 40px;
+  margin-bottom: 60px;
+}
+
+.result-title {
+  text-align: center;
+  margin-bottom: 30px;
+  display: block;
+  font-weight: bold;
+  margin: 0px !important;
+  line-height: 1.1;
+  font-size: 24px;
+}
+
+.result-bold-text {
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.result-img {
+  width: 200px;
+  height: 200px;
+  margin: 20px 10px;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.percentage {
+  color: #c70000;
+  font-size: 20px;
+}
