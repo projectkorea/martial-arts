@@ -3,8 +3,7 @@ import { quest } from "./sentence";
 const questionPage = document.querySelector(".question-page"),
   loadingPage = document.querySelector(".loading-page"),
   pageNum = document.querySelector(".progress-page-num"),
-  progressMoving = document.querySelector(".progress-moving"),
-  ground = document.querySelector(".progress-ground"),
+  progressBar = document.querySelector(".progress-bar"),
   question_wrapper = document.querySelector(".question-wrapper"),
   questionTitle = document.querySelector(".question-title"),
   questionBtn = document.querySelector(".question-btn"),
@@ -36,7 +35,7 @@ const nextQuestion = () => {
     saveType();
     postToUrl("/loading", finalResult);
     questionPage.style.display = "none";
-    loadingPage.style.display = "flex";
+    loadingPage.style.display = "block";
   }
 };
 
@@ -93,8 +92,18 @@ const saveType = () => {
 
 const progressAnimation = () => {
   pageNum.innerText = `${page_num} / 12`;
-  progressMoving.style.left = `${(run_pos +=
-    (ground.clientWidth - 33) / 12)}px`;
+  if (page_num == 1) progressBar.style.width = "0%";
+  else if (page_num == 2) progressBar.style.width = "8.3%";
+  else if (page_num == 3) progressBar.style.width = "16.6%";
+  else if (page_num == 4) progressBar.style.width = "24.9%";
+  else if (page_num == 5) progressBar.style.width = "33.2%";
+  else if (page_num == 6) progressBar.style.width = "41.5%";
+  else if (page_num == 7) progressBar.style.width = "49.8%";
+  else if (page_num == 8) progressBar.style.width = "58.1%";
+  else if (page_num == 9) progressBar.style.width = "66.4%";
+  else if (page_num == 10) progressBar.style.width = "74.7%";
+  else if (page_num == 11) progressBar.style.width = "83%";
+  else if (page_num == 12) progressBar.style.width = "91.3%";
 };
 
 const questionAnimation = () => {

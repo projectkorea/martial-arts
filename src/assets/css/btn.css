@@ -30,7 +30,7 @@
   display: inline-block;
   font-size: 1em;
   font-size: 28px;
-  line-height: 1em;
+  line-height: 1.5em;
   margin: 15px 40px;
   outline: none;
   padding: 12px 40px 10px;
@@ -82,20 +82,20 @@ start-btn.hover:before,
 }
 
 .question-btn button {
+  font-family: "NanumBarunGothic" !important;
   width: 100%;
   margin-bottom: 15px;
-  border: 1px solid gray;
   width: 100%;
   padding: 40px 20px;
   outline: none;
   font-size: 18px;
   border-radius: 15px;
-  background: transparent;
-  color: black;
+  border: 2px solid darkorange;
+  color: #f7f9f9;
 }
 
 .retest-btn {
-  background: transparent;
+  background: gray;
   border: 2px solid gray;
   border-radius: 15px;
   outline: none;
@@ -124,7 +124,6 @@ start-btn.hover:before,
   box-shadow: 0px 5px 24px rgba(34, 34, 34, 0.3);
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-family: "Lato", sans-serif;
   font-size: 1.3em;
   font-weight: 400;
   margin-left: auto;
@@ -142,7 +141,6 @@ start-btn.hover:before,
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-family: "Lato", sans-serif;
   font-size: 2.4em;
   font-weight: 200;
 }
@@ -154,6 +152,7 @@ start-btn.hover:before,
 }
 .btn-fade {
   background: #ffbaa1;
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .btn-overlay {
@@ -177,4 +176,8 @@ start-btn.hover:before,
 .btn-overlay span {
   position: relative;
   z-index: 1;
+}
+
+.btn-collection {
+  padding: 10px;
 }

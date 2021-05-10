@@ -5,20 +5,48 @@ block content
         main.result-page
             .result-top.wrapper
                 .result.char_result 
-                    .result-subtitle 나랑 가장 잘 맞는 격투기 종목은
+                    |나랑 가장 잘 맞는 격투기 종목은
                     .result-title 종합격투기
                     img.result-img(src='../static/images/mma.jpg')
                     br
                     | 전체 참여자 #{totalNumber}명 중
                     br
-                    | 나와 같은 유형은
+                    | 나와 같은 격투가는 
                     label.percentage #{(sameNumber/totalNumber*100).toFixed(2)}%
-                    | 입니다.
-            .result-middle.wrapper
-                .result.tip_result
-                    .result-describe "Adaptability and improvisation. Larger than life personalities. Tactical ability and game-planning.",
-            .result-middle2.wrapper
-                .result-bold-text  최고의 파트너
-            .result-middle3.wrapper
-                .result-bold-text  최악의 파트너
-            include ./partials/result
+                    |입니다.
+            .result-middle
+                .result-subtitle "다들 계획은 있지. 처맞기 전까지는 말이야""
+                .result-explannation.result-text.wrapper-explanation
+                    li
+                        i.fas.fa-fist-raised 
+                        | 적응력이 좋고 즉흥적인 플레이에 능합니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 전술적 능력과 모험을 즐기는 스포츠맨쉽이 많습니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 벼랑 끝의 아슬아슬한 삶을 즐기는 삶을 즐길줄 압니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 과감한 모험이 아니면 인생의 별 다른 흥미를 느끼지 못합니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 어느 정도 지식으로 대화에 무리 없이 참여가능 하지만, 난해한 이론은 별로 관심이 가지 않습니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 몸으로 부딪치며 격투를 배우기를 좋아합니다.
+            .result-bottom.partner-wrapper.wrapper
+                .best-partner
+                    .result.char_result 
+                    .result-bold-text  최고의 파트너
+                    .result-title 유도
+                    br
+                    img.result-partner-img(src='../static/images/judo.png')
+                .worst-partner
+                    .result.char_result 
+                    .result-bold-text  최악의 파트너
+                    .result-title 태극권
+                    br
+                    img.result-partner-img(src='../static/images/taichi.jpg')
+            include ./partials/share
+            include ./partials/footer-result

@@ -4,15 +4,20 @@ block content
     body.container.fade-in--quick
         main.question-page
             .progress-wrapper
-                img.progress-moving(src='../static/images/running.gif')
-                img.progress-arrived(src='../static/images/heart.png')
+                .progress(style='height: 8px').progress-bootstrap
+                    .progress-bar(role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='width: 0%')
                 .progress-ground
                 .progress-page-num
-            .question-wrapper
+            .question-wrapper.wrapper
                 .question-title
-                .question-btn
+                .question-btn.noselect
                     button#A.btn-fade
                     button#B.btn-fade
-        main.loading-page
-            div 전투력 측정 중..
-                .donutSpinner
+        main.loading-page.wrapper-loading
+            .circ
+                .hands
+                .body
+                .head1
+                    .eye
+            .loading-title 전투력 측정중..
+    include ./partials/footer

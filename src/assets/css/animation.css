@@ -58,30 +58,3 @@
     opacity: 0;
   }
 }
-
-.donutSpinner {
-  display: inline-block;
-  border: 10px solid #722806;
-  border-left-color: #e20000;
-  border-radius: 50%;
-  margin-top: 30px;
-  width: 30px;
-  height: 30px;
-  -webkit-animation: donut-spin 1.2s linear infinite;
-  animation: donut-spin 1.2s linear infinite;
-  align-items: center;
-}
-
-@-webkit-keyframes donut-spin {
-  to {
-    -webkit-transform: rotate(1turn);
-    transform: rotate(1turn);
-  }
-}
-
-@keyframes donut-spin {
-  to {
-    -webkit-transform: rotate(1turn);
-    transform: rotate(1turn);
-  }
-}

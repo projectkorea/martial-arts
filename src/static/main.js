@@ -11057,8 +11057,7 @@ __webpack_require__.r(__webpack_exports__);
 var questionPage = document.querySelector(".question-page"),
     loadingPage = document.querySelector(".loading-page"),
     pageNum = document.querySelector(".progress-page-num"),
-    progressMoving = document.querySelector(".progress-moving"),
-    ground = document.querySelector(".progress-ground"),
+    progressBar = document.querySelector(".progress-bar"),
     question_wrapper = document.querySelector(".question-wrapper"),
     questionTitle = document.querySelector(".question-title"),
     questionBtn = document.querySelector(".question-btn"),
@@ -11089,7 +11088,7 @@ var nextQuestion = function nextQuestion() {
     saveType();
     postToUrl("/loading", finalResult);
     questionPage.style.display = "none";
-    loadingPage.style.display = "flex";
+    loadingPage.style.display = "block";
   }
 };
 
@@ -11141,7 +11140,7 @@ var saveType = function saveType() {
 
 var progressAnimation = function progressAnimation() {
   pageNum.innerText = "".concat(page_num, " / 12");
-  progressMoving.style.left = "".concat(run_pos += (ground.clientWidth - 33) / 12, "px");
+  if (page_num == 1) progressBar.style.width = "0%";else if (page_num == 2) progressBar.style.width = "8.3%";else if (page_num == 3) progressBar.style.width = "16.6%";else if (page_num == 4) progressBar.style.width = "24.9%";else if (page_num == 5) progressBar.style.width = "33.2%";else if (page_num == 6) progressBar.style.width = "41.5%";else if (page_num == 7) progressBar.style.width = "49.8%";else if (page_num == 8) progressBar.style.width = "58.1%";else if (page_num == 9) progressBar.style.width = "66.4%";else if (page_num == 10) progressBar.style.width = "74.7%";else if (page_num == 11) progressBar.style.width = "83%";else if (page_num == 12) progressBar.style.width = "91.3%";
 };
 
 var questionAnimation = function questionAnimation() {
@@ -11515,10 +11514,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/assets/css/page.css":
-/*!*********************************!*\
-  !*** ./src/assets/css/page.css ***!
-  \*********************************/
+/***/ "./src/assets/css/loading.css":
+/*!************************************!*\
+  !*** ./src/assets/css/loading.css ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/assets/css/structure.css":
+/*!**************************************!*\
+  !*** ./src/assets/css/structure.css ***!
+  \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11655,8 +11667,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../css/style.css */ "./src/assets/css/style.css");
 /* harmony import */ var _css_font_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../css/font.css */ "./src/assets/css/font.css");
 /* harmony import */ var _css_animation_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../css/animation.css */ "./src/assets/css/animation.css");
-/* harmony import */ var _css_page_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../css/page.css */ "./src/assets/css/page.css");
+/* harmony import */ var _css_structure_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../css/structure.css */ "./src/assets/css/structure.css");
 /* harmony import */ var _css_btn_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../css/btn.css */ "./src/assets/css/btn.css");
+/* harmony import */ var _css_loading_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../css/loading.css */ "./src/assets/css/loading.css");
+
 
 
 
