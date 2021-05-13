@@ -1,0 +1,62 @@
+extends layouts/main.pug
+
+block content
+    body.container.fade-in
+        main.result-page
+            .result-top.wrapper-top
+                .result.char_result 
+                    .result-text-white 나랑 가장 잘 맞는 격투기 종목은
+                    .result-title.animate__animated.animate__pulse 레슬링
+                    img.result-img(src='../static/images/wrestling.jpg')
+                    .result-rank
+                        | 전체 참여자 
+                        .total-number.result-rank-ment #{totalNumber}
+                        | 명 중
+                        br
+                        | 나와 같은 격투가 유형은
+                        br 
+                        label.percentage #{(sameNumber/totalNumber*100).toFixed(2)}%
+                        | 입니다.
+            .result-middle
+                .result-subtitle
+                    .icon-quote
+                        i.fas.fa-quote-left.icon-left
+                        i.fas.fa-quote-right.icon-right
+                    | 잡히면, 죽는다.
+                    .icon-right
+                        
+                .result-explannation.result-text-left.wrapper-explanation
+                    li
+                        i.fas.fa-fist-raised 
+                        | 상대를 내던지거나, 쓰러뜨리거나, 눌러서 제압하는 그래플링 계통의 격투기입니다. 씨름이나 스모도 넓은 의미로 레슬링에 포함됩니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | MMA의 필수과목 중 가장 승률이 좋은 과목이며, 원하는 상황을 순간적으로 강제할 수 있는 강력한 클린치, 테이크 다운, 태클을 통해 우위를 점합니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 레슬링은 상대의 타격기를 제압할때도 매우 효과적입니다. 레슬러가 태클이나 클린치로 붙어버리면 타격을 하는건 불가능에 가깝습니다. 
+                    li
+                        i.fas.fa-fist-raised 
+                        | 레슬링의 강력함을 인정한 미국을 비롯한 각국의 군과 경찰에서 범죄자 검거나 상대방 제압을 위한 훈련과목으로 채택하기도 합니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 이러한 레슬링의 속성은 굳은 의지, 확실한 질서를 고집하고 주변 상황을 정확히 판단하는 당신과 잘 어울립니다. 레슬링을 통해 당신의 위풍당당한 지배력과 의지력을 표출해보세요.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 유명인: 심권호, 존시나, 언더테이커, 존 시나, 브록 레스너, 스티븐 오스틴, 빅쇼, 커트 앵글
+            .result-bottom.partner-wrapper.wrapper
+                a.best-partner(href='/result/boxing')
+                    .result.char_result 
+                    .result-text-black  최고의 파트너
+                    .result-title-black 복싱
+                    br
+                    img.result-partner-img(src='../static/images/boxing.jpg')
+                a.worst-partner(href='/result/capoeira')
+                    .result.char_result 
+                    .result-text-black  최악의 파트너
+                    .result-title-black 카포에라
+                    br
+                    img.result-partner-img(src='../static/images/capoeira.jpg')
+            include ./partials/share
+            include ./partials/adsense
+            include ./partials/footer-result

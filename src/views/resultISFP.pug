@@ -1,0 +1,64 @@
+extends layouts/main.pug
+
+block content
+    body.container.fade-in
+        main.result-page
+            .result-top.wrapper-top
+                .result.char_result 
+                    .result-text-white 나랑 가장 잘 맞는 격투기 종목은
+                    .result-title.animate__animated.animate__pulse 검도
+                    img.result-img(src='../static/images/kendo.jpg')
+                    .result-rank
+                        | 전체 참여자 
+                        .total-number.result-rank-ment #{totalNumber}
+                        | 명 중
+                        br
+                        |나와 같은 격투가 유형은
+                        br
+                        label.percentage #{(sameNumber/totalNumber*100).toFixed(2)}%
+                        | 입니다.
+            .result-middle
+                .result-subtitle
+                    .icon-quote
+                        i.fas.fa-quote-left.icon-left
+                        i.fas.fa-quote-right.icon-right
+                    | 검과 몸은 하나.
+                    br 
+                    | 나의 검은 당신의 것이오.
+                    .icon-right
+                        
+                .result-explannation.result-text-left.wrapper-explanation
+                    li
+                        i.fas.fa-fist-raised 
+                        | 검술 수련 방법인 격검을 스포츠화시킨 일본 무기술입니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 무기술은 복싱, 태권도, 주짓수 같은 맨손 무술과는 비교도 안 될 정도로 상대에게 치명적일 수가 있습니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 맨손 무술은 어지간히 실력 차이나 체급 차이가 나지 않으면 치명적인 부상을 입히기 쉽지 않습니다. 그러나 검도를 배운 사람이 쇠파이프나 목검 등을 들고 사람을 팼다가는 한 번의 공격만으로도 작게는 중상, 크게는 사망에 이를 수 있습니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 호신용으로 검도를 배울 생각은 안 하는 게 좋습니다. 폭행이 아니라 살인으로 죄질이 격상될 수 있기 때문입니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 호기심이 많으면서 번개와 같은 즉각적인 반응이 가능한 당신에게 검도가 가장 잘 어울립니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 유명인: 김경남, 강상훈, 모치다 모리지, 니시카와 키요노리, 후루가와 가즈오, 에이가 나오키, 명탐정 코난 핫토리 헤이지, 갓 오브 하이스쿨 유미라
+            .result-bottom.partner-wrapper.wrapper
+                a.best-partner(href='/result/taekwondo')
+                    .result.char_result 
+                    .result-text-black  최고의 파트너
+                    .result-title-black 태권도
+                    br
+                    img.result-partner-img(src='../static/images/taekwondo.jpg')
+                a.worst-partner(href='/result/archery')
+                    .result.char_result 
+                    .result-text-black  최악의 파트너
+                    .result-title-black 양궁
+                    br
+                    img.result-partner-img(src='../static/images/archery.jpg')
+            include ./partials/share
+            include ./partials/adsense
+            include ./partials/footer-result

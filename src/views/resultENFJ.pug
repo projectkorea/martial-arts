@@ -6,14 +6,14 @@ block content
             .result-top.wrapper-top
                 .result.char_result 
                     .result-text-white 나랑 가장 잘 맞는 격투기 종목은
-                    .result-title.animate__animated.animate__pulse 종합격투기
-                    img.result-img(src='../static/images/mma.jpg')
+                    .result-title.animate__animated.animate__pulse 태극권
+                    img.result-img(src='../static/images/taichi.jpg')
                     .result-rank
                         | 전체 참여자 
                         .total-number.result-rank-ment #{totalNumber}
                         | 명 중
                         br
-                        |나와 같은 격투가 유형은 
+                        |나와 같은 격투가 유형은
                         br
                         label.percentage #{(sameNumber/totalNumber*100).toFixed(2)}%
                         | 입니다.
@@ -22,43 +22,43 @@ block content
                     .icon-quote
                         i.fas.fa-quote-left.icon-left
                         i.fas.fa-quote-right.icon-right
-                    | 현대 무술의 총합체
-                    br 
-                    | 강력함 끝판왕
+                    | 수행은 마라톤과도 같습니다. 
+                    .br
+                    | 마라톤 또한 수행의 연장선이지요.
                     .icon-right
                         
                 .result-explannation.result-text-left.wrapper-explanation
                     li
                         i.fas.fa-fist-raised 
-                        | 어떤 무술과 싸워도 절대 패배하지 않는 기술을 추구합니다.
+                        | 세계에서 가장 많이 수련되고 있는 무술입니다.
                     li
                         i.fas.fa-fist-raised 
-                        | 4대 격투기, 무에타이(킥복싱), 복싱, 주짓수, 레슬링을 기반두고 있어 현존 무술중 가장 강력합니다.
+                        | 상대에게 밀착하여 공격하고 방어하는 상황이 많기 때문에 상대에게 접근하는 능력이 필수적입니다.
                     li
                         i.fas.fa-fist-raised 
-                        | 특히 길거리에서 무조건 맨손으로 싸웠을 때, 가장 극한의 효율을 보여줍니다. MMA가 가장 강력하고 효율적인 것은 이는 이미 수많은 사례를 통해 검증된 엄연한 팩트입니다.
+                        | 상대와 나를 연결하여 상대를 느끼고 그 힘에 맞추어 내 자신을 변화시킴으로써 상대를 이기는것을 추구합니다.
                     li
                         i.fas.fa-fist-raised 
-                        | 몸으로 부딪혀 해결해 나가며, 적응력, 즉흥성, 전술적인 플레이가 필요한 종합격투기에 도전해보세요!
+                        | 태극권 특징상 신비주의적인 이미지 때문에 사기꾼들이 굉장히 많으니 조심하세요.
                     li
                         i.fas.fa-fist-raised 
-                        | 벼랑 끝의 아슬아슬한 삶을 즐기며, 위험한 행동을 일삼는 폭풍같은 당신과 종합격투기와 잘 어울립니다. 
+                        | 겉으론 부드러워 보이지만, 내면은 단단한 당신은 태극권이 가장 잘 어울립니다. 
                     li
                         i.fas.fa-fist-raised 
-                        | 유명인: 코너 맥그리거, 하빕 누르마고메도프, 프란시스 은가누, 김동현, 이스라엘 안데사야, 앤더슨 실바, 존 존스, 정찬성
+                        | 유명인: 무우양, 양노선, 이연걸
             .result-bottom.partner-wrapper.wrapper
-                a.best-partner(href='/result/judo')
+                a.best-partner(href='/result/baguazhang')
                     .result.char_result 
                     .result-text-black  최고의 파트너
-                    .result-title-black 유도
+                    .result-title-black 팔괘장
                     br
-                    img.result-partner-img(src='../static/images/judo.png')
-                a.worst-partner(href='/result/taichi')
+                    img.result-partner-img(src='../static/images/baguazhang.jpg')
+                a.worst-partner(href='/result/mma')
                     .result.char_result 
                     .result-text-black  최악의 파트너
-                    .result-title-black 태극권
+                    .result-title-black 종합격투기
                     br
-                    img.result-partner-img(src='../static/images/taichi.jpg')
+                    img.result-partner-img(src='../static/images/mma.jpg')
             include ./partials/share
             include ./partials/adsense
             include ./partials/footer-result

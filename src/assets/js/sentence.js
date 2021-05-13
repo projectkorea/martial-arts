@@ -64,7 +64,7 @@ export const quest = {
       "type": "P",
     },
     "B": {
-      "text": "  구글링하고 온다. 딱 기다려  ",
+      "text": "일단 구글링하고 온다. 딱 기다려  ",
       "type": "J",
     },
   },

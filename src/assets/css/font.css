@@ -31,6 +31,15 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "ROKAMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.1/ROKAMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @font-face {
   font-family: "NanumBarunGothic";
   font-style: normal;
@@ -73,6 +82,7 @@
 .nanumbarungothic * {
   font-family: "NanumBarunGothic", sans-serif;
 }
+
 button {
   font-family: "IBMPlexSansKR-SemiBold";
 }
@@ -83,40 +93,4 @@ button {
 
 .bold {
   font-family: "IBMPlexSansKR-SemiBold";
-}
-
-#par {
-  font-family: "IBMPlexSansKR-Bold";
-}
-
-#perc {
-  font-family: "IBMPlexSansKR-Bold";
-}
-
-#wait_num {
-  font-family: "IBMPlexSansKR-SemiBold";
-}
-
-#now {
-  font-family: "IBMPlexSansKR-SemiBold";
-}
-
-#after {
-  font-family: "IBMPlexSansKR-SemiBold";
-}
-
-#after_explain {
-  font-family: "IBMPlexSansKR-Bold";
-}
-
-#num_is {
-  font-family: "IBMPlexSansKR-SemiBold";
-}
-
-.bright-gray {
-  color: rgb(59, 66, 76);
-}
-
-.link-water {
-  color: rgb(209, 231, 243);
 }

@@ -6,14 +6,14 @@ block content
             .result-top.wrapper-top
                 .result.char_result 
                     .result-text-white 나랑 가장 잘 맞는 격투기 종목은
-                    .result-title.animate__animated.animate__pulse 종합격투기
-                    img.result-img(src='../static/images/mma.jpg')
+                    .result-title.animate__animated.animate__pulse 태권도
+                    img.result-img(src='../static/images/taekwondo.png')
                     .result-rank
                         | 전체 참여자 
                         .total-number.result-rank-ment #{totalNumber}
                         | 명 중
                         br
-                        |나와 같은 격투가 유형은 
+                        |나와 같은 격투가 유형은
                         br
                         label.percentage #{(sameNumber/totalNumber*100).toFixed(2)}%
                         | 입니다.
@@ -22,43 +22,43 @@ block content
                     .icon-quote
                         i.fas.fa-quote-left.icon-left
                         i.fas.fa-quote-right.icon-right
-                    | 현대 무술의 총합체
-                    br 
-                    | 강력함 끝판왕
+                    | 국뽕은 내가 책임진다.
+                    br
+                    | 가장 유명한 국민 스포츠
                     .icon-right
                         
                 .result-explannation.result-text-left.wrapper-explanation
                     li
                         i.fas.fa-fist-raised 
-                        | 어떤 무술과 싸워도 절대 패배하지 않는 기술을 추구합니다.
+                        | 그 어떤 무술과 비교해도 태권도 발차기 기술을 따라올 자는 없습니다. 단연 1등입니다.
                     li
                         i.fas.fa-fist-raised 
-                        | 4대 격투기, 무에타이(킥복싱), 복싱, 주짓수, 레슬링을 기반두고 있어 현존 무술중 가장 강력합니다.
+                        | 발차기는 펀치에 비해 2-3배 이상의 파괴력을 선보이며 특히 회전에 의한 파괴력 최대 1톤의 파괴력을 자랑합니다.
                     li
                         i.fas.fa-fist-raised 
-                        | 특히 길거리에서 무조건 맨손으로 싸웠을 때, 가장 극한의 효율을 보여줍니다. MMA가 가장 강력하고 효율적인 것은 이는 이미 수많은 사례를 통해 검증된 엄연한 팩트입니다.
+                        | 하지만 온몸을 모두 사용해 체력 소모가 크다는 점, 동작이 커 속도가 느리다는 점 때문에 실전에서는 그다지 유용하지는 않습니다.
                     li
                         i.fas.fa-fist-raised 
-                        | 몸으로 부딪혀 해결해 나가며, 적응력, 즉흥성, 전술적인 플레이가 필요한 종합격투기에 도전해보세요!
+                        | 화려하고 휘황찬란한 발차기, 특히 900도 발차기와 같은 매력적인 기술 덕분에 공연 퍼포먼스로써 이미 위상을 높인지 오래입니다.
                     li
                         i.fas.fa-fist-raised 
-                        | 벼랑 끝의 아슬아슬한 삶을 즐기며, 위험한 행동을 일삼는 폭풍같은 당신과 종합격투기와 잘 어울립니다. 
+                        | 천성적으로 사교적이며, 주목 받는 것을 좋아하는 인기쟁이인 당신에게 태권도가 가장 잘 어울립니다.
                     li
                         i.fas.fa-fist-raised 
-                        | 유명인: 코너 맥그리거, 하빕 누르마고메도프, 프란시스 은가누, 김동현, 이스라엘 안데사야, 앤더슨 실바, 존 존스, 정찬성
+                        | 유명인: 김경훈, 김제경, 김소희, 손태진, 이동준, 오혜리, 이대훈, 차동민, 임수정, 브렌 K-Tigers, 동네 사부님
             .result-bottom.partner-wrapper.wrapper
-                a.best-partner(href='/result/judo')
+                a.best-partner(href='/result/kendo')
                     .result.char_result 
                     .result-text-black  최고의 파트너
-                    .result-title-black 유도
+                    .result-title-black 검도
                     br
-                    img.result-partner-img(src='../static/images/judo.png')
-                a.worst-partner(href='/result/taichi')
+                    img.result-partner-img(src='../static/images/kendo.jpg')
+                a.worst-partner(href='/result/jiujitsu')
                     .result.char_result 
                     .result-text-black  최악의 파트너
-                    .result-title-black 태극권
+                    .result-title-black 주짓수
                     br
-                    img.result-partner-img(src='../static/images/taichi.jpg')
+                    img.result-partner-img(src='../static/images/jiujitsu.jpg')
             include ./partials/share
             include ./partials/adsense
             include ./partials/footer-result

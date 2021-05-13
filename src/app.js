@@ -24,5 +24,8 @@ app.use("/static", express.static(path.join(__dirname, "static")));
 
 app.use(routes.home, globalRouter);
 app.use(routes.result, resultRouter);
+app.use(function (req, res) {
+  res.status(404).redirect("/");
+});
 
 export default app;

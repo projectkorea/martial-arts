@@ -1,0 +1,69 @@
+extends layouts/main.pug
+
+block content
+    body.container.fade-in
+        main.result-page
+            .result-top.wrapper-top
+                .result.char_result 
+                    .result-text-white 나랑 가장 잘 맞는 격투기 종목은
+                    .result-title.animate__animated.animate__pulse 주짓수
+                    img.result-img(src='../static/images/jiujitsu.jpg')
+                    .result-rank
+                        | 전체 참여자 
+                        .total-number.result-rank-ment #{totalNumber}
+                        | 명 중
+                        br
+                        |나와 같은 격투가 유형은
+                        br
+                        label.percentage #{(sameNumber/totalNumber*100).toFixed(2)}%
+                        | 입니다.
+            .result-middle
+                .result-subtitle
+                    .icon-quote
+                        i.fas.fa-quote-left.icon-left
+                        i.fas.fa-quote-right.icon-right
+                    | 그라운드는 나의 바다.
+                    br 
+                    | 나는 상어. 
+                    br
+                    | 사람들은 수영을 할 줄 모르지.
+                    .icon-right
+                        
+                .result-explannation.result-text-left.wrapper-explanation
+                    li
+                        i.fas.fa-fist-raised 
+                        | 관절을 꺾고 조르는 그래플링 위주의 무술입니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 짧은 역사에도 불구하고 탁월한 실전성을 인정받아, 발전 속도가 어마무시합니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 힘보단 기술을 강조하며, 지렛대의 원리를 활용하여 막강한 위력을 뽐냅니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 아무리 세계급 강자일지라도, 주짓수에 대한 이해가 없다면, 흰 띠 시절에 배우는 초급 기술로도 꼼짝달싹하지 못하게 제압할 수 있습니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 특히 힘이 약하거나 체구가 작은 사람이 주짓수를 배운다면 가장 강력한 위력을 갖게 될 것입니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 틀에 갇히지 않는 자유분방한 사고를 지닌 당신에게 주짓수가 가장 잘 어울립니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 유명인: 그레이시 가문, 에리히 란, 데미안 마이아, 안드레 갈벙, 마르셀로 가르시아, 철권 니나, 명탐정 코난 미란이
+            .result-bottom.partner-wrapper.wrapper
+                a.best-partner(href='/result/archery')
+                    .result.char_result 
+                    .result-text-black  최고의 파트너
+                    .result-title-black 양궁
+                    br
+                    img.result-partner-img(src='../static/images/archery.jpg')
+                a.worst-partner(href='/result/taekwondo')
+                    .result.char_result 
+                    .result-text-black  최악의 파트너
+                    .result-title-black 태권도
+                    br
+                    img.result-partner-img(src='../static/images/taekwondo.jpg')
+            include ./partials/share
+            include ./partials/adsense
+            include ./partials/footer-result

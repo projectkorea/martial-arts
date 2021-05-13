@@ -6,14 +6,14 @@ block content
             .result-top.wrapper-top
                 .result.char_result 
                     .result-text-white 나랑 가장 잘 맞는 격투기 종목은
-                    .result-title.animate__animated.animate__pulse 종합격투기
-                    img.result-img(src='../static/images/mma.jpg')
+                    .result-title.animate__animated.animate__pulse 아이키도
+                    img.result-img(src='../static/images/aikido.jpg')
                     .result-rank
                         | 전체 참여자 
                         .total-number.result-rank-ment #{totalNumber}
                         | 명 중
                         br
-                        |나와 같은 격투가 유형은 
+                        | 나와 같은 격투가 유형은
                         br
                         label.percentage #{(sameNumber/totalNumber*100).toFixed(2)}%
                         | 입니다.
@@ -22,43 +22,46 @@ block content
                     .icon-quote
                         i.fas.fa-quote-left.icon-left
                         i.fas.fa-quote-right.icon-right
-                    | 현대 무술의 총합체
+                    | 성인군자 등장이오.
                     br 
-                    | 강력함 끝판왕
+                    | 무술도 관대해질 수 있는 법.
                     .icon-right
                         
                 .result-explannation.result-text-left.wrapper-explanation
                     li
                         i.fas.fa-fist-raised 
-                        | 어떤 무술과 싸워도 절대 패배하지 않는 기술을 추구합니다.
+                        | 공격보다는 방어 위주의 무술입니다.
                     li
                         i.fas.fa-fist-raised 
-                        | 4대 격투기, 무에타이(킥복싱), 복싱, 주짓수, 레슬링을 기반두고 있어 현존 무술중 가장 강력합니다.
+                        | 무기를 휘두루는 상대에게 효과적으로 대처하는 호신술적인 측면이 강합니다.
                     li
                         i.fas.fa-fist-raised 
-                        | 특히 길거리에서 무조건 맨손으로 싸웠을 때, 가장 극한의 효율을 보여줍니다. MMA가 가장 강력하고 효율적인 것은 이는 이미 수많은 사례를 통해 검증된 엄연한 팩트입니다.
+                        | 아이키도는 단순히 결투에서 이기는 것을 목표로 하지 않습니다. 
                     li
                         i.fas.fa-fist-raised 
-                        | 몸으로 부딪혀 해결해 나가며, 적응력, 즉흥성, 전술적인 플레이가 필요한 종합격투기에 도전해보세요!
+                        | 상대방의 무게 중심을 손쉽게 무력화하는 방법을 극한으로 파고들어 그 원리를 전문적으로 탐구합니다.
                     li
                         i.fas.fa-fist-raised 
-                        | 벼랑 끝의 아슬아슬한 삶을 즐기며, 위험한 행동을 일삼는 폭풍같은 당신과 종합격투기와 잘 어울립니다. 
+                        | 상대를 제압할 때 신체적 고통의 강도를 조절할 수 있으며, 상대를 다치지 않게 제압하는 관대한 무술입니다.
                     li
                         i.fas.fa-fist-raised 
-                        | 유명인: 코너 맥그리거, 하빕 누르마고메도프, 프란시스 은가누, 김동현, 이스라엘 안데사야, 앤더슨 실바, 존 존스, 정찬성
+                        | 이상적인 해결책을 결단력있게 실행하는 당신에게 인류에게 긍정적인 영향을 미치고자 하는 아이키도는 제격입니다.
+                    li
+                        i.fas.fa-fist-raised 
+                        | 유명인: 우에시바 모리헤이, 시오다 고조, 도미키 켄지, 스티븐 시걸, 철권 카자마 준, 존 윅, 피터 롤스턴
             .result-bottom.partner-wrapper.wrapper
-                a.best-partner(href='/result/judo')
+                a.best-partner(href='/result/capoeira')
                     .result.char_result 
                     .result-text-black  최고의 파트너
-                    .result-title-black 유도
+                    .result-title-black 카포에라
                     br
-                    img.result-partner-img(src='../static/images/judo.png')
-                a.worst-partner(href='/result/taichi')
+                    img.result-partner-img(src='../static/images/capoeira.jpg')
+                a.worst-partner(href='/result/boxing')
                     .result.char_result 
                     .result-text-black  최악의 파트너
-                    .result-title-black 태극권
+                    .result-title-black 복싱
                     br
-                    img.result-partner-img(src='../static/images/taichi.jpg')
+                    img.result-partner-img(src='../static/images/boxing.jpg')
             include ./partials/share
             include ./partials/adsense
             include ./partials/footer-result

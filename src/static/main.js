@@ -11058,7 +11058,7 @@ var questionPage = document.querySelector(".question-page"),
     loadingPage = document.querySelector(".loading-page"),
     pageNum = document.querySelector(".progress-page-num"),
     progressBar = document.querySelector(".progress-bar"),
-    question_wrapper = document.querySelector(".question-wrapper"),
+    question_wrapper = document.querySelector(".wrapper-question"),
     questionTitle = document.querySelector(".question-title"),
     questionBtn = document.querySelector(".question-btn"),
     A = document.querySelector("#A"),
@@ -11140,7 +11140,7 @@ var saveType = function saveType() {
 
 var progressAnimation = function progressAnimation() {
   pageNum.innerText = "".concat(page_num, " / 12");
-  if (page_num == 1) progressBar.style.width = "0%";else if (page_num == 2) progressBar.style.width = "8.3%";else if (page_num == 3) progressBar.style.width = "16.6%";else if (page_num == 4) progressBar.style.width = "24.9%";else if (page_num == 5) progressBar.style.width = "33.2%";else if (page_num == 6) progressBar.style.width = "41.5%";else if (page_num == 7) progressBar.style.width = "49.8%";else if (page_num == 8) progressBar.style.width = "58.1%";else if (page_num == 9) progressBar.style.width = "66.4%";else if (page_num == 10) progressBar.style.width = "74.7%";else if (page_num == 11) progressBar.style.width = "83%";else if (page_num == 12) progressBar.style.width = "91.3%";
+  if (page_num == 1) progressBar.style.width = "8.3%";else if (page_num == 2) progressBar.style.width = "16.6%";else if (page_num == 3) progressBar.style.width = "24.9%";else if (page_num == 4) progressBar.style.width = "33.2%";else if (page_num == 5) progressBar.style.width = "41.5%";else if (page_num == 6) progressBar.style.width = "49.8%";else if (page_num == 7) progressBar.style.width = "58.1%";else if (page_num == 8) progressBar.style.width = "66.4%";else if (page_num == 9) progressBar.style.width = "74.7%";else if (page_num == 10) progressBar.style.width = "83%";else if (page_num == 11) progressBar.style.width = "91.3%";else if (page_num == 12) progressBar.style.width = "100%";
 };
 
 var questionAnimation = function questionAnimation() {
@@ -11183,17 +11183,17 @@ if (questionPage) {
 /***/ (() => {
 
 var rank = document.querySelector(".rank"),
-    resultTop = document.querySelector(".result-top"),
-    resultMiddle = document.querySelector(".result-middle"),
-    resultBottom = document.querySelector(".result-bottom"),
-    result_wrapper = document.querySelector(".result_wrapper"),
     retest = document.querySelector(".retest-btn"),
-    resultPage = document.querySelector(".result-page");
+    totalNumber = document.querySelector(".total-number");
+resultPage = document.querySelector(".result-page");
 
 var init = function init() {
   retest.addEventListener("click", function () {
     location.href = "/";
   });
+  var totalNumber1 = totalNumber.innerText;
+  var totalNumber2 = totalNumber1.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+  totalNumber.innerText = totalNumber2;
 };
 
 if (resultPage) {
@@ -11276,7 +11276,7 @@ var quest = {
       "type": "P"
     },
     "B": {
-      "text": "  구글링하고 온다. 딱 기다려  ",
+      "text": "일단 구글링하고 온다. 딱 기다려  ",
       "type": "J"
     }
   },

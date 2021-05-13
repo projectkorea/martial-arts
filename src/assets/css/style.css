@@ -9,14 +9,20 @@
 
 li {
   list-style-type: none;
+  padding-bottom: 15px;
 }
 
 i {
-  padding: 10px 5px;
+  padding: 5px;
 }
 
 .removeAlign {
   -webkit-box-align: unset;
   -ms-flex-align: unset;
   align-items: unset;
+}
+
+.adsense-box {
+  width: 200px;
+  height: 200px;
 }
