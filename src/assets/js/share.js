@@ -20,7 +20,7 @@ const shareFacebook = () => {
 
 const shareKakao = () => {
   Kakao.Link.createDefaultButton({
-    container: "#btnKakao", // 카카오공유버튼ID
+    container: "btnKakao", // 카카오공유버튼ID
     objectType: "feed",
     content: {
       title: "격투기 종목 테스트",

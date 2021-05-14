@@ -118,7 +118,7 @@ const questionAnimation = () => {
     questionBtn.classList.add("fade-in");
     A.style.pointerEvents = "auto";
     B.style.pointerEvents = "auto";
-    setTimeout(removeFadeIn, 1000);
+    setTimeout(removeFadeIn, 500);
   }, 300);
 };
 
