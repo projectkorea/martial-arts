@@ -11356,7 +11356,7 @@ var quest = {
   \********************************/
 /***/ (() => {
 
-var myURL = "https://www.whenismylove.com",
+var myURL = "https://www.martialartstest.com",
     resultPage = document.querySelector(".result-page"),
     btnTwitter = document.querySelector(".twitter"),
     btnFacebook = document.querySelector(".facebook"),
@@ -11364,13 +11364,13 @@ var myURL = "https://www.whenismylove.com",
     btnLink = document.querySelector(".link");
 
 var shareTwitter = function shareTwitter() {
-  var sendText = "격투기 테스트";
-  var sendUrl = myURL;
+  var sendText = "격투기 종목 테스트";
+  var sendUrl = location.href;
   window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
 };
 
 var shareFacebook = function shareFacebook() {
-  var sendUrl = myURL;
+  var sendUrl = location.href;
   window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
 };
 
@@ -11381,12 +11381,12 @@ var shareKakao = function shareKakao() {
     // 카카오공유버튼ID
     objectType: "feed",
     content: {
-      title: "격투기 테스트",
-      description: "나랑 가장 잘 맞는 격투기 종목은 무엇일까?",
-      imageUrl: myURL,
+      title: "격투기 종목 테스트",
+      description: "복싱, 주짓수, 태극권, 카포에라.. 나와 가장 잘 맞는 격투기 종목은?",
+      imageUrl: "../../static/images/preview.png",
       link: {
-        mobileWebUrl: myURL,
-        webUrl: myURL
+        mobileWebUrl: location.href,
+        webUrl: location.href
       }
     }
   });
@@ -11400,7 +11400,7 @@ var shareLink = function shareLink() {
   dummy.select();
   document.execCommand("copy");
   document.body.removeChild(dummy);
-  alert("링크가 복사되었습니다");
+  alert("링크가 복사되었습니다.");
 };
 
 var init = function init() {

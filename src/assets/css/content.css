@@ -17,10 +17,34 @@ body {
   margin: 0px;
 }
 
+.start-title-wrapper {
+  margin: 30px 0px 30px 0px;
+}
+
 .start-title {
+  display: inline-block;
+  font-family: ROKAMedium;
+  font-size: 42px;
+  line-height: 45px;
+  letter-spacing: -2px;
+  color: #f7f9f9;
+}
+
+.start-title-effect {
+  display: inline-block;
+  letter-spacing: -5px;
+  color: #ffffff;
+  margin: -10px;
+  font-family: ROKABold;
+  font-size: 72px;
+}
+
+.start-title-space {
+  display: inline-block;
+  font-family: ROKAMedium;
   font-size: 36px;
-  margin: 10px;
-  line-height: 40px;
+  line-height: 45px;
+  letter-spacing: -4px;
   color: #f7f9f9;
 }
 
