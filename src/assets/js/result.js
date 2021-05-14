@@ -1,9 +1,18 @@
 const rank = document.querySelector(".rank"),
   retest = document.querySelector(".retest-btn"),
-  totalNumber = document.querySelector(".total-number");
-resultPage = document.querySelector(".result-page");
+  totalNumber = document.querySelector(".total-number"),
+  resultPage = document.querySelector(".result-page"),
+  loadingPage = document.querySelector(".loading-page");
 
-const init = () => {
+const waitUntilLoading = () => {
+  window.onload = function () {
+    valueResultPage();
+    loadingPage.style.display = "none";
+    resultPage.style.display = "block";
+  };
+};
+
+const valueResultPage = () => {
   retest.addEventListener("click", () => {
     location.href = "/";
   });
@@ -15,5 +24,6 @@ const init = () => {
 };
 
 if (resultPage) {
-  init();
+  resultPage.style.display = "none";
+  waitUntilLoading();
 }

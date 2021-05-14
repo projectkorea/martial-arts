@@ -11055,7 +11055,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sentence__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sentence */ "./src/assets/js/sentence.js");
 
 var questionPage = document.querySelector(".question-page"),
-    loadingPage = document.querySelector(".loading-page"),
     pageNum = document.querySelector(".progress-page-num"),
     progressBar = document.querySelector(".progress-bar"),
     question_wrapper = document.querySelector(".wrapper-question"),
@@ -11074,8 +11073,7 @@ var finalResult = {
   "J": 0,
   "RESULT": ""
 },
-    page_num = 1,
-    run_pos = 1;
+    page_num = 1;
 
 var nextQuestion = function nextQuestion() {
   if (page_num <= 12) {
@@ -11087,8 +11085,6 @@ var nextQuestion = function nextQuestion() {
   } else {
     saveType();
     postToUrl("/loading", finalResult);
-    questionPage.style.display = "none";
-    loadingPage.style.display = "block";
   }
 };
 
@@ -11166,7 +11162,6 @@ var questionAnimation = function questionAnimation() {
 };
 
 var init = function init() {
-  loadingPage.style.display = "none";
   nextQuestion();
 };
 
@@ -11184,10 +11179,19 @@ if (questionPage) {
 
 var rank = document.querySelector(".rank"),
     retest = document.querySelector(".retest-btn"),
-    totalNumber = document.querySelector(".total-number");
-resultPage = document.querySelector(".result-page");
+    totalNumber = document.querySelector(".total-number"),
+    resultPage = document.querySelector(".result-page"),
+    loadingPage = document.querySelector(".loading-page");
 
-var init = function init() {
+var waitUntilLoading = function waitUntilLoading() {
+  window.onload = function () {
+    valueResultPage();
+    loadingPage.style.display = "none";
+    resultPage.style.display = "block";
+  };
+};
+
+var valueResultPage = function valueResultPage() {
   retest.addEventListener("click", function () {
     location.href = "/";
   });
@@ -11197,7 +11201,8 @@ var init = function init() {
 };
 
 if (resultPage) {
-  init();
+  resultPage.style.display = "none";
+  waitUntilLoading();
 }
 
 /***/ }),

@@ -1,7 +1,6 @@
 import { quest } from "./sentence";
 
 const questionPage = document.querySelector(".question-page"),
-  loadingPage = document.querySelector(".loading-page"),
   pageNum = document.querySelector(".progress-page-num"),
   progressBar = document.querySelector(".progress-bar"),
   question_wrapper = document.querySelector(".wrapper-question"),
@@ -21,8 +20,7 @@ let finalResult = {
     "J": 0,
     "RESULT": "",
   },
-  page_num = 1,
-  run_pos = 1;
+  page_num = 1;
 
 const nextQuestion = () => {
   if (page_num <= 12) {
@@ -34,8 +32,6 @@ const nextQuestion = () => {
   } else {
     saveType();
     postToUrl("/loading", finalResult);
-    questionPage.style.display = "none";
-    loadingPage.style.display = "block";
   }
 };
 
@@ -127,7 +123,6 @@ const questionAnimation = () => {
 };
 
 const init = () => {
-  loadingPage.style.display = "none";
   nextQuestion();
 };
 
