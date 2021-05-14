@@ -7,19 +7,18 @@ const myURL = "https://www.martialartstest.com",
 
 const shareTwitter = () => {
   const sendText = "격투기 종목 테스트";
-  const sendUrl = location.href;
+  const sendUrl = myURL;
   window.open(
     "https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl
   );
 };
 
 const shareFacebook = () => {
-  const sendUrl = location.href;
+  const sendUrl = myURL;
   window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
 };
 
 const shareKakao = () => {
-  Kakao.init("385da167d8702da5c0abc1de73b3a36e");
   Kakao.Link.createDefaultButton({
     container: "#btnKakao", // 카카오공유버튼ID
     objectType: "feed",
@@ -29,8 +28,8 @@ const shareKakao = () => {
         "복싱, 주짓수, 태극권, 카포에라.. 나와 가장 잘 맞는 격투기 종목은?",
       imageUrl: "../../static/images/preview.png",
       link: {
-        mobileWebUrl: location.href,
-        webUrl: location.href,
+        mobileWebUrl: myURL,
+        webUrl: myURL,
       },
     },
   });
@@ -38,7 +37,7 @@ const shareKakao = () => {
 
 const shareLink = () => {
   const dummy = document.createElement("input");
-  const text = location.href;
+  const text = myURL;
   document.body.appendChild(dummy);
   dummy.value = text;
   dummy.select();
@@ -61,5 +60,6 @@ const init = () => {
 };
 
 if (resultPage) {
+  Kakao.init("be836ab6aa99b7ff880010214a29ffd8");
   init();
 }

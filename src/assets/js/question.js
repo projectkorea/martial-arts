@@ -1,6 +1,7 @@
 import { quest } from "./sentence";
 
 const questionPage = document.querySelector(".question-page"),
+  loadingPage = document.querySelector(".loading-page"),
   pageNum = document.querySelector(".progress-page-num"),
   progressBar = document.querySelector(".progress-bar"),
   question_wrapper = document.querySelector(".wrapper-question"),
@@ -32,6 +33,8 @@ const nextQuestion = () => {
   } else {
     saveType();
     postToUrl("/loading", finalResult);
+    questionPage.style.display = "none";
+    loadingPage.style.display = "block";
   }
 };
 
@@ -123,6 +126,7 @@ const questionAnimation = () => {
 };
 
 const init = () => {
+  loadingPage.style.display = "none";
   nextQuestion();
 };
 

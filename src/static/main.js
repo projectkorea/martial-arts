@@ -11055,6 +11055,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sentence__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sentence */ "./src/assets/js/sentence.js");
 
 var questionPage = document.querySelector(".question-page"),
+    loadingPage = document.querySelector(".loading-page"),
     pageNum = document.querySelector(".progress-page-num"),
     progressBar = document.querySelector(".progress-bar"),
     question_wrapper = document.querySelector(".wrapper-question"),
@@ -11085,6 +11086,8 @@ var nextQuestion = function nextQuestion() {
   } else {
     saveType();
     postToUrl("/loading", finalResult);
+    questionPage.style.display = "none";
+    loadingPage.style.display = "block";
   }
 };
 
@@ -11162,6 +11165,7 @@ var questionAnimation = function questionAnimation() {
 };
 
 var init = function init() {
+  loadingPage.style.display = "none";
   nextQuestion();
 };
 
@@ -11370,17 +11374,16 @@ var myURL = "https://www.martialartstest.com",
 
 var shareTwitter = function shareTwitter() {
   var sendText = "격투기 종목 테스트";
-  var sendUrl = location.href;
+  var sendUrl = myURL;
   window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
 };
 
 var shareFacebook = function shareFacebook() {
-  var sendUrl = location.href;
+  var sendUrl = myURL;
   window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
 };
 
 var shareKakao = function shareKakao() {
-  Kakao.init("385da167d8702da5c0abc1de73b3a36e");
   Kakao.Link.createDefaultButton({
     container: "#btnKakao",
     // 카카오공유버튼ID
@@ -11390,8 +11393,8 @@ var shareKakao = function shareKakao() {
       description: "복싱, 주짓수, 태극권, 카포에라.. 나와 가장 잘 맞는 격투기 종목은?",
       imageUrl: "../../static/images/preview.png",
       link: {
-        mobileWebUrl: location.href,
-        webUrl: location.href
+        mobileWebUrl: myURL,
+        webUrl: myURL
       }
     }
   });
@@ -11399,7 +11402,7 @@ var shareKakao = function shareKakao() {
 
 var shareLink = function shareLink() {
   var dummy = document.createElement("input");
-  var text = location.href;
+  var text = myURL;
   document.body.appendChild(dummy);
   dummy.value = text;
   dummy.select();
@@ -11420,6 +11423,7 @@ var init = function init() {
 };
 
 if (resultPage) {
+  Kakao.init("be836ab6aa99b7ff880010214a29ffd8");
   init();
 }
 
