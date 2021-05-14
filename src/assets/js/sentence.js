@@ -64,7 +64,7 @@ export const quest = {
       "type": "P",
     },
     "B": {
-      "text": "일단 구글링하고 온다. 딱 기다려  ",
+      "text": "딱 기다려. 구글링하고 온다.   ",
       "type": "J",
     },
   },
@@ -105,7 +105,7 @@ export const quest = {
   10: {
     "title": "<span class='half_HL'>새로운 무술</span>을 배울 때<br>나는",
     "A": {
-      "text": " 블랙밸트를 목표로 하겠어  ",
+      "text": " 블랙밸트를 목표로 하겠어!  ",
       "type": "J",
     },
     "B": {

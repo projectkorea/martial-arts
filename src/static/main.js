@@ -11094,6 +11094,12 @@ var nextQuestion = function nextQuestion() {
 var removeFadeIn = function removeFadeIn() {
   question_wrapper.classList.remove("fade-in");
   questionBtn.classList.remove("fade-in");
+  A.addEventListener("click", clickFunction, {
+    once: true
+  });
+  B.addEventListener("click", clickFunction, {
+    once: true
+  });
 };
 
 var clickFunction = function clickFunction(e) {
@@ -11154,14 +11160,6 @@ var questionAnimation = function questionAnimation() {
     B.style.pointerEvents = "auto";
     setTimeout(removeFadeIn, 1000);
   }, 300);
-  setTimeout(function () {
-    A.addEventListener("click", clickFunction, {
-      once: true
-    });
-    B.addEventListener("click", clickFunction, {
-      once: true
-    });
-  }, 1300);
 };
 
 var init = function init() {
@@ -11285,7 +11283,7 @@ var quest = {
       "type": "P"
     },
     "B": {
-      "text": "일단 구글링하고 온다. 딱 기다려  ",
+      "text": "딱 기다려. 구글링하고 온다.   ",
       "type": "J"
     }
   },
@@ -11325,7 +11323,7 @@ var quest = {
   10: {
     "title": "<span class='half_HL'>새로운 무술</span>을 배울 때<br>나는",
     "A": {
-      "text": " 블랙밸트를 목표로 하겠어  ",
+      "text": " 블랙밸트를 목표로 하겠어!  ",
       "type": "J"
     },
     "B": {

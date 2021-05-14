@@ -41,6 +41,8 @@ const nextQuestion = () => {
 const removeFadeIn = () => {
   question_wrapper.classList.remove("fade-in");
   questionBtn.classList.remove("fade-in");
+  A.addEventListener("click", clickFunction, { once: true });
+  B.addEventListener("click", clickFunction, { once: true });
 };
 
 const clickFunction = (e) => {
@@ -118,11 +120,6 @@ const questionAnimation = () => {
     B.style.pointerEvents = "auto";
     setTimeout(removeFadeIn, 1000);
   }, 300);
-
-  setTimeout(() => {
-    A.addEventListener("click", clickFunction, { once: true });
-    B.addEventListener("click", clickFunction, { once: true });
-  }, 1300);
 };
 
 const init = () => {
