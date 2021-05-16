@@ -15,57 +15,65 @@ block content
                     .result-text-white 나랑 가장 잘 맞는 격투기 종목은
                     .result-title.animate__animated.animate__pulse 태권도
                     img.result-img(src='../static/images/taekwondo.png')
-                    .result-rank
-                        | 전체 참여자 
-                        .total-number.result-rank-ment #{totalNumber}
-                        | 명 중
+                    .result-subtitle
+                        .icon-quote
+                            i.fas.fa-quote-left.icon-left
+                            i.fas.fa-quote-right.icon-right
+                        | 국뽕은 내가 책임진다.
                         br
-                        |나와 같은 격투가 유형은
-                        br
-                        label.percentage #{(sameNumber/totalNumber*100).toFixed(2)}%
-                        | 입니다.
+                        | 전 세계가 사랑하는 국민 스포츠
+                        .icon-right
             .result-middle
-                .result-subtitle
-                    .icon-quote
-                        i.fas.fa-quote-left.icon-left
-                        i.fas.fa-quote-right.icon-right
-                    | 국뽕은 내가 책임진다.
+                .result-rank
+                    | 전체 참여자 
+                    .total-number.result-rank-ment #{totalNumber}
+                    | 명 중
                     br
-                    | 전 세계가 사랑하는 국민 스포츠
-                    .icon-right
-                        
+                    |나와 같은 격투가 유형은
+                    br
+                    label.percentage #{(sameNumber/totalNumber*100).toFixed(2)}%
+                    | 입니다.
                 .result-explannation.result-text-left.wrapper-explanation
                     li
                         i.fas.fa-fist-raised 
-                        | 그 어떤 무술과 비교해도 태권도 발차기 기술을 따라올 자는 없습니다. 단연 1등입니다.
+                        | 그 어떤 무술과 비교해봐도 발차기 기술을 따라올 자는 없습니다. 단연 1등입니다.
                     li
                         i.fas.fa-fist-raised 
-                        | 발차기는 펀치에 비해 2-3배 이상의 파괴력을 선보이며 특히 회전에 의한 파괴력 최대 1톤의 파괴력을 자랑합니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 하지만 온몸을 모두 사용해 체력 소모가 크다는 점, 동작이 커 속도가 느리다는 점 때문에 실전에서는 그다지 유용하지는 않습니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 화려하고 휘황찬란한 발차기, 특히 900도 발차기와 같은 매력적인 기술 덕분에 공연 퍼포먼스로써 이미 위상을 높인지 오래입니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 천성적으로 사교적이며, 주목 받는 것을 좋아하는 인기쟁이인 당신에게 태권도가 가장 잘 어울립니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 유명인: 김경훈, 김제경, 김소희, 손태진, 이동준, 오혜리, 이대훈, 차동민, 임수정, 브렌 K-Tigers, 동네 사부님
+                        | 발차기는 펀치에 비해 2-3배 이상의 파괴력을 선보이며, 특히 회전에 의한 파괴력 최대 1톤의 파괴력을 자랑합니다.
+                    .folder
+                        button.folder-button
+                            i.fas.fa-arrow-down
+                            | 설명 더 보기
+                    .folder-content
+                        li
+                            i.fas.fa-fist-raised 
+                            | 하지만 온몸을 모두 사용해 체력 소모가 크다는 점, 동작이 커 속도가 느리다는 점 때문에 실전에서는 그다지 유용하지는 않습니다.
+                        li
+                            i.fas.fa-fist-raised 
+                            | 화려하고 휘황찬란한 발차기, 특히 900도 발차기와 같은 매력적인 기술 덕분에 공연 퍼포먼스로써 이미 위상을 높인지 오래입니다.
+                        li
+                            i.fas.fa-fist-raised 
+                            | 천성적으로 사교적이며, 주목 받는 것을 좋아하는 인기쟁이인 당신에게 태권도가 가장 잘 어울립니다.
+                        li
+                            i.fas.fa-fist-raised 
+                            | 유명인: 김경훈, 김제경, 김소희, 손태진, 이동준, 오혜리, 이대훈, 차동민, 임수정, 브렌, K-Tigers
+                    .folder-footer
+                        button.folder-button-down
+                            i.fas.fa-arrow-up
+                            | 접기
             .result-bottom.partner-wrapper.wrapper
-                a.best-partner(href='/result/kendo')
-                    .result.char_result 
-                    .result-text-black  최고의 파트너
-                    .result-title-black 검도
-                    br
-                    img.result-partner-img(src='../static/images/kendo.jpg')
+                a.best-partner(href='/result/kendo') 
+                    .result-text-black-best  최고의 파트너
+                    .result-char-wrapper
+                        .result-title-black 검도
+                        br
+                        img.result-partner-img(src='../static/images/kendo.jpg')
                 a.worst-partner(href='/result/jiujitsu')
-                    .result.char_result 
-                    .result-text-black  최악의 파트너
-                    .result-title-black 주짓수
-                    br
-                    img.result-partner-img(src='../static/images/jiujitsu.jpg')
+                    .result-text-black-worst  최악의 파트너
+                    .result-char-wrapper
+                        .result-title-black 주짓수
+                        br
+                        img.result-partner-img(src='../static/images/jiujitsu.jpg')
             include ./partials/share
             include ./partials/adsense
             include ./partials/footer-result

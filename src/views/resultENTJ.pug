@@ -1,7 +1,7 @@
 extends layouts/main.pug
 
 block content
-    body.container.fade-in
+    body.container-ie.fade-in
         main.loading-page.wrapper-loading
             .circ
                 .hands
@@ -15,7 +15,16 @@ block content
                     .result-text-white 나랑 가장 잘 맞는 격투기 종목은
                     .result-title.animate__animated.animate__pulse 크라브마가
                     img.result-img(src='../static/images/kravmaga.jpg')
-                    .result-rank
+                .result-subtitle
+                    .icon-quote
+                        i.fas.fa-quote-left.icon-left
+                        i.fas.fa-quote-right.icon-right
+                    | 전 세계 특수부대가 인정한
+                    br
+                    | 실전 최강무술
+                    .icon-right    
+            .result-middle
+                .result-rank
                         | 전체 참여자 
                         .total-number.result-rank-ment #{totalNumber}
                         | 명 중
@@ -24,49 +33,50 @@ block content
                         br
                         label.percentage #{(sameNumber/totalNumber*100).toFixed(2)}%
                         | 입니다.
-            .result-middle
-                .result-subtitle
-                    .icon-quote
-                        i.fas.fa-quote-left.icon-left
-                        i.fas.fa-quote-right.icon-right
-                    | 전 세계 특수부대가 인정한 실전 최강무술
-                    .icon-right
-                        
                 .result-explannation.result-text-left.wrapper-explanation
                     li
                         i.fas.fa-fist-raised 
-                        | 군용 격투기로 사용되며, 무자비하게 실용적입니다.
+                        | 군용 격투기로 사용됩니다. 무자비하게 실용적입니다.
                     li
                         i.fas.fa-fist-raised 
-                        | 생존과 살상이 목적입니다. 눈, 코, 목, 사타구니 등 엄청난 고통을 주는 곳에 집중하며, 죽음에까지 이를 수 있는 급소들을 노립니다. 이들에게 로우불로나 뼈를 부수는 건 식은 죽 먹기 입니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 무기를 든 상대에게 대적할 수 있는 가장 효과적인 무술입니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 일대다 상황, 소위 다굴당하는 상황에서 전세를 뒤집는 것이 주된 목적입니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 오랜 시간을 요하는 심오함 따위는 집어치우고, 최대한 빨리 익혀서 효과적으로 써먹을 수 있는 단순 명료함을 추구합니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 전략적인 사고와 빠른 판단력, 민첩성과 정확성으로 무장한 당신은 크라브마가가 가장 잘 어울리며, 그 누구도 감히 도전장을 내밀지 못할 것입니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 유명인: 이미 리치텐필드, 이스라엘 군경찰, 아저씨 원빈, 김명화
+                        | 생존과 살상이 목적입니다. 눈, 코, 목, 사타구니 등 엄청난 고통을 주는 곳에 집중하며, 죽을 수 있는 급소들을 노립니다. 이들은 로우불로나 뼈를 부수는 건 식은 죽 먹기 입니다.
+                    .folder
+                        button.folder-button
+                            i.fas.fa-arrow-down
+                            | 설명 더 보기
+                    .folder-content
+                        li
+                            i.fas.fa-fist-raised 
+                            | 무기를 든 상대에게 대적할 수 있는 가장 효과적인 무술입니다.
+                        li
+                            i.fas.fa-fist-raised 
+                            | 일대다 상황, 소위 다굴당하는 상황에서 전세를 뒤집는 것이 주된 목적입니다.
+                        li
+                            i.fas.fa-fist-raised 
+                            | 오랜 시간을 요하는 심오함 따위는 집어치우고, 최대한 빨리 익혀서 효과적으로 써먹을 수 있는 단순 명료함을 추구합니다.
+                        li
+                            i.fas.fa-fist-raised 
+                            | 전략적인 사고와 빠른 판단력, 민첩성과 정확성으로 무장한 당신은 크라브마가가 가장 잘 어울리며, 그 누구도 감히 도전장을 내밀지 못할 것입니다.
+                        li
+                            i.fas.fa-fist-raised 
+                            | 유명인: 이미 리치텐필드, 이스라엘 군경찰, 리암 니슨(테이큰) 원빈(아저씨), 김명화
+                    .folder-footer
+                        button.folder-button-down
+                            i.fas.fa-arrow-up
+                            | 접기
             .result-bottom.partner-wrapper.wrapper
                 a.best-partner(href='/result/fencing')
-                    .result.char_result 
-                    .result-text-black  최고의 파트너
-                    .result-title-black 펜싱
-                    br
-                    img.result-partner-img(src='../static/images/fencing.jpg')
+                    .result-text-black-best  최고의 파트너
+                    .result-char-wrapper
+                        .result-title-black 펜싱
+                        br
+                        img.result-partner-img(src='../static/images/fencing.jpg')
                 a.worst-partner(href='/result/wushu')
-                    .result.char_result 
-                    .result-text-black  최악의 파트너
-                    .result-title-black 우슈
-                    br
-                    img.result-partner-img(src='../static/images/wushu.jpg')
+                    .result-text-black-worst  최악의 파트너
+                    .result-char-wrapper
+                        .result-title-black 우슈
+                        br
+                        img.result-partner-img(src='../static/images/wushu.jpg')
             include ./partials/share
             include ./partials/adsense
             include ./partials/footer-result

@@ -31,10 +31,10 @@ const nextQuestion = () => {
     questionAnimation();
     progressAnimation();
   } else {
-    saveType();
-    postToUrl("/loading", finalResult);
     questionPage.style.display = "none";
     loadingPage.style.display = "block";
+    saveType();
+    postToUrl("/loading", finalResult);
   }
 };
 
@@ -123,7 +123,6 @@ const questionAnimation = () => {
 };
 
 const init = () => {
-  loadingPage.style.display = "none";
   nextQuestion();
 };
 

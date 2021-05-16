@@ -1,7 +1,7 @@
 extends layouts/main.pug
 
 block content
-    body.container.fade-in
+    body.container-ie.fade-in
         main.loading-page.wrapper-loading
             .circ
                 .hands
@@ -15,54 +15,63 @@ block content
                     .result-text-white 나랑 가장 잘 맞는 격투기 종목은
                     .result-title.animate__animated.animate__pulse 펜싱
                     img.result-img(src='../static/images/fencing.jpg')
-                    .result-rank
-                        | 전체 참여자 
-                        .total-number.result-rank-ment #{totalNumber}
-                        | 명 중
-                        br
-                        | 나와 같은 격투가 유형은
-                        br
-                        label.percentage #{(sameNumber/totalNumber*100).toFixed(2)}%
-                        | 입니다.
-            .result-middle
                 .result-subtitle
                     .icon-quote
                         i.fas.fa-quote-left.icon-left
                         i.fas.fa-quote-right.icon-right
                     | 준비된 자만이, 기회를 잡는다
                     .icon-right
+            .result-middle
+                .result-rank
+                    | 전체 참여자 
+                    .total-number.result-rank-ment #{totalNumber}
+                    | 명 중
+                    br
+                    | 나와 같은 격투가 유형은
+                    br
+                    label.percentage #{(sameNumber/totalNumber*100).toFixed(2)}%
+                    | 입니다.
                 .result-explannation.result-text-left.wrapper-explanation
                     li
                         i.fas.fa-fist-raised 
-                        | 끊임없이 각을 보다가, 순간적으로 공방을 주고받는 심리전 위주의 스포츠입니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 오로지 손목만을 움직여서 방어하는 것이 경직도 없고 빠르며 효과적입니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 앞으로 너무 뻗어 공격하면 방어할 수 없고, 몸을 너무 숙이면 등에 칼을 맞을 수 있습니다. 
+                        | 순간적으로 공방을 주고받는 치열한 심리전 위주의 스포츠입니다.
                     li
                         i.fas.fa-fist-raised 
                         | 간격 조절과 몸의 밸런스가 어떤 종목보다도 매우 중요합니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 조금도 쉬지 않고 생각에 몰두하는 혁신적인 당신에게 펜싱이 가장 잘 어울립니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 유명인: 토마스 바흐, 브리스 귀야르, 구본길, 김영호, 김정환, 김지연, 남현희, 박상영, 신아람
+                    .folder
+                        button.folder-button
+                            i.fas.fa-arrow-down
+                            | 설명 더 보기
+                    .folder-content
+                        li
+                            i.fas.fa-fist-raised 
+                            | 앞으로 너무 뻗어 공격하면 방어할 수 없고, 몸을 너무 숙이면 등에 칼을 맞을 수 있습니다. 
+                        li
+                            i.fas.fa-fist-raised 
+                            | 오로지 손목만을 움직여서 방어하는 것이 경직도 없고 빠르며 효과적입니다.
+                        li
+                            i.fas.fa-fist-raised 
+                            | 조금도 쉬지 않고 생각에 몰두하는 혁신적인 당신에게 펜싱이 가장 잘 어울립니다.
+                        li
+                            i.fas.fa-fist-raised 
+                            | 유명인: 토마스 바흐, 브리스 귀야르, 구본길, 김영호, 김정환, 김지연, 남현희, 박상영, 신아람
+                    .folder-footer
+                        button.folder-button-down
+                            i.fas.fa-arrow-up
+                            | 접기
             .result-bottom.partner-wrapper.wrapper
                 a.best-partner(href='/result/kravmaga')
-                    .result.char_result 
-                    .result-text-black  최고의 파트너
-                    .result-title-black 크라브마가
-                    br
-                    img.result-partner-img(src='../static/images/kravmaga.jpg')
+                    .result-text-black-best  최고의 파트너
+                    .result-char-wrapper
+                        .result-title-black 크라브마가
+                        br
+                        img.result-partner-img(src='../static/images/kravmaga.jpg')
                 a.worst-partner(href='/result/hapkido')
-                    .result.char_result 
-                    .result-text-black  최악의 파트너
-                    .result-title-black 합기도
-                    br
-                    img.result-partner-img(src='../static/images/hapkido.jpg')
+                    .result-text-black-worst  최악의 파트너
+                    .result-char-wrapper
+                        .result-title-black 합기도
+                        br
+                        img.result-partner-img(src='../static/images/hapkido.jpg')
             include ./partials/share
             include ./partials/adsense
             include ./partials/footer-result

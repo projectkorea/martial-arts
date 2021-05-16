@@ -58,13 +58,14 @@ export const quest = {
     },
   },
   6: {
-    "title": "<span class='half_HL'>처음 보는 몬스터</span>를<br> 봤을 때 나는",
+    "title":
+      "<span class='half_HL'>강력해 보이는 몬스터</span>를<br> 봤을 때 나는",
     "A": {
       "text": "일단 좀 맞자. 때려본다.",
       "type": "P",
     },
     "B": {
-      "text": "   딱 기다려. 구글링하고 온다.   ",
+      "text": "   딱 기다려. 찾아보고 온다.   ",
       "type": "J",
     },
   },

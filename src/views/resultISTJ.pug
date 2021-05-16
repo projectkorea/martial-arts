@@ -1,7 +1,7 @@
 extends layouts/main.pug
 
 block content
-    body.container.fade-in
+    body.container-ie.fade-in
         main.loading-page.wrapper-loading
             .circ
                 .hands
@@ -15,55 +15,65 @@ block content
                     .result-text-white 나랑 가장 잘 맞는 격투기 종목은
                     .result-title.animate__animated.animate__pulse 유도
                     img.result-img(src='../static/images/judo.jpg')
-                    .result-rank
-                        | 전체 참여자 
-                        .total-number.result-rank-ment #{totalNumber}
-                        | 명 중
+                    .result-subtitle
+                        .icon-quote
+                            i.fas.fa-quote-left.icon-left
+                            i.fas.fa-quote-right.icon-right
+                        | 생각하는 순간,
                         br
-                        |나와 같은 격투가 유형은
-                        br
-                        label.percentage #{(sameNumber/totalNumber*100).toFixed(2)}%
-                        | 입니다.
+                        | 바로 내동댕이쳐진다.
+                        .icon-right
             .result-middle
-                .result-subtitle
-                    .icon-quote
-                        i.fas.fa-quote-left.icon-left
-                        i.fas.fa-quote-right.icon-right
-                    | 부드러움이 강함을 제압한다.
-                    .icon-right
-                        
+                .result-rank
+                    | 전체 참여자 
+                    .total-number.result-rank-ment #{totalNumber}
+                    | 명 중
+                    br
+                    |나와 같은 격투가 유형은
+                    br
+                    label.percentage #{(sameNumber/totalNumber*100).toFixed(2)}%
+                    | 입니다.
                 .result-explannation.result-text-left.wrapper-explanation
                     li
                         i.fas.fa-fist-raised 
-                        | 상대방의 힘을 빼앗아 나의 힘으로 만드는 막강하면서도 매력적인 무술입니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 한 순간에 승부가 결정나버리는 경우가 많기 때문에 우세를 점하기 위한 체력 소모가 굉장히 큽니다. 
+                        | 상대방의 힘을 빼앗아 나의 힘으로 만드는 막강한 무술입니다.
                     li
                         i.fas.fa-fist-raised 
                         | 만약 당신이 선수급 실력자에게 진심으로 메쳐진다면, 아무리 매트 위+완벽한 낙법을 치더라도 정신차리기는 커녕 한동안 숨도 제대로 쉴 수 없을 것입니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 상대를 땅바닥에 메다꽂는 것이 주무기이기 때문에, 낙법이 굉장히 중요합니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 객관적인 분석과 총체적 집중에 능한 당신에게 유도가 가장 잘 어울립니다. 유도를 통해 냉철한 판단력을 뽐내보세요.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 유명인: 최민호, 조준호, 타카토 나오 히사, 오노 쇼헤이, 이원희, 안바울, 김재범, 송대남, 조민선, 김미정
+                    .folder
+                        button.folder-button
+                            i.fas.fa-arrow-down
+                            | 설명 더 보기
+                    .folder-content
+                        li
+                            i.fas.fa-fist-raised 
+                            | 한 순간에 승부가 결정나버리는 경우가 많습니다. 우세를 점하기 위한 체력 소모가 굉장히 큽니다. 
+                        li
+                            i.fas.fa-fist-raised 
+                            | 상대를 땅바닥에 메다꽂는 것이 주무기이기 때문에, 낙법이 굉장히 중요합니다.
+                        li
+                            i.fas.fa-fist-raised 
+                            | 객관적인 분석과 총체적 집중에 능한 당신에게 유도가 가장 잘 어울립니다. 유도를 통해 냉철한 판단력을 뽐내보세요.
+                        li
+                            i.fas.fa-fist-raised 
+                            | 유명인: 최민호, 조준호, 타카토 나오 히사, 오노 쇼헤이, 이원희, 안바울, 김재범, 송대남, 조민선, 김미정
+                    .folder-footer
+                        button.folder-button-down
+                            i.fas.fa-arrow-up
+                            | 접기
             .result-bottom.partner-wrapper.wrapper
                 a.best-partner(href='/result/mma')
-                    .result.char_result 
-                    .result-text-black  최고의 파트너
-                    .result-title-black 종합격투기
-                    br
-                    img.result-partner-img(src='../static/images/mma.jpg')
+                    .result-text-black-best  최고의 파트너
+                    .result-char-wrapper
+                        .result-title-black 종합격투기
+                        br
+                        img.result-partner-img(src='../static/images/mma.jpg')
                 a.worst-partner(href='/result/baguazhang')
-                    .result.char_result 
-                    .result-text-black  최악의 파트너
-                    .result-title-black 팔괘장
-                    br
-                    img.result-partner-img(src='../static/images/baguazhang.jpg')
+                    .result-text-black-worst  최악의 파트너
+                    .result-char-wrapper
+                        .result-title-black 팔괘장
+                        br
+                        img.result-partner-img(src='../static/images/baguazhang.jpg')
             include ./partials/share
             include ./partials/adsense
             include ./partials/footer-result

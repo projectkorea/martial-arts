@@ -1,7 +1,7 @@
 extends layouts/main.pug
 
 block content
-    body.container.fade-in
+    body.container-ie.fade-in
         main.loading-page.wrapper-loading
             .circ
                 .hands
@@ -15,57 +15,65 @@ block content
                     .result-text-white 나랑 가장 잘 맞는 격투기 종목은
                     .result-title.animate__animated.animate__pulse 종합격투기
                     img.result-img(src='../static/images/mma.jpg')
-                    .result-rank
-                        | 전체 참여자 
-                        .total-number.result-rank-ment #{totalNumber}
-                        | 명 중
-                        br
-                        |나와 같은 격투가 유형은 
-                        br
-                        label.percentage #{(sameNumber/totalNumber*100).toFixed(2)}%
-                        | 입니다.
+                    .result-subtitle
+                        .icon-quote
+                            i.fas.fa-quote-left.icon-left
+                            i.fas.fa-quote-right.icon-right
+                        | "강력함 끝판왕"
+                        br 
+                        | 현대 무술의 총합체
+                        .icon-right
             .result-middle
-                .result-subtitle
-                    .icon-quote
-                        i.fas.fa-quote-left.icon-left
-                        i.fas.fa-quote-right.icon-right
-                    | 현대 무술의 총합체
-                    br 
-                    | 강력함 끝판왕
-                    .icon-right
-                        
+                .result-rank
+                    | 전체 참여자 
+                    .total-number.result-rank-ment #{totalNumber}
+                    | 명 중
+                    br
+                    |나와 같은 격투가 유형은 
+                    br
+                    label.percentage #{(sameNumber/totalNumber*100).toFixed(2)}%
+                    | 입니다.
                 .result-explannation.result-text-left.wrapper-explanation
                     li
                         i.fas.fa-fist-raised 
-                        | 어떤 무술과 싸워도 절대 패배하지 않는 기술을 추구합니다.
+                        | 어떤 무술과 싸워도 절대 패배하지 않습니다.
                     li
                         i.fas.fa-fist-raised 
-                        | 4대 격투기, 무에타이(킥복싱), 복싱, 주짓수, 레슬링을 기반두고 있어 현존 무술중 가장 강력합니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 특히 길거리에서 무조건 맨손으로 싸웠을 때, 가장 극한의 효율을 보여줍니다. MMA가 가장 강력하고 효율적인 것은 이는 이미 수많은 사례를 통해 검증된 엄연한 팩트입니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 몸으로 부딪혀 해결해 나가며, 적응력, 즉흥성, 전술적인 플레이가 필요한 종합격투기에 도전해보세요!
-                    li
-                        i.fas.fa-fist-raised 
-                        | 벼랑 끝의 아슬아슬한 삶을 즐기며, 위험한 행동을 일삼는 폭풍같은 당신과 종합격투기와 잘 어울립니다. 
-                    li
-                        i.fas.fa-fist-raised 
-                        | 유명인: 코너 맥그리거, 하빕 누르마고메도프, 프란시스 은가누, 김동현, 이스라엘 안데사야, 앤더슨 실바, 존 존스, 정찬성
+                        | 4대 격투기(무에타이, 복싱, 주짓수, 레슬링)을 기반두고 있어 현존 무술중 가장 강력합니다.
+                    .folder
+                        button.folder-button
+                            i.fas.fa-arrow-down
+                            | 설명 더 보기
+                    .folder-content
+                        li
+                            i.fas.fa-fist-raised 
+                            | 특히 길거리에서 무조건 맨손으로 싸웠을 때, 가장 극한의 효율을 보여줍니다. MMA가 가장 강력하고 효율적인 것은 이는 이미 수많은 사례를 통해 검증된 엄연한 팩트입니다.
+                        li
+                            i.fas.fa-fist-raised 
+                            | 몸으로 부딪혀 해결해 나가며, 적응력, 즉흥성, 전술적인 플레이가 필요한 종합격투기에 도전해보세요!
+                        li
+                            i.fas.fa-fist-raised 
+                            | 벼랑 끝의 아슬아슬한 삶을 즐기며, 위험한 행동을 일삼는 폭풍같은 당신과 종합격투기와 잘 어울립니다. 
+                        li
+                            i.fas.fa-fist-raised 
+                            | 유명인: 코너 맥그리거, 하빕 누르마고메도프, 프란시스 은가누, 김동현, 이스라엘 안데사야, 앤더슨 실바, 존 존스, 정찬성
+                    .folder-footer
+                        button.folder-button-down
+                            i.fas.fa-arrow-up
+                            | 접기
             .result-bottom.partner-wrapper.wrapper
                 a.best-partner(href='/result/judo')
-                    .result.char_result 
-                    .result-text-black  최고의 파트너
-                    .result-title-black 유도
-                    br
-                    img.result-partner-img(src='../static/images/judo.jpg')
+                    .result-text-black-best  최고의 파트너
+                    .result-char-wrapper
+                        .result-title-black 유도
+                        br
+                        img.result-partner-img(src='../static/images/judo.jpg')
                 a.worst-partner(href='/result/taichi')
-                    .result.char_result 
-                    .result-text-black  최악의 파트너
-                    .result-title-black 태극권
-                    br
-                    img.result-partner-img(src='../static/images/taichi.jpg')
+                    .result-text-black-worst  최악의 파트너
+                    .result-char-wrapper
+                        .result-title-black 태극권
+                        br
+                        img.result-partner-img(src='../static/images/taichi.jpg')
             include ./partials/share
             include ./partials/adsense
             include ./partials/footer-result

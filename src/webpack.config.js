@@ -5,7 +5,7 @@ const ENTRY_FILE = path.resolve(__dirname, "assets", "js", "main.js");
 const OUTPUT_DIR = path.join(__dirname, "static");
 
 module.exports = {
-  entry: ["@babel/polyfill", ENTRY_FILE],
+  entry: ["core-js/stable", "regenerator-runtime/runtime", ENTRY_FILE],
   mode: MODE,
   output: {
     filename: "main.js",
@@ -37,4 +37,5 @@ module.exports = {
     }),
   ],
   devtool: "source-map",
+  target: ["web", "es5"],
 };

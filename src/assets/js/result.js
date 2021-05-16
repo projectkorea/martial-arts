@@ -16,14 +16,12 @@ const valueResultPage = () => {
   retest.addEventListener("click", () => {
     location.href = "/";
   });
-  const totalNumber1 = totalNumber.innerText;
-  const totalNumber2 = totalNumber1
+  totalNumber.innerText = totalNumber.innerText
     .toString()
-    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-  totalNumber.innerText = totalNumber2;
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
 if (resultPage) {
-  resultPage.style.display = "none";
+  loadingPage.style.display = "block";
   waitUntilLoading();
 }

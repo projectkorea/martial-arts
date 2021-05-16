@@ -2,11 +2,9 @@ const btnStart = document.querySelector(".start-btn"),
   startPage = document.querySelector(".start-page");
 
 const init = () => {
-  btnStart.addEventListener("click", () => {
-    setTimeout(() => {
-      location.href = "/question";
-    }, 100);
-  });
+  btnStart.onclick = () => {
+    location.href = "/question";
+  };
 };
 
 if (startPage) {

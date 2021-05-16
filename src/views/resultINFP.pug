@@ -1,7 +1,7 @@
 extends layouts/main.pug
 
 block content
-    body.container.fade-in
+    body.container-ie.fade-in
         main.loading-page.wrapper-loading
             .circ
                 .hands
@@ -15,55 +15,65 @@ block content
                     .result-text-white 나랑 가장 잘 맞는 격투기 종목은
                     .result-title.animate__animated.animate__pulse 팔괘장
                     img.result-img(src='../static/images/baguazhang.jpg')
-                    .result-rank
-                        | 전체 참여자 
-                        .total-number.result-rank-ment #{totalNumber}
-                        | 명 중
+                    .result-subtitle
+                        .icon-quote
+                            i.fas.fa-quote-left.icon-left
+                            i.fas.fa-quote-right.icon-right
+                        | 팔괘 64장!!
                         br
-                        |나와 같은 격투가 유형은 
-                        br
-                        label.percentage #{(sameNumber/totalNumber*100).toFixed(2)}%
-                        | 입니다.
+                        | 팔괘 128장!!
+                        .icon-right
             .result-middle
-                .result-subtitle
-                    .icon-quote
-                        i.fas.fa-quote-left.icon-left
-                        i.fas.fa-quote-right.icon-right
-                    | 팔괘 64장
-                    .icon-right
-                        
+                .result-rank
+                    | 전체 참여자 
+                    .total-number.result-rank-ment #{totalNumber}
+                    | 명 중
+                    br
+                    |나와 같은 격투가 유형은 
+                    br
+                    label.percentage #{(sameNumber/totalNumber*100).toFixed(2)}%
+                    | 입니다.
                 .result-explannation.result-text-left.wrapper-explanation
                     li
                         i.fas.fa-fist-raised 
                         | 격투기 종목 중 유일하게 손바닥을 주무기로 하는 고급 무술입니다.
                     li
                         i.fas.fa-fist-raised 
-                        | 직선과 곡선을 그리며 움직이는 보통 무술과는 달리, 원을 중심으로 움직이는 특이한 방식을 선택하고 있습니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 끊임없이 움직이며, 중심을 잡고 방향을 변화시키며 회피적이고 자기 방어적 특징이 매우 강합니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 상대와 정면으로 맞서지 않고, 항상 사각지대를 찾아 공격하는 영활한 몸놀림이 필요합니다.
-                    li
-                        i.fas.fa-fist-raised 
                         | 최악의 상황이나 악한 사람에게서도 좋은 면만을 바라보는 특출난 재능을 가진 당신은 팔괘장이 가장 잘 어울립니다.
-                    li
-                        i.fas.fa-fist-raised 
-                        | 유명인: 동해천, 노수전, 노수덕, 박복남, 정정화, 안철균, 나루토 휴우가 네지
+                    .folder
+                        button.folder-button
+                            i.fas.fa-arrow-down
+                            | 설명 더 보기
+                    .folder-content
+                        li
+                            i.fas.fa-fist-raised 
+                            | 끊임없이 움직이며, 중심을 잡고 방향을 변화시키며 회피적이고 자기 방어적 특징이 매우 강합니다.
+                        li
+                            i.fas.fa-fist-raised 
+                            | 상대와 정면으로 맞서지 않고, 항상 사각지대를 찾아 공격하는 영활한 몸놀림이 필요합니다.
+                        li
+                            i.fas.fa-fist-raised 
+                            | 직선과 곡선을 그리며 움직이는 보통 무술과는 달리, 원을 중심으로 움직이는 특이한 방식을 선택하고 있습니다.
+                        li
+                            i.fas.fa-fist-raised 
+                            | 유명인: 동해천, 노수전, 노수덕, 박복남, 정정화, 안철균, 나루토 휴우가 네지
+                    .folder-footer
+                        button.folder-button-down
+                            i.fas.fa-arrow-up
+                            | 접기
             .result-bottom.partner-wrapper.wrapper
                 a.best-partner(href='/result/taichi')
-                    .result.char_result 
-                    .result-text-black  최고의 파트너
-                    .result-title-black 태극권
-                    br
-                    img.result-partner-img(src='../static/images/taichi.jpg')
+                    .result-text-black-best  최고의 파트너
+                    .result-char-wrapper
+                        .result-title-black 태극권
+                        br
+                        img.result-partner-img(src='../static/images/taichi.jpg')
                 a.worst-partner(href='/result/judo')
-                    .result.char_result 
-                    .result-text-black  최악의 파트너
-                    .result-title-black 유도
-                    br
-                    img.result-partner-img(src='../static/images/judo.jpg')
+                    .result-text-black-worst  최악의 파트너
+                    .result-char-wrapper
+                        .result-title-black 유도
+                        br
+                        img.result-partner-img(src='../static/images/judo.jpg')
             include ./partials/share
             include ./partials/adsense
             include ./partials/footer-result

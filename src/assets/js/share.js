@@ -20,13 +20,13 @@ const shareFacebook = () => {
 
 const shareKakao = () => {
   Kakao.Link.createDefaultButton({
-    container: "btnKakao", // 카카오공유버튼ID
+    container: "#btnKakao", // 카카오공유버튼ID
     objectType: "feed",
     content: {
       title: "격투기 종목 테스트",
       description:
         "복싱, 주짓수, 태극권, 카포에라.. 나와 가장 잘 맞는 격투기 종목은?",
-      imageUrl: "../../static/images/preview.png",
+      imageUrl: myURL,
       link: {
         mobileWebUrl: myURL,
         webUrl: myURL,
@@ -47,6 +47,7 @@ const shareLink = () => {
 };
 
 const init = () => {
+  Kakao.init("be836ab6aa99b7ff880010214a29ffd8");
   btnTwitter.style.backgroundImage =
     "url(../../static/images/icon-twitter.png)";
   btnFacebook.style.backgroundImage =
@@ -57,9 +58,9 @@ const init = () => {
   btnFacebook.addEventListener("click", shareFacebook);
   btnKakao.addEventListener("click", shareKakao);
   btnLink.addEventListener("click", shareLink);
+  shareKakao();
 };
 
 if (resultPage) {
-  Kakao.init("be836ab6aa99b7ff880010214a29ffd8");
   init();
 }
