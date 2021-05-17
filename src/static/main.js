@@ -17684,8 +17684,21 @@ var myURL = "https://www.martialartstest.com",
     resultPage = document.querySelector(".result-page"),
     btnTwitter = document.querySelector(".twitter"),
     btnFacebook = document.querySelector(".facebook"),
-    btnKakao = document.querySelector(".kakao"),
-    btnLink = document.querySelector(".link");
+    btnKakao1 = document.querySelector(".kakao1"),
+    btnKakao2 = document.querySelector(".kakao2"),
+    btnLink = document.querySelector(".link"),
+    resultTitle = document.querySelector(".result-title"),
+    resultSubTitle = document.querySelector(".result-subtitle");
+var TITLE, DESCRIPTION, imgURLKakao, myURLKakao;
+
+var valueResult = function valueResult() {
+  TITLE = resultTitle.innerText;
+  DESCRIPTION = resultSubTitle.innerText;
+  myURLKakao = location.href;
+  var array = location.href.split("/");
+  var lastSegment = array[array.length - 1];
+  imgURLKakao = "https://martialartstest.com/static/images/preview-".concat(lastSegment, ".jpg");
+};
 
 var shareTwitter = function shareTwitter() {
   var sendText = "격투기 종목 테스트";
@@ -17700,7 +17713,7 @@ var shareFacebook = function shareFacebook() {
 
 var shareKakao = function shareKakao() {
   Kakao.Link.createDefaultButton({
-    container: "#btnKakao",
+    container: "#btnKakao1",
     // 카카오공유버튼ID
     objectType: "feed",
     content: {
@@ -17713,6 +17726,27 @@ var shareKakao = function shareKakao() {
       }
     }
   });
+};
+
+var shareKakaoMyData = function shareKakaoMyData() {
+  Kakao.Link.createDefaultButton({
+    container: "#btnKakao2",
+    // 카카오공유버튼ID
+    objectType: "feed",
+    content: {
+      title: TITLE,
+      description: DESCRIPTION,
+      imageUrl: imgURLKakao,
+      link: {
+        mobileWebUrl: myURLKakao,
+        webUrl: myURLKakao
+      }
+    }
+  });
+  console.log(TITLE);
+  console.log(DESCRIPTION);
+  console.log(imgURLKakao);
+  console.log(myURLKakao);
 };
 
 var shareLink = function shareLink() {
@@ -17730,13 +17764,17 @@ var init = function init() {
   Kakao.init("be836ab6aa99b7ff880010214a29ffd8");
   btnTwitter.style.backgroundImage = "url(../../static/images/icon-twitter.png)";
   btnFacebook.style.backgroundImage = "url(../../static/images/icon-facebook.png)";
-  btnKakao.style.backgroundImage = "url(../../static/images/icon-kakao.png)";
+  btnKakao1.style.backgroundImage = "url(../../static/images/icon-kakao.png)";
+  btnKakao2.style.backgroundImage = "url(../../static/images/icon-kakao.png)";
   btnLink.style.backgroundImage = "url(../../static/images/icon-link.png)";
   btnTwitter.addEventListener("click", shareTwitter);
   btnFacebook.addEventListener("click", shareFacebook);
-  btnKakao.addEventListener("click", shareKakao);
+  btnKakao1.addEventListener("click", shareKakao);
+  btnKakao2.addEventListener("click", shareKakaoMyData);
   btnLink.addEventListener("click", shareLink);
   shareKakao();
+  valueResult();
+  shareKakaoMyData();
 };
 
 if (resultPage) {

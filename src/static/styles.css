@@ -133,8 +133,8 @@ body {
 }
 
 .result-share-text {
+  font-family: "ROKABold";
   text-align: center;
-  font-weight: bold;
   font-size: 28px;
   color: white;
   margin: 10px 0px;
