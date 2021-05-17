@@ -17680,6 +17680,7 @@ var quest = {
 /***/ (function() {
 
 var myURL = "https://www.martialartstest.com",
+    imgURL = "https://martialartstest.com/static/images/kakao-preview.jpg",
     resultPage = document.querySelector(".result-page"),
     btnTwitter = document.querySelector(".twitter"),
     btnFacebook = document.querySelector(".facebook"),
@@ -17705,7 +17706,7 @@ var shareKakao = function shareKakao() {
     content: {
       title: "격투기 종목 테스트",
       description: "복싱, 주짓수, 태극권, 카포에라.. 나와 가장 잘 맞는 격투기 종목은?",
-      imageUrl: myURL,
+      imageUrl: imgURL,
       link: {
         mobileWebUrl: myURL,
         webUrl: myURL
