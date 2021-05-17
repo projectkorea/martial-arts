@@ -7,9 +7,10 @@ const myURL = "https://www.martialartstest.com",
   btnKakao2 = document.querySelector(".kakao2"),
   btnLink = document.querySelector(".link"),
   resultTitle = document.querySelector(".result-title"),
-  resultSubTitle = document.querySelector(".result-subtitle");
+  resultSubTitle = document.querySelector(".result-subtitle"),
+  resultExplannation = document.querySelector(".result-explannation");
 
-let TITLE, DESCRIPTION, imgURLKakao, myURLKakao;
+let TITLE, DESCRIPTION, imgURLKakao, myURLKakao, EXPLANNATION;
 
 const valueResult = () => {
   TITLE = resultTitle.innerText;
@@ -18,6 +19,7 @@ const valueResult = () => {
   const array = location.href.split("/");
   let lastSegment = array[array.length - 1];
   imgURLKakao = `https://martialartstest.com/static/images/preview-${lastSegment}.jpg`;
+  EXPLANNATION = resultExplannation.innerText;
 };
 
 const shareTwitter = () => {
@@ -55,8 +57,8 @@ const shareKakaoMyData = () => {
     container: "#btnKakao2", // 카카오공유버튼ID
     objectType: "feed",
     content: {
-      title: `나의 격투기 종목은 "${TITLE}"`,
-      description: `나의 한 마디: ${DESCRIPTION} ::: 복싱, 주짓수, 태극권, 카포에라.. 나와 가장 잘 맞는 격투기 종목은?`,
+      title: `"${TITLE}": ${DESCRIPTION}`,
+      description: EXPLANNATION,
       imageUrl: imgURLKakao,
       link: {
         mobileWebUrl: myURLKakao,
