@@ -17734,8 +17734,8 @@ var shareKakaoMyData = function shareKakaoMyData() {
     // 카카오공유버튼ID
     objectType: "feed",
     content: {
-      title: TITLE,
-      description: DESCRIPTION,
+      title: "\uB098\uC758 \uACA9\uD22C\uAE30 \uC885\uBAA9\uC740 \"".concat(TITLE, "\""),
+      description: "\uB098\uC758 \uD55C \uB9C8\uB514: ".concat(DESCRIPTION, " ::: \uBCF5\uC2F1, \uC8FC\uC9D3\uC218, \uD0DC\uADF9\uAD8C, \uCE74\uD3EC\uC5D0\uB77C.. \uB098\uC640 \uAC00\uC7A5 \uC798 \uB9DE\uB294 \uACA9\uD22C\uAE30 \uC885\uBAA9\uC740?"),
       imageUrl: imgURLKakao,
       link: {
         mobileWebUrl: myURLKakao,
@@ -17743,10 +17743,6 @@ var shareKakaoMyData = function shareKakaoMyData() {
       }
     }
   });
-  console.log(TITLE);
-  console.log(DESCRIPTION);
-  console.log(imgURLKakao);
-  console.log(myURLKakao);
 };
 
 var shareLink = function shareLink() {

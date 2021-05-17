@@ -55,8 +55,8 @@ const shareKakaoMyData = () => {
     container: "#btnKakao2", // 카카오공유버튼ID
     objectType: "feed",
     content: {
-      title: TITLE,
-      description: DESCRIPTION,
+      title: `나의 격투기 종목은 "${TITLE}"`,
+      description: `나의 한 마디: ${DESCRIPTION} ::: 복싱, 주짓수, 태극권, 카포에라.. 나와 가장 잘 맞는 격투기 종목은?`,
       imageUrl: imgURLKakao,
       link: {
         mobileWebUrl: myURLKakao,
@@ -64,10 +64,6 @@ const shareKakaoMyData = () => {
       },
     },
   });
-  console.log(TITLE);
-  console.log(DESCRIPTION);
-  console.log(imgURLKakao);
-  console.log(myURLKakao);
 };
 
 const shareLink = () => {
