@@ -16,6 +16,8 @@ const valueResultPage = () => {
   retest.addEventListener("click", () => {
     location.href = "/";
   });
+  const currentNumber = parseInt(totalNumber.innerText);
+  totalNumber.innerText = currentNumber + 1000;
   totalNumber.innerText = totalNumber.innerText
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
