@@ -19,6 +19,7 @@ export const savingDb = async (req, res, next) => {
     next();
   } catch (error) {
     console.log(error);
+    next();
   }
 };
 
@@ -42,7 +43,7 @@ export const dividngResult = async (req, res) => {
       res.redirect(`${routes.result}${routes.isfp}`);
     else if (req.body.RESULT == "ENTJ")
       res.redirect(`${routes.result}${routes.entj}`);
-    else if (req.body.RESULT == "ITNJ")
+    else if (req.body.RESULT == "INTJ")
       res.redirect(`${routes.result}${routes.intj}`);
     else if (req.body.RESULT == "ENFJ")
       res.redirect(`${routes.result}${routes.enfj}`);

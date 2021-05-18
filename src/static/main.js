@@ -1,6 +1,706 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./node_modules/@babel/runtime-corejs3/core-js-stable/set-timeout.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs3/core-js-stable/set-timeout.js ***!
+  \***************************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js-pure/stable/set-timeout */ "./node_modules/core-js-pure/stable/set-timeout.js");
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/a-function.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/a-function.js ***!
+  \***********************************************************/
+/***/ (function(module) {
+
+module.exports = function (it) {
+  if (typeof it != 'function') {
+    throw TypeError(String(it) + ' is not a function');
+  }
+
+  return it;
+};
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/an-object.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/an-object.js ***!
+  \**********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js-pure/internals/is-object.js");
+
+module.exports = function (it) {
+  if (!isObject(it)) {
+    throw TypeError(String(it) + ' is not an object');
+  }
+
+  return it;
+};
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/classof-raw.js":
+/*!************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/classof-raw.js ***!
+  \************************************************************/
+/***/ (function(module) {
+
+var toString = {}.toString;
+
+module.exports = function (it) {
+  return toString.call(it).slice(8, -1);
+};
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/create-non-enumerable-property.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/create-non-enumerable-property.js ***!
+  \*******************************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js-pure/internals/descriptors.js");
+
+var definePropertyModule = __webpack_require__(/*! ../internals/object-define-property */ "./node_modules/core-js-pure/internals/object-define-property.js");
+
+var createPropertyDescriptor = __webpack_require__(/*! ../internals/create-property-descriptor */ "./node_modules/core-js-pure/internals/create-property-descriptor.js");
+
+module.exports = DESCRIPTORS ? function (object, key, value) {
+  return definePropertyModule.f(object, key, createPropertyDescriptor(1, value));
+} : function (object, key, value) {
+  object[key] = value;
+  return object;
+};
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/create-property-descriptor.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/create-property-descriptor.js ***!
+  \***************************************************************************/
+/***/ (function(module) {
+
+module.exports = function (bitmap, value) {
+  return {
+    enumerable: !(bitmap & 1),
+    configurable: !(bitmap & 2),
+    writable: !(bitmap & 4),
+    value: value
+  };
+};
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/descriptors.js":
+/*!************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/descriptors.js ***!
+  \************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js-pure/internals/fails.js"); // Detect IE8's incomplete defineProperty implementation
+
+
+module.exports = !fails(function () {
+  // eslint-disable-next-line es/no-object-defineproperty -- required for testing
+  return Object.defineProperty({}, 1, {
+    get: function () {
+      return 7;
+    }
+  })[1] != 7;
+});
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/document-create-element.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/document-create-element.js ***!
+  \************************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js-pure/internals/global.js");
+
+var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js-pure/internals/is-object.js");
+
+var document = global.document; // typeof document.createElement is 'object' in old IE
+
+var EXISTS = isObject(document) && isObject(document.createElement);
+
+module.exports = function (it) {
+  return EXISTS ? document.createElement(it) : {};
+};
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/engine-user-agent.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/engine-user-agent.js ***!
+  \******************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var getBuiltIn = __webpack_require__(/*! ../internals/get-built-in */ "./node_modules/core-js-pure/internals/get-built-in.js");
+
+module.exports = getBuiltIn('navigator', 'userAgent') || '';
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/export.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/export.js ***!
+  \*******************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js-pure/internals/global.js");
+
+var getOwnPropertyDescriptor = __webpack_require__(/*! ../internals/object-get-own-property-descriptor */ "./node_modules/core-js-pure/internals/object-get-own-property-descriptor.js").f;
+
+var isForced = __webpack_require__(/*! ../internals/is-forced */ "./node_modules/core-js-pure/internals/is-forced.js");
+
+var path = __webpack_require__(/*! ../internals/path */ "./node_modules/core-js-pure/internals/path.js");
+
+var bind = __webpack_require__(/*! ../internals/function-bind-context */ "./node_modules/core-js-pure/internals/function-bind-context.js");
+
+var createNonEnumerableProperty = __webpack_require__(/*! ../internals/create-non-enumerable-property */ "./node_modules/core-js-pure/internals/create-non-enumerable-property.js");
+
+var has = __webpack_require__(/*! ../internals/has */ "./node_modules/core-js-pure/internals/has.js");
+
+var wrapConstructor = function (NativeConstructor) {
+  var Wrapper = function (a, b, c) {
+    if (this instanceof NativeConstructor) {
+      switch (arguments.length) {
+        case 0:
+          return new NativeConstructor();
+
+        case 1:
+          return new NativeConstructor(a);
+
+        case 2:
+          return new NativeConstructor(a, b);
+      }
+
+      return new NativeConstructor(a, b, c);
+    }
+
+    return NativeConstructor.apply(this, arguments);
+  };
+
+  Wrapper.prototype = NativeConstructor.prototype;
+  return Wrapper;
+};
+/*
+  options.target      - name of the target object
+  options.global      - target is the global object
+  options.stat        - export as static methods of target
+  options.proto       - export as prototype methods of target
+  options.real        - real prototype method for the `pure` version
+  options.forced      - export even if the native feature is available
+  options.bind        - bind methods to the target, required for the `pure` version
+  options.wrap        - wrap constructors to preventing global pollution, required for the `pure` version
+  options.unsafe      - use the simple assignment of property instead of delete + defineProperty
+  options.sham        - add a flag to not completely full polyfills
+  options.enumerable  - export as enumerable property
+  options.noTargetGet - prevent calling a getter on target
+*/
+
+
+module.exports = function (options, source) {
+  var TARGET = options.target;
+  var GLOBAL = options.global;
+  var STATIC = options.stat;
+  var PROTO = options.proto;
+  var nativeSource = GLOBAL ? global : STATIC ? global[TARGET] : (global[TARGET] || {}).prototype;
+  var target = GLOBAL ? path : path[TARGET] || (path[TARGET] = {});
+  var targetPrototype = target.prototype;
+  var FORCED, USE_NATIVE, VIRTUAL_PROTOTYPE;
+  var key, sourceProperty, targetProperty, nativeProperty, resultProperty, descriptor;
+
+  for (key in source) {
+    FORCED = isForced(GLOBAL ? key : TARGET + (STATIC ? '.' : '#') + key, options.forced); // contains in native
+
+    USE_NATIVE = !FORCED && nativeSource && has(nativeSource, key);
+    targetProperty = target[key];
+    if (USE_NATIVE) if (options.noTargetGet) {
+      descriptor = getOwnPropertyDescriptor(nativeSource, key);
+      nativeProperty = descriptor && descriptor.value;
+    } else nativeProperty = nativeSource[key]; // export native or implementation
+
+    sourceProperty = USE_NATIVE && nativeProperty ? nativeProperty : source[key];
+    if (USE_NATIVE && typeof targetProperty === typeof sourceProperty) continue; // bind timers to global for call from export context
+
+    if (options.bind && USE_NATIVE) resultProperty = bind(sourceProperty, global); // wrap global constructors for prevent changs in this version
+    else if (options.wrap && USE_NATIVE) resultProperty = wrapConstructor(sourceProperty); // make static versions for prototype methods
+      else if (PROTO && typeof sourceProperty == 'function') resultProperty = bind(Function.call, sourceProperty); // default case
+        else resultProperty = sourceProperty; // add a flag to not completely full polyfills
+
+    if (options.sham || sourceProperty && sourceProperty.sham || targetProperty && targetProperty.sham) {
+      createNonEnumerableProperty(resultProperty, 'sham', true);
+    }
+
+    target[key] = resultProperty;
+
+    if (PROTO) {
+      VIRTUAL_PROTOTYPE = TARGET + 'Prototype';
+
+      if (!has(path, VIRTUAL_PROTOTYPE)) {
+        createNonEnumerableProperty(path, VIRTUAL_PROTOTYPE, {});
+      } // export virtual prototype methods
+
+
+      path[VIRTUAL_PROTOTYPE][key] = sourceProperty; // export real prototype methods
+
+      if (options.real && targetPrototype && !targetPrototype[key]) {
+        createNonEnumerableProperty(targetPrototype, key, sourceProperty);
+      }
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/fails.js":
+/*!******************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/fails.js ***!
+  \******************************************************/
+/***/ (function(module) {
+
+module.exports = function (exec) {
+  try {
+    return !!exec();
+  } catch (error) {
+    return true;
+  }
+};
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/function-bind-context.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/function-bind-context.js ***!
+  \**********************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var aFunction = __webpack_require__(/*! ../internals/a-function */ "./node_modules/core-js-pure/internals/a-function.js"); // optional / simple context binding
+
+
+module.exports = function (fn, that, length) {
+  aFunction(fn);
+  if (that === undefined) return fn;
+
+  switch (length) {
+    case 0:
+      return function () {
+        return fn.call(that);
+      };
+
+    case 1:
+      return function (a) {
+        return fn.call(that, a);
+      };
+
+    case 2:
+      return function (a, b) {
+        return fn.call(that, a, b);
+      };
+
+    case 3:
+      return function (a, b, c) {
+        return fn.call(that, a, b, c);
+      };
+  }
+
+  return function ()
+  /* ...args */
+  {
+    return fn.apply(that, arguments);
+  };
+};
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/get-built-in.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/get-built-in.js ***!
+  \*************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var path = __webpack_require__(/*! ../internals/path */ "./node_modules/core-js-pure/internals/path.js");
+
+var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js-pure/internals/global.js");
+
+var aFunction = function (variable) {
+  return typeof variable == 'function' ? variable : undefined;
+};
+
+module.exports = function (namespace, method) {
+  return arguments.length < 2 ? aFunction(path[namespace]) || aFunction(global[namespace]) : path[namespace] && path[namespace][method] || global[namespace] && global[namespace][method];
+};
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/global.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/global.js ***!
+  \*******************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var check = function (it) {
+  return it && it.Math == Math && it;
+}; // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+
+
+module.exports = // eslint-disable-next-line es/no-global-this -- safe
+check(typeof globalThis == 'object' && globalThis) || check(typeof window == 'object' && window) || // eslint-disable-next-line no-restricted-globals -- safe
+check(typeof self == 'object' && self) || check(typeof __webpack_require__.g == 'object' && __webpack_require__.g) || // eslint-disable-next-line no-new-func -- fallback
+function () {
+  return this;
+}() || Function('return this')();
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/has.js":
+/*!****************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/has.js ***!
+  \****************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var toObject = __webpack_require__(/*! ../internals/to-object */ "./node_modules/core-js-pure/internals/to-object.js");
+
+var hasOwnProperty = {}.hasOwnProperty;
+
+module.exports = function hasOwn(it, key) {
+  return hasOwnProperty.call(toObject(it), key);
+};
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/ie8-dom-define.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/ie8-dom-define.js ***!
+  \***************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js-pure/internals/descriptors.js");
+
+var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js-pure/internals/fails.js");
+
+var createElement = __webpack_require__(/*! ../internals/document-create-element */ "./node_modules/core-js-pure/internals/document-create-element.js"); // Thank's IE8 for his funny defineProperty
+
+
+module.exports = !DESCRIPTORS && !fails(function () {
+  // eslint-disable-next-line es/no-object-defineproperty -- requied for testing
+  return Object.defineProperty(createElement('div'), 'a', {
+    get: function () {
+      return 7;
+    }
+  }).a != 7;
+});
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/indexed-object.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/indexed-object.js ***!
+  \***************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js-pure/internals/fails.js");
+
+var classof = __webpack_require__(/*! ../internals/classof-raw */ "./node_modules/core-js-pure/internals/classof-raw.js");
+
+var split = ''.split; // fallback for non-array-like ES3 and non-enumerable old V8 strings
+
+module.exports = fails(function () {
+  // throws an error in rhino, see https://github.com/mozilla/rhino/issues/346
+  // eslint-disable-next-line no-prototype-builtins -- safe
+  return !Object('z').propertyIsEnumerable(0);
+}) ? function (it) {
+  return classof(it) == 'String' ? split.call(it, '') : Object(it);
+} : Object;
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/is-forced.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/is-forced.js ***!
+  \**********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js-pure/internals/fails.js");
+
+var replacement = /#|\.prototype\./;
+
+var isForced = function (feature, detection) {
+  var value = data[normalize(feature)];
+  return value == POLYFILL ? true : value == NATIVE ? false : typeof detection == 'function' ? fails(detection) : !!detection;
+};
+
+var normalize = isForced.normalize = function (string) {
+  return String(string).replace(replacement, '.').toLowerCase();
+};
+
+var data = isForced.data = {};
+var NATIVE = isForced.NATIVE = 'N';
+var POLYFILL = isForced.POLYFILL = 'P';
+module.exports = isForced;
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/is-object.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/is-object.js ***!
+  \**********************************************************/
+/***/ (function(module) {
+
+module.exports = function (it) {
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/object-define-property.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/object-define-property.js ***!
+  \***********************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js-pure/internals/descriptors.js");
+
+var IE8_DOM_DEFINE = __webpack_require__(/*! ../internals/ie8-dom-define */ "./node_modules/core-js-pure/internals/ie8-dom-define.js");
+
+var anObject = __webpack_require__(/*! ../internals/an-object */ "./node_modules/core-js-pure/internals/an-object.js");
+
+var toPrimitive = __webpack_require__(/*! ../internals/to-primitive */ "./node_modules/core-js-pure/internals/to-primitive.js"); // eslint-disable-next-line es/no-object-defineproperty -- safe
+
+
+var $defineProperty = Object.defineProperty; // `Object.defineProperty` method
+// https://tc39.es/ecma262/#sec-object.defineproperty
+
+exports.f = DESCRIPTORS ? $defineProperty : function defineProperty(O, P, Attributes) {
+  anObject(O);
+  P = toPrimitive(P, true);
+  anObject(Attributes);
+  if (IE8_DOM_DEFINE) try {
+    return $defineProperty(O, P, Attributes);
+  } catch (error) {
+    /* empty */
+  }
+  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported');
+  if ('value' in Attributes) O[P] = Attributes.value;
+  return O;
+};
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/object-get-own-property-descriptor.js":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/object-get-own-property-descriptor.js ***!
+  \***********************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js-pure/internals/descriptors.js");
+
+var propertyIsEnumerableModule = __webpack_require__(/*! ../internals/object-property-is-enumerable */ "./node_modules/core-js-pure/internals/object-property-is-enumerable.js");
+
+var createPropertyDescriptor = __webpack_require__(/*! ../internals/create-property-descriptor */ "./node_modules/core-js-pure/internals/create-property-descriptor.js");
+
+var toIndexedObject = __webpack_require__(/*! ../internals/to-indexed-object */ "./node_modules/core-js-pure/internals/to-indexed-object.js");
+
+var toPrimitive = __webpack_require__(/*! ../internals/to-primitive */ "./node_modules/core-js-pure/internals/to-primitive.js");
+
+var has = __webpack_require__(/*! ../internals/has */ "./node_modules/core-js-pure/internals/has.js");
+
+var IE8_DOM_DEFINE = __webpack_require__(/*! ../internals/ie8-dom-define */ "./node_modules/core-js-pure/internals/ie8-dom-define.js"); // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+
+
+var $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor; // `Object.getOwnPropertyDescriptor` method
+// https://tc39.es/ecma262/#sec-object.getownpropertydescriptor
+
+exports.f = DESCRIPTORS ? $getOwnPropertyDescriptor : function getOwnPropertyDescriptor(O, P) {
+  O = toIndexedObject(O);
+  P = toPrimitive(P, true);
+  if (IE8_DOM_DEFINE) try {
+    return $getOwnPropertyDescriptor(O, P);
+  } catch (error) {
+    /* empty */
+  }
+  if (has(O, P)) return createPropertyDescriptor(!propertyIsEnumerableModule.f.call(O, P), O[P]);
+};
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/object-property-is-enumerable.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/object-property-is-enumerable.js ***!
+  \******************************************************************************/
+/***/ (function(__unused_webpack_module, exports) {
+
+"use strict";
+
+
+var $propertyIsEnumerable = {}.propertyIsEnumerable; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+
+var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor; // Nashorn ~ JDK8 bug
+
+var NASHORN_BUG = getOwnPropertyDescriptor && !$propertyIsEnumerable.call({
+  1: 2
+}, 1); // `Object.prototype.propertyIsEnumerable` method implementation
+// https://tc39.es/ecma262/#sec-object.prototype.propertyisenumerable
+
+exports.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
+  var descriptor = getOwnPropertyDescriptor(this, V);
+  return !!descriptor && descriptor.enumerable;
+} : $propertyIsEnumerable;
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/path.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/path.js ***!
+  \*****************************************************/
+/***/ (function(module) {
+
+module.exports = {};
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/require-object-coercible.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/require-object-coercible.js ***!
+  \*************************************************************************/
+/***/ (function(module) {
+
+// `RequireObjectCoercible` abstract operation
+// https://tc39.es/ecma262/#sec-requireobjectcoercible
+module.exports = function (it) {
+  if (it == undefined) throw TypeError("Can't call method on " + it);
+  return it;
+};
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/to-indexed-object.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/to-indexed-object.js ***!
+  \******************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+// toObject with fallback for non-array-like ES3 strings
+var IndexedObject = __webpack_require__(/*! ../internals/indexed-object */ "./node_modules/core-js-pure/internals/indexed-object.js");
+
+var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "./node_modules/core-js-pure/internals/require-object-coercible.js");
+
+module.exports = function (it) {
+  return IndexedObject(requireObjectCoercible(it));
+};
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/to-object.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/to-object.js ***!
+  \**********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "./node_modules/core-js-pure/internals/require-object-coercible.js"); // `ToObject` abstract operation
+// https://tc39.es/ecma262/#sec-toobject
+
+
+module.exports = function (argument) {
+  return Object(requireObjectCoercible(argument));
+};
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/internals/to-primitive.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/core-js-pure/internals/to-primitive.js ***!
+  \*************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js-pure/internals/is-object.js"); // `ToPrimitive` abstract operation
+// https://tc39.es/ecma262/#sec-toprimitive
+// instead of the ES6 spec version, we didn't implement @@toPrimitive case
+// and the second argument - flag - preferred type is a string
+
+
+module.exports = function (input, PREFERRED_STRING) {
+  if (!isObject(input)) return input;
+  var fn, val;
+  if (PREFERRED_STRING && typeof (fn = input.toString) == 'function' && !isObject(val = fn.call(input))) return val;
+  if (typeof (fn = input.valueOf) == 'function' && !isObject(val = fn.call(input))) return val;
+  if (!PREFERRED_STRING && typeof (fn = input.toString) == 'function' && !isObject(val = fn.call(input))) return val;
+  throw TypeError("Can't convert object to primitive value");
+};
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/modules/web.timers.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js-pure/modules/web.timers.js ***!
+  \*********************************************************/
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js-pure/internals/export.js");
+
+var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js-pure/internals/global.js");
+
+var userAgent = __webpack_require__(/*! ../internals/engine-user-agent */ "./node_modules/core-js-pure/internals/engine-user-agent.js");
+
+var slice = [].slice;
+var MSIE = /MSIE .\./.test(userAgent); // <- dirty ie9- check
+
+var wrap = function (scheduler) {
+  return function (handler, timeout
+  /* , ...arguments */
+  ) {
+    var boundArgs = arguments.length > 2;
+    var args = boundArgs ? slice.call(arguments, 2) : undefined;
+    return scheduler(boundArgs ? function () {
+      // eslint-disable-next-line no-new-func -- spec requirement
+      (typeof handler == 'function' ? handler : Function(handler)).apply(this, args);
+    } : handler, timeout);
+  };
+}; // ie9- setTimeout & setInterval additional parameters fix
+// https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers
+
+
+$({
+  global: true,
+  bind: true,
+  forced: MSIE
+}, {
+  // `setTimeout` method
+  // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-settimeout
+  setTimeout: wrap(global.setTimeout),
+  // `setInterval` method
+  // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-setinterval
+  setInterval: wrap(global.setInterval)
+});
+
+/***/ }),
+
+/***/ "./node_modules/core-js-pure/stable/set-timeout.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js-pure/stable/set-timeout.js ***!
+  \*********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+__webpack_require__(/*! ../modules/web.timers */ "./node_modules/core-js-pure/modules/web.timers.js");
+
+var path = __webpack_require__(/*! ../internals/path */ "./node_modules/core-js-pure/internals/path.js");
+
+module.exports = path.setTimeout;
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/a-function.js":
 /*!******************************************************!*\
   !*** ./node_modules/core-js/internals/a-function.js ***!
@@ -17371,7 +18071,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _sentence__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sentence */ "./src/assets/js/sentence.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/set-timeout */ "./node_modules/@babel/runtime-corejs3/core-js-stable/set-timeout.js");
+/* harmony import */ var _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _sentence__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sentence */ "./src/assets/js/sentence.js");
+
 
 var questionPage = document.querySelector(".question-page"),
     loadingPage = document.querySelector(".loading-page"),
@@ -17397,9 +18100,9 @@ var finalResult = {
 
 var nextQuestion = function nextQuestion() {
   if (page_num <= 12) {
-    questionTitle.innerHTML = _sentence__WEBPACK_IMPORTED_MODULE_0__.quest[page_num]["title"];
-    A.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.quest[page_num]["A"]["text"];
-    B.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.quest[page_num]["B"]["text"];
+    questionTitle.innerHTML = _sentence__WEBPACK_IMPORTED_MODULE_1__.quest[page_num]["title"];
+    A.innerText = _sentence__WEBPACK_IMPORTED_MODULE_1__.quest[page_num]["A"]["text"];
+    B.innerText = _sentence__WEBPACK_IMPORTED_MODULE_1__.quest[page_num]["B"]["text"];
     questionAnimation();
     progressAnimation();
   } else {
@@ -17424,11 +18127,12 @@ var removeFadeIn = function removeFadeIn() {
 var clickFunction = function clickFunction(e) {
   e.target.style.background = "#ff7d4d";
   var idValue = e.target.id;
-  var type = _sentence__WEBPACK_IMPORTED_MODULE_0__.quest[page_num][idValue]["type"];
+  var type = _sentence__WEBPACK_IMPORTED_MODULE_1__.quest[page_num][idValue]["type"];
   A.disabled = "true";
   B.disabled = "true";
   if (type != null) finalResult[type] += 1;
-  setTimeout(function () {
+
+  _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_0___default()(function () {
     e.target.style.background = "";
     page_num++;
     A.removeAttribute("disabled");
@@ -17472,12 +18176,14 @@ var questionAnimation = function questionAnimation() {
   question_wrapper.classList.add("fade-in");
   A.style.pointerEvents = "none";
   B.style.pointerEvents = "none";
-  setTimeout(function () {
+
+  _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_0___default()(function () {
     questionBtn.style.opacity = "1";
     questionBtn.classList.add("fade-in");
     A.style.pointerEvents = "auto";
     B.style.pointerEvents = "auto";
-    setTimeout(removeFadeIn, 500);
+
+    _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_0___default()(removeFadeIn, 500);
   }, 300);
 };
 
