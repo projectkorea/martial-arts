@@ -1,15 +1,6 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-<<<<<<< HEAD
-/***/ "./node_modules/@babel/runtime-corejs3/core-js-stable/set-timeout.js":
-/*!***************************************************************************!*\
-  !*** ./node_modules/@babel/runtime-corejs3/core-js-stable/set-timeout.js ***!
-  \***************************************************************************/
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! core-js-pure/stable/set-timeout */ "./node_modules/core-js-pure/stable/set-timeout.js");
-=======
 /***/ "./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js":
 /*!*******************************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs3/core-js-stable/instance/concat.js ***!
@@ -48,7 +39,6 @@ module.exports = function (it) {
   var own = it.concat;
   return it === ArrayPrototype || it instanceof Array && own === ArrayPrototype.concat ? concat : own;
 };
->>>>>>> 0390758574e4c6635a4957c59a4551df10f59d22
 
 /***/ }),
 
@@ -86,8 +76,6 @@ module.exports = function (it) {
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./node_modules/core-js-pure/internals/array-method-has-species-support.js":
 /*!*********************************************************************************!*\
   !*** ./node_modules/core-js-pure/internals/array-method-has-species-support.js ***!
@@ -154,7 +142,6 @@ module.exports = function (originalArray, length) {
 
 /***/ }),
 
->>>>>>> 0390758574e4c6635a4957c59a4551df10f59d22
 /***/ "./node_modules/core-js-pure/internals/classof-raw.js":
 /*!************************************************************!*\
   !*** ./node_modules/core-js-pure/internals/classof-raw.js ***!
@@ -207,8 +194,6 @@ module.exports = function (bitmap, value) {
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./node_modules/core-js-pure/internals/create-property.js":
 /*!****************************************************************!*\
   !*** ./node_modules/core-js-pure/internals/create-property.js ***!
@@ -231,7 +216,6 @@ module.exports = function (object, key, value) {
 
 /***/ }),
 
->>>>>>> 0390758574e4c6635a4957c59a4551df10f59d22
 /***/ "./node_modules/core-js-pure/internals/descriptors.js":
 /*!************************************************************!*\
   !*** ./node_modules/core-js-pure/internals/descriptors.js ***!
@@ -284,8 +268,6 @@ module.exports = getBuiltIn('navigator', 'userAgent') || '';
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./node_modules/core-js-pure/internals/engine-v8-version.js":
 /*!******************************************************************!*\
   !*** ./node_modules/core-js-pure/internals/engine-v8-version.js ***!
@@ -331,7 +313,6 @@ module.exports = function (CONSTRUCTOR) {
 
 /***/ }),
 
->>>>>>> 0390758574e4c6635a4957c59a4551df10f59d22
 /***/ "./node_modules/core-js-pure/internals/export.js":
 /*!*******************************************************!*\
   !*** ./node_modules/core-js-pure/internals/export.js ***!
@@ -610,8 +591,6 @@ module.exports = fails(function () {
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./node_modules/core-js-pure/internals/is-array.js":
 /*!*********************************************************!*\
   !*** ./node_modules/core-js-pure/internals/is-array.js ***!
@@ -629,7 +608,6 @@ module.exports = Array.isArray || function isArray(arg) {
 
 /***/ }),
 
->>>>>>> 0390758574e4c6635a4957c59a4551df10f59d22
 /***/ "./node_modules/core-js-pure/internals/is-forced.js":
 /*!**********************************************************!*\
   !*** ./node_modules/core-js-pure/internals/is-forced.js ***!
@@ -668,8 +646,6 @@ module.exports = function (it) {
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./node_modules/core-js-pure/internals/is-pure.js":
 /*!********************************************************!*\
   !*** ./node_modules/core-js-pure/internals/is-pure.js ***!
@@ -700,7 +676,6 @@ module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
 
 /***/ }),
 
->>>>>>> 0390758574e4c6635a4957c59a4551df10f59d22
 /***/ "./node_modules/core-js-pure/internals/object-define-property.js":
 /*!***********************************************************************!*\
   !*** ./node_modules/core-js-pure/internals/object-define-property.js ***!
@@ -822,8 +797,6 @@ module.exports = function (it) {
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./node_modules/core-js-pure/internals/set-global.js":
 /*!***********************************************************!*\
   !*** ./node_modules/core-js-pure/internals/set-global.js ***!
@@ -882,7 +855,6 @@ var store = __webpack_require__(/*! ../internals/shared-store */ "./node_modules
 
 /***/ }),
 
->>>>>>> 0390758574e4c6635a4957c59a4551df10f59d22
 /***/ "./node_modules/core-js-pure/internals/to-indexed-object.js":
 /*!******************************************************************!*\
   !*** ./node_modules/core-js-pure/internals/to-indexed-object.js ***!
@@ -900,8 +872,6 @@ module.exports = function (it) {
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./node_modules/core-js-pure/internals/to-integer.js":
 /*!***********************************************************!*\
   !*** ./node_modules/core-js-pure/internals/to-integer.js ***!
@@ -935,7 +905,6 @@ module.exports = function (argument) {
 
 /***/ }),
 
->>>>>>> 0390758574e4c6635a4957c59a4551df10f59d22
 /***/ "./node_modules/core-js-pure/internals/to-object.js":
 /*!**********************************************************!*\
   !*** ./node_modules/core-js-pure/internals/to-object.js ***!
@@ -975,49 +944,6 @@ module.exports = function (input, PREFERRED_STRING) {
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ "./node_modules/core-js-pure/modules/web.timers.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/core-js-pure/modules/web.timers.js ***!
-  \*********************************************************/
-/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
-
-var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js-pure/internals/export.js");
-
-var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js-pure/internals/global.js");
-
-var userAgent = __webpack_require__(/*! ../internals/engine-user-agent */ "./node_modules/core-js-pure/internals/engine-user-agent.js");
-
-var slice = [].slice;
-var MSIE = /MSIE .\./.test(userAgent); // <- dirty ie9- check
-
-var wrap = function (scheduler) {
-  return function (handler, timeout
-  /* , ...arguments */
-  ) {
-    var boundArgs = arguments.length > 2;
-    var args = boundArgs ? slice.call(arguments, 2) : undefined;
-    return scheduler(boundArgs ? function () {
-      // eslint-disable-next-line no-new-func -- spec requirement
-      (typeof handler == 'function' ? handler : Function(handler)).apply(this, args);
-    } : handler, timeout);
-  };
-}; // ie9- setTimeout & setInterval additional parameters fix
-// https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers
-
-
-$({
-  global: true,
-  bind: true,
-  forced: MSIE
-}, {
-  // `setTimeout` method
-  // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-settimeout
-  setTimeout: wrap(global.setTimeout),
-  // `setInterval` method
-  // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-setinterval
-  setInterval: wrap(global.setInterval)
-=======
 /***/ "./node_modules/core-js-pure/internals/uid.js":
 /*!****************************************************!*\
   !*** ./node_modules/core-js-pure/internals/uid.js ***!
@@ -1165,24 +1091,10 @@ $({
     A.length = n;
     return A;
   }
->>>>>>> 0390758574e4c6635a4957c59a4551df10f59d22
 });
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ "./node_modules/core-js-pure/stable/set-timeout.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/core-js-pure/stable/set-timeout.js ***!
-  \*********************************************************/
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-__webpack_require__(/*! ../modules/web.timers */ "./node_modules/core-js-pure/modules/web.timers.js");
-
-var path = __webpack_require__(/*! ../internals/path */ "./node_modules/core-js-pure/internals/path.js");
-
-module.exports = path.setTimeout;
-=======
 /***/ "./node_modules/core-js-pure/stable/instance/concat.js":
 /*!*************************************************************!*\
   !*** ./node_modules/core-js-pure/stable/instance/concat.js ***!
@@ -1192,7 +1104,6 @@ module.exports = path.setTimeout;
 var parent = __webpack_require__(/*! ../../es/instance/concat */ "./node_modules/core-js-pure/es/instance/concat.js");
 
 module.exports = parent;
->>>>>>> 0390758574e4c6635a4957c59a4551df10f59d22
 
 /***/ }),
 
@@ -18565,10 +18476,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs3/core-js-stable/set-timeout */ "./node_modules/@babel/runtime-corejs3/core-js-stable/set-timeout.js");
-/* harmony import */ var _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _sentence__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sentence */ "./src/assets/js/sentence.js");
-
+/* harmony import */ var _sentence__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sentence */ "./src/assets/js/sentence.js");
 
 var questionPage = document.querySelector(".question-page"),
     loadingPage = document.querySelector(".loading-page"),
@@ -18594,9 +18502,9 @@ var finalResult = {
 
 var nextQuestion = function nextQuestion() {
   if (page_num <= 12) {
-    questionTitle.innerHTML = _sentence__WEBPACK_IMPORTED_MODULE_1__.quest[page_num]["title"];
-    A.innerText = _sentence__WEBPACK_IMPORTED_MODULE_1__.quest[page_num]["A"]["text"];
-    B.innerText = _sentence__WEBPACK_IMPORTED_MODULE_1__.quest[page_num]["B"]["text"];
+    questionTitle.innerHTML = _sentence__WEBPACK_IMPORTED_MODULE_0__.quest[page_num]["title"];
+    A.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.quest[page_num]["A"]["text"];
+    B.innerText = _sentence__WEBPACK_IMPORTED_MODULE_0__.quest[page_num]["B"]["text"];
     questionAnimation();
     progressAnimation();
   } else {
@@ -18621,12 +18529,11 @@ var removeFadeIn = function removeFadeIn() {
 var clickFunction = function clickFunction(e) {
   e.target.style.background = "#ff7d4d";
   var idValue = e.target.id;
-  var type = _sentence__WEBPACK_IMPORTED_MODULE_1__.quest[page_num][idValue]["type"];
+  var type = _sentence__WEBPACK_IMPORTED_MODULE_0__.quest[page_num][idValue]["type"];
   A.disabled = "true";
   B.disabled = "true";
   if (type != null) finalResult[type] += 1;
-
-  _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_0___default()(function () {
+  setTimeout(function () {
     e.target.style.background = "";
     page_num++;
     A.removeAttribute("disabled");
@@ -18670,14 +18577,12 @@ var questionAnimation = function questionAnimation() {
   question_wrapper.classList.add("fade-in");
   A.style.pointerEvents = "none";
   B.style.pointerEvents = "none";
-
-  _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_0___default()(function () {
+  setTimeout(function () {
     questionBtn.style.opacity = "1";
     questionBtn.classList.add("fade-in");
     A.style.pointerEvents = "auto";
     B.style.pointerEvents = "auto";
-
-    _babel_runtime_corejs3_core_js_stable_set_timeout__WEBPACK_IMPORTED_MODULE_0___default()(removeFadeIn, 500);
+    setTimeout(removeFadeIn, 500);
   }, 300);
 };
 
@@ -18715,6 +18620,8 @@ var valueResultPage = function valueResultPage() {
   retest.addEventListener("click", function () {
     location.href = "/";
   });
+  var currentNumber = parseInt(totalNumber.innerText);
+  totalNumber.innerText = currentNumber + 1000;
   totalNumber.innerText = totalNumber.innerText.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
@@ -18760,9 +18667,9 @@ var quest = {
     }
   },
   3: {
-    "title": "<span class='half_HL'>능력치</span>를<br>   분배할 수 있다면?   ",
+    "title": "<span class='half_HL'>내 능력치</span>를<br>   찍을 수 있다면?   ",
     "A": {
-      "text": "하나에 올인",
+      "text": "마음에 드는 하나에 올인",
       "type": "I"
     },
     "B": {
@@ -18806,11 +18713,11 @@ var quest = {
   7: {
     "title": "  나를 <span class='half_HL'>군대에 </span>비유하면  ",
     "A": {
-      "text": "전차, 자주포",
+      "text": "탱크",
       "type": "S"
     },
     "B": {
-      "text": "전투기, 공격헬기",
+      "text": "전투기",
       "type": "N"
     }
   },
@@ -18850,11 +18757,11 @@ var quest = {
   11: {
     "title": "<span class='half_HL'>상금10억</span>이 걸린<br>경기를 준비 할 때 나는",
     "A": {
-      "text": "파트너와 합을 맞춰가며 준비한다",
+      "text": "파트너와 함께 준비한다",
       "type": "E"
     },
     "B": {
-      "text": "혼자서 집중하며 준비한다",
+      "text": "혼자서 초집중하며 준비한다",
       "type": "I"
     }
   },

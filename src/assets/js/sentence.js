@@ -23,9 +23,10 @@ export const quest = {
     },
   },
   3: {
-    "title": "<span class='half_HL'>능력치</span>를<br>   분배할 수 있다면?   ",
+    "title":
+      "<span class='half_HL'>내 능력치</span>를<br>   찍을 수 있다면?   ",
     "A": {
-      "text": "하나에 올인",
+      "text": "마음에 드는 하나에 올인",
       "type": "I",
     },
     "B": {
@@ -72,11 +73,11 @@ export const quest = {
   7: {
     "title": "  나를 <span class='half_HL'>군대에 </span>비유하면  ",
     "A": {
-      "text": "전차, 자주포",
+      "text": "탱크",
       "type": "S",
     },
     "B": {
-      "text": "전투기, 공격헬기",
+      "text": "전투기",
       "type": "N",
     },
   },
@@ -118,11 +119,11 @@ export const quest = {
     "title":
       "<span class='half_HL'>상금10억</span>이 걸린<br>경기를 준비 할 때 나는",
     "A": {
-      "text": "파트너와 합을 맞춰가며 준비한다",
+      "text": "파트너와 함께 준비한다",
       "type": "E",
     },
     "B": {
-      "text": "혼자서 집중하며 준비한다",
+      "text": "혼자서 초집중하며 준비한다",
       "type": "I",
     },
   },
