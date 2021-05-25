@@ -18620,8 +18620,6 @@ var valueResultPage = function valueResultPage() {
   retest.addEventListener("click", function () {
     location.href = "/";
   });
-  var currentNumber = parseInt(totalNumber.innerText);
-  totalNumber.innerText = currentNumber + 1000;
   totalNumber.innerText = totalNumber.innerText.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
