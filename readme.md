@@ -11,5 +11,7 @@
 
 ## 기술스택
 Frontend: ES6, PUG, Bootstrap
+
 Backend: Node.js, Babel, Express, Webpack, MongoDB, Nginx, Ubuntu
+
 Deployment: AWS EC2
