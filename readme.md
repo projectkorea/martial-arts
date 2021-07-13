@@ -14,4 +14,6 @@ Frontend: ES6, PUG, Bootstrap
 
 Backend: Node.js, Babel, Express, Webpack, MongoDB, Nginx, Ubuntu
 
-Deployment: AWS EC2
+Deployment: AWS EC2, SSL
+
+중점사항: BEM, MVC pattern, 리팩토링
