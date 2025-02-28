@@ -2,9 +2,14 @@ import express from "express";
 import morgan from "morgan";
 import helmet from "helmet";
 import path from "path";
+import dotenv from "dotenv";
+import "./db";
 import routes from "./routes";
 import globalRouter from "./router/globalRouter";
 import resultRouter from "./router/resultRouter";
+import "./models/MartialArtsResult";
+
+dotenv.config();
 
 const app = express();
 
@@ -27,5 +32,10 @@ app.use(routes.result, resultRouter);
 app.use(function (req, res) {
   res.status(404).redirect("/");
 });
+
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => 
+  console.log(`✅ Server running: http://localhost:${PORT}`)
+);
 
 export default app;
