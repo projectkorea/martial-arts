@@ -5,32 +5,38 @@ html
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(name="keywords" content="격투기, 격투기종목, 격투기 종목, 격투기 테스트, 성격, 성향, 심리테스트, 레슬링, 유도, 태권도, 합기도, 종합격투기, 복싱, 우슈, 검도, 크라브마가, 양궁, 타이치, 아이키도, 주짓수, 펜싱, 카페오라, 태극권")
-        meta(property="og:url", content="https://martialartstest.com")
+        //- meta(property="og:url", content="https://martialartstest.com")
         meta(property="og:title", content="격투기 종목 테스트")
         meta(property="og:description", content="복싱, 주짓수, 태극권, 카포에라.. 나와 가장 잘 맞는 격투기 종목은?")
-        meta(property="og:image", content="https://martialartstest.com/static/images/preview.jpg")
-        meta(name="twitter:url", content="https://martialartstest.com")
+        //- meta(property="og:image", content="https://martialartstest.com/static/images/preview.jpg")
+        //- meta(name="twitter:url", content="https://martialartstest.com")
         meta(name="twitter:title", content="격투기 종목 테스트")
         meta(name="twitter:description", content="복싱, 주짓수, 태극권, 카포에라.. 나와 가장 잘 맞는 격투기 종목은?")
-        meta(name="twitter:image", content="https://martialartstest.com/static/images/preview.jpg") 
-        meta(name='naver-site-verification' content='b939eef7c30275de7652190222894a58053988ab')
-        link(rel="stylesheet", href="/static/styles.css")
+        //- meta(name="twitter:image", content="https://martialartstest.com/static/images/preview.jpg") 
+        //- meta(name='naver-site-verification' content='b939eef7c30275de7652190222894a58053988ab')
+        link(rel="stylesheet", href="/public/project/mbti/css/content.css")
+        link(rel="stylesheet", href="/public/project/mbti/css/font.css")
+        link(rel="stylesheet", href="/public/project/mbti/css/loading.css")
+        link(rel="stylesheet", href="/public/project/mbti/css/style.css")
+
         link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
         link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==", crossorigin="anonymous")
         link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css")
-        link(rel=" shortcut icon", href="/static/images/favicon.ico")
-        link(rel=" icon", href="/static/images/favicon.ico")
-        script(async='' src='https://www.googletagmanager.com/gtag/js?id=G-0TRWWS6NDX')
+        link(rel=" shortcut icon", href="/public/project/mbti/images/favicon.ico")
+        link(rel=" icon", href="/public/project/mbti/images/favicon.ico")
+        
+        script(type="module" src="/public/project/mbti/js/question.js")
+        script(type="module" src="/public/project/mbti/js/result.js")
+        script(type="module" src="/public/project/mbti/js/sentence.js")
+        script(type="module" src="/public/project/mbti/js/share.js")
+
+        script(async, src="https://www.googletagmanager.com/gtag/js?id=G-CMD0TKG6PF")
+        script(src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.1/kakao.min.js" integrity="sha384-kDljxUXHaJ9xAb2AzRd59KxjrFjzHa5TAoFQ6GbYTCAG0bjM55XohjjDT7tDDC01" crossorigin="anonymous")
         script.
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-0TRWWS6NDX');
-        body
-            block content
+            gtag('config', 'G-CMD0TKG6PF');
 
-
-
-
-
-
+    body
+        block content

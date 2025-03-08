@@ -1,20 +1,15 @@
-extends layouts/main.pug
+extends ../layouts/main.pug
 
 block content
     body.container-ie.fade-in
-        main.loading-page.wrapper-loading
-            .circ
-                .hands
-                .body
-                .head1
-                    .eye
-            .loading-title 전투력 측정중..
+        include ../partials/loading
         main.result-page
             .result-top.wrapper-top
                 .result.char_result 
                     .result-text-white 나랑 가장 잘 맞는 격투기 종목은
                     .result-title.animate__animated.animate__pulse 유도
-                    img.result-img(src='../static/images/judo.jpg')
+                    .result-sub-title.animate__animated.animate__pulse ISTJ
+                    img.result-img(src='/public/project/mbti/images/judo.jpg')
                     .result-subtitle
                         .icon-quote
                             i.fas.fa-quote-left.icon-left
@@ -62,17 +57,17 @@ block content
                             i.fas.fa-arrow-up
                             | 접기
             .result-bottom.partner-wrapper.wrapper
-                a.best-partner(href='/result/mma')
+                a.best-partner(href='/mbti/result/ESTP')
                     .result-text-black-best  최고의 파트너
                     .result-char-wrapper
                         .result-title-black 종합격투기
                         br
-                        img.result-partner-img(src='../static/images/mma.jpg')
-                a.worst-partner(href='/result/baguazhang')
+                        img.result-partner-img(src='/public/project/mbti/images/mma.jpg')
+                a.worst-partner(href='/mbti/result/INFP')
                     .result-text-black-worst  최악의 파트너
                     .result-char-wrapper
                         .result-title-black 팔괘장
                         br
-                        img.result-partner-img(src='../static/images/baguazhang.jpg')
-            include ./partials/share
-            include ./partials/footer-result
+                        img.result-partner-img(src='/public/project/mbti/images/baguazhang.jpg')
+            include ../partials/share
+            include ../partials/footer-result

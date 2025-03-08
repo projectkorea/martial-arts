@@ -1,0 +1,31 @@
+extends ../layouts/main.pug
+
+block content
+    script.
+        function getRandomMBTIPath() {
+            const mbtiTypes = [
+                'ISTJ', 'ISFJ', 'INFJ', 'INTJ',
+                'ISTP', 'ISFP', 'INFP', 'INTP',
+                'ESTP', 'ESFP', 'ENFP', 'ENTP',
+                'ESTJ', 'ESFJ', 'ENFJ', 'ENTJ'
+            ];
+            const randomIndex = Math.floor(Math.random() * mbtiTypes.length);
+            return '/mbti/result/' + mbtiTypes[randomIndex];
+        }
+    body.container.fade-in--quick
+        main.start-page 
+            img.start-img(src='/public/project/mbti/images/kick.jpg')
+            .start.title.wrapper
+                .start-title 
+                    | 나와 가장
+                    br 
+                    | 잘 어울리는
+                .space
+                .start-title-effect
+                    | 격투기
+                .start-title-space
+                    | 종목은?
+            button.start-btn(onclick="window.location.href='/mbti/question'") 테스트 시작
+            button.start-btn.random(onclick="window.location.href=getRandomMBTIPath()") 랜덤 결과
+            
+    include ../partials/footer
