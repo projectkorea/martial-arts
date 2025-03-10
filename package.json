@@ -4,13 +4,13 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon --watch src --ext js,json,css,scss --exec \"npm run build:dev-assets && npx babel-node src/app.js\"",
-    "build:dev-assets": "cross-env WEBPACK_ENV=development webpack --config src/webpack.config.js",
     "build:server": "babel src --out-dir build --ignore 'src/assets','src/static','src/webpack.config.js'",
     "build:assets": "cross-env WEBPACK_ENV=production webpack --config src/webpack.config.js",
-    "copyfiles": "copyfiles -u 1 \"src/static/**/*\" build && copyfiles -u 1 \"src/views/**/*\" build",
+    "copyfiles": "copyfiles -u 1 \"src/static/**/*\" build && copyfiles -u 1 \"src/views/**/*\" build && copyfiles -u 1 \"src/.env\" build",
     "build": "rimraf build && npm run build:server && npm run build:assets && npm run copyfiles",
-    "start": "npm run build && cross-env NODE_ENV=production node build/app.js"
+    "watch": "nodemon --watch src --ext js,css --exec",
+    "dev": "npm run watch \"npm run build && cross-env NODE_ENV=development node build/app.js\"",
+    "prod": "npm run build && cross-env NODE_ENV=production node build/app.js"
   },
   "license": "ISC",
   "dependencies": {
