@@ -12,8 +12,32 @@ module.exports = {
     filename: "main.js",
     path: OUTPUT_DIR,
   },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".json"],
+  },
   module: {
     rules: [
+      {
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              cacheDirectory: true,
+            }
+          },
+          {
+            loader: "ts-loader",
+            options: {
+              transpileOnly: true,
+              compilerOptions: {
+                noEmit: true
+              }
+            }
+          }
+        ]
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,

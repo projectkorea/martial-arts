@@ -82,12 +82,12 @@ const shareLink = () => {
 const init = () => {
   Kakao.init("be836ab6aa99b7ff880010214a29ffd8");
   btnTwitter.style.backgroundImage =
-    "url(../../static/images/icon-twitter.png)";
+    "url(..//images/icon-twitter.png)";
   btnFacebook.style.backgroundImage =
-    "url(../../static/images/icon-facebook.png)";
-  btnKakao1.style.backgroundImage = "url(../../static/images/icon-kakao.png)";
-  btnKakao2.style.backgroundImage = "url(../../static/images/icon-kakao.png)";
-  btnLink.style.backgroundImage = "url(../../static/images/icon-link.png)";
+    "url(..//images/icon-facebook.png)";
+  btnKakao1.style.backgroundImage = "url(..//images/icon-kakao.png)";
+  btnKakao2.style.backgroundImage = "url(..//images/icon-kakao.png)";
+  btnLink.style.backgroundImage = "url(..//images/icon-link.png)";
   btnTwitter.addEventListener("click", shareTwitter);
   btnFacebook.addEventListener("click", shareFacebook);
   btnKakao1.addEventListener("click", shareKakao);
