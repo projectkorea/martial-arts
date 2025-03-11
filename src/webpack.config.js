@@ -1,5 +1,6 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const MODE = process.env.WEBPACK_ENV;
 const ENTRY_FILE = path.resolve(__dirname, "assets", "js", "main.js");
@@ -72,6 +73,14 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: "styles.css"
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, "assets/images"),
+          to: path.resolve(OUTPUT_DIR, "images")
+        }
+      ]
     })
   ],
   devtool: MODE === "development" ? "eval-source-map" : "source-map",
