@@ -1,6 +1,5 @@
 .env
 build
+static
 node_modules
 package-lock.json
-build
-src/static
