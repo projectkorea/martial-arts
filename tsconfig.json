@@ -6,7 +6,7 @@
     //위는 추후 점진적으로 마이그레이션 하면서 삭제할 것들
     "noImplicitAny": false,
     "target": "es5",
-    "module": "commonjs",
+    "module": "ESNext",
     "lib": [
       "dom",
       "dom.iterable",

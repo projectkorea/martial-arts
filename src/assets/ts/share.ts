@@ -1,103 +1,148 @@
-const myURL = "https://www.martialartstest.com",
-  imgURL = "https://martialartstest.com/static/images/kakao-preview.jpg",
-  resultPage = document.querySelector(".result-page"),
-  btnTwitter = document.querySelector(".twitter"),
-  btnFacebook = document.querySelector(".facebook"),
-  btnKakao1 = document.querySelector(".kakao1"),
-  btnKakao2 = document.querySelector(".kakao2"),
-  btnLink = document.querySelector(".link"),
-  resultTitle = document.querySelector(".result-title"),
-  resultSubTitle = document.querySelector(".result-subtitle"),
-  resultExplannation = document.querySelector(".result-explannation");
+// Kakao SDK Type Declaration (would typically be in a separate .d.ts file)
+declare namespace Kakao {
+  namespace Link {
+    function createDefaultButton(options: {
+      container: string;
+      objectType: string;
+      content: {
+        title: string;
+        description: string;
+        imageUrl: string;
+        link: {
+          mobileWebUrl: string;
+          webUrl: string;
+        };
+      };
+    }): void;
+  }
+  
+  function init(apiKey: string): void;
+}
 
-let TITLE, DESCRIPTION, imgURLKakao, myURLKakao, EXPLANNATION;
-
-const valueResult = () => {
-  TITLE = resultTitle.innerText;
-  DESCRIPTION = resultSubTitle.innerText;
-  myURLKakao = location.href;
-  const array = location.href.split("/");
-  let lastSegment = array[array.length - 1];
-  imgURLKakao = `https://martialartstest.com/static/images/preview-${lastSegment}.jpg`;
-  EXPLANNATION = resultExplannation.innerText;
+const URLS = {
+  base: 'https://www.martialartstest.com',
+  image: 'https://martialartstest.com/static/images/kakao-preview.jpg'
 };
 
-const shareTwitter = () => {
-  const sendText = "격투기 종목 테스트";
-  const sendUrl = myURL;
-  window.open(
-    "https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl
-  );
+const elements = {
+  resultPage: document.querySelector('.result-page') as HTMLElement,
+  btnTwitter: document.querySelector('.twitter') as HTMLElement,
+  btnFacebook: document.querySelector('.facebook') as HTMLElement,
+  btnKakao1: document.querySelector('.kakao1') as HTMLElement,
+  btnKakao2: document.querySelector('.kakao2') as HTMLElement,
+  btnLink: document.querySelector('.link') as HTMLElement,
+  resultTitle: document.querySelector('.result-title') as HTMLElement,
+  resultSubTitle: document.querySelector('.result-subtitle') as HTMLElement,
+  resultExplanation: document.querySelector('.result-explannation') as HTMLElement
 };
 
-const shareFacebook = () => {
-  const sendUrl = myURL;
-  window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
+export interface ShareData {
+  title: string;
+  description: string;
+  explanation: string;
+  currentUrl: string;
+  resultImageUrl: string;
+}
+
+let shareData: ShareData = {
+  title: '',
+  description: '',
+  explanation: '',
+  currentUrl: '',
+  resultImageUrl: ''
 };
 
-const shareKakao = () => {
+const initShareData = (): void => {
+  shareData.title = elements.resultTitle.innerText;
+  shareData.description = elements.resultSubTitle.innerText;
+  shareData.explanation = elements.resultExplanation.innerText;
+  shareData.currentUrl = location.href;
+  
+  // Get result ID from URL for the image
+  const urlSegments = location.href.split('/');
+  const resultId = urlSegments[urlSegments.length - 1];
+  shareData.resultImageUrl = `https://martialartstest.com/static/images/preview-${resultId}.jpg`;
+};
+
+const shareTwitter = (): void => {
+  const text = encodeURIComponent('격투기 종목 테스트');
+  const url = encodeURIComponent(URLS.base);
+  window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`);
+};
+
+const shareFacebook = (): void => {
+  const url = encodeURIComponent(URLS.base);
+  window.open(`http://www.facebook.com/sharer/sharer.php?u=${url}`);
+};
+
+const shareKakao = (): void => {
   Kakao.Link.createDefaultButton({
-    container: "#btnKakao1", // 카카오공유버튼ID
-    objectType: "feed",
+    container: '#btnKakao1',
+    objectType: 'feed',
     content: {
-      title: "격투기 종목 테스트",
-      description:
-        "복싱, 주짓수, 태극권, 카포에라.. 나와 가장 잘 맞는 격투기 종목은?",
-      imageUrl: imgURL,
+      title: '격투기 종목 테스트',
+      description: '복싱, 주짓수, 태극권, 카포에라.. 나와 가장 잘 맞는 격투기 종목은?',
+      imageUrl: URLS.image,
       link: {
-        mobileWebUrl: myURL,
-        webUrl: myURL,
-      },
-    },
+        mobileWebUrl: URLS.base,
+        webUrl: URLS.base
+      }
+    }
   });
 };
 
-const shareKakaoMyData = () => {
+const shareKakaoPersonalResult = (): void => {
   Kakao.Link.createDefaultButton({
-    container: "#btnKakao2", // 카카오공유버튼ID
-    objectType: "feed",
+    container: '#btnKakao2',
+    objectType: 'feed',
     content: {
-      title: `"${TITLE}": ${DESCRIPTION}`,
-      description: EXPLANNATION,
-      imageUrl: imgURLKakao,
+      title: `"${shareData.title}": ${shareData.description}`,
+      description: shareData.explanation,
+      imageUrl: shareData.resultImageUrl,
       link: {
-        mobileWebUrl: myURLKakao,
-        webUrl: myURLKakao,
-      },
-    },
+        mobileWebUrl: shareData.currentUrl,
+        webUrl: shareData.currentUrl
+      }
+    }
   });
 };
 
-const shareLink = () => {
-  const dummy = document.createElement("input");
-  const text = myURL;
-  document.body.appendChild(dummy);
-  dummy.value = text;
-  dummy.select();
-  document.execCommand("copy");
-  document.body.removeChild(dummy);
-  alert("링크가 복사되었습니다.");
+const copyLinkToClipboard = (): void => {
+  const tempInput = document.createElement('input');
+  tempInput.value = URLS.base;
+  
+  document.body.appendChild(tempInput);
+  tempInput.select();
+  document.execCommand('copy');
+  document.body.removeChild(tempInput);
+  
+  alert('링크가 복사되었습니다.');
 };
 
-const init = () => {
-  Kakao.init("be836ab6aa99b7ff880010214a29ffd8");
-  btnTwitter.style.backgroundImage =
-    "url(..//images/icon-twitter.png)";
-  btnFacebook.style.backgroundImage =
-    "url(..//images/icon-facebook.png)";
-  btnKakao1.style.backgroundImage = "url(..//images/icon-kakao.png)";
-  btnKakao2.style.backgroundImage = "url(..//images/icon-kakao.png)";
-  btnLink.style.backgroundImage = "url(..//images/icon-link.png)";
-  btnTwitter.addEventListener("click", shareTwitter);
-  btnFacebook.addEventListener("click", shareFacebook);
-  btnKakao1.addEventListener("click", shareKakao);
-  btnKakao2.addEventListener("click", shareKakaoMyData);
-  btnLink.addEventListener("click", shareLink);
+const initShareButtons = (): void => {
+  elements.btnTwitter.style.backgroundImage = 'url(../images/icon-twitter.png)';
+  elements.btnFacebook.style.backgroundImage = 'url(../images/icon-facebook.png)';
+  elements.btnKakao1.style.backgroundImage = 'url(../images/icon-kakao.png)';
+  elements.btnKakao2.style.backgroundImage = 'url(../images/icon-kakao.png)';
+  elements.btnLink.style.backgroundImage = 'url(../images/icon-link.png)';
+  
+  elements.btnTwitter.addEventListener('click', shareTwitter);
+  elements.btnFacebook.addEventListener('click', shareFacebook);
+  elements.btnKakao1.addEventListener('click', shareKakao);
+  elements.btnKakao2.addEventListener('click', shareKakaoPersonalResult);
+  elements.btnLink.addEventListener('click', copyLinkToClipboard);
+};
+
+const initShare = (): void => {
+  Kakao.init('be836ab6aa99b7ff880010214a29ffd8');
+  
+  initShareButtons();
+  initShareData();
+  
   shareKakao();
-  valueResult();
-  shareKakaoMyData();
+  shareKakaoPersonalResult();
 };
 
-if (resultPage) {
-  init();
+if (elements.resultPage) {
+  initShare();
 }

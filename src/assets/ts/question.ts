@@ -1,131 +1,144 @@
-import { quest } from "./sentence";
+import { quest } from './sentence';
 
-const questionPage = document.querySelector(".question-page"),
-  loadingPage = document.querySelector(".loading-page"),
-  pageNum = document.querySelector(".progress-page-num"),
-  progressBar = document.querySelector(".progress-bar"),
-  question_wrapper = document.querySelector(".wrapper-question"),
-  questionTitle = document.querySelector(".question-title"),
-  questionBtn = document.querySelector(".question-btn"),
-  A = document.querySelector("#A"),
-  B = document.querySelector("#B");
+interface PersonalityResult {
+  E: number;
+  I: number;
+  S: number;
+  N: number;
+  F: number;
+  T: number;
+  P: number;
+  J: number;
+  RESULT: string;
+}
 
-let finalResult = {
-    "E": 0,
-    "I": 0,
-    "S": 0,
-    "N": 0,
-    "F": 0,
-    "T": 0,
-    "P": 0,
-    "J": 0,
-    "RESULT": "",
-  },
-  page_num = 1;
+const elements = {
+  questionPage: document.querySelector('.question-page') as HTMLElement,
+  loadingPage: document.querySelector('.loading-page') as HTMLElement,
+  pageNum: document.querySelector('.progress-page-num') as HTMLElement,
+  progressBar: document.querySelector('.progress-bar') as HTMLElement,
+  questionWrapper: document.querySelector('.wrapper-question') as HTMLElement,
+  questionTitle: document.querySelector('.question-title') as HTMLElement,
+  questionBtn: document.querySelector('.question-btn') as HTMLElement,
+  optionA: document.querySelector('#A') as HTMLElement,
+  optionB: document.querySelector('#B') as HTMLElement
+};
 
-const nextQuestion = () => {
-  if (page_num <= 12) {
-    questionTitle.innerHTML = quest[page_num]["title"];
-    A.innerText = quest[page_num]["A"]["text"];
-    B.innerText = quest[page_num]["B"]["text"];
-    questionAnimation();
-    progressAnimation();
+// State
+let finalResult: PersonalityResult = {
+  E: 0,
+  I: 0,
+  S: 0,
+  N: 0,
+  F: 0,
+  T: 0,
+  P: 0,
+  J: 0,
+  RESULT: ''
+};
+let currentPage = 1;
+
+const showNextQuestion = (): void => {
+  if (currentPage <= 12) {
+    const current = quest[currentPage];
+    elements.questionTitle.innerHTML = current.title;
+    elements.optionA.innerText = current.A.text;
+    elements.optionB.innerText = current.B.text;
+    
+    animateQuestion();
+    updateProgress();
   } else {
-    questionPage.style.display = "none";
-    loadingPage.style.display = "block";
-    saveType();
-    postToUrl("/loading", finalResult);
+    finishQuiz();
   }
 };
 
-const removeFadeIn = () => {
-  question_wrapper.classList.remove("fade-in");
-  questionBtn.classList.remove("fade-in");
-  A.addEventListener("click", clickFunction, { once: true });
-  B.addEventListener("click", clickFunction, { once: true });
-};
-
-const clickFunction = (e) => {
-  e.target.style.background = "#ff7d4d";
-  let idValue = e.target.id;
-  let type = quest[page_num][idValue]["type"];
-
-  A.disabled = "true";
-  B.disabled = "true";
-
-  if (type != null) finalResult[type] += 1;
+const animateQuestion = (): void => {
+  elements.questionBtn.style.opacity = '0';
+  elements.questionWrapper.classList.add('fade-in');
+  elements.optionA.style.pointerEvents = 'none';
+  elements.optionB.style.pointerEvents = 'none';
 
   setTimeout(() => {
-    e.target.style.background = "";
-    page_num++;
-    A.removeAttribute("disabled");
-    B.removeAttribute("disabled");
-    nextQuestion();
-  }, 300);
-};
-
-const postToUrl = (path, params, method) => {
-  method = method || "post";
-  const form = document.createElement("form");
-  form.setAttribute("method", method);
-  form.setAttribute("action", path);
-  for (const key in params) {
-    const hiddenField = document.createElement("input");
-    hiddenField.setAttribute("type", "hidden");
-    hiddenField.setAttribute("name", key);
-    hiddenField.setAttribute("value", params[key]);
-    form.appendChild(hiddenField);
-  }
-  document.body.appendChild(form);
-  form.submit();
-};
-
-const saveType = () => {
-  if (finalResult["E"] > finalResult["I"]) finalResult["RESULT"] += "E";
-  else finalResult["RESULT"] += "I";
-  if (finalResult["S"] > finalResult["N"]) finalResult["RESULT"] += "S";
-  else finalResult["RESULT"] += "N";
-  if (finalResult["F"] > finalResult["T"]) finalResult["RESULT"] += "F";
-  else finalResult["RESULT"] += "T";
-  if (finalResult["P"] > finalResult["J"]) finalResult["RESULT"] += "P";
-  else finalResult["RESULT"] += "J";
-};
-
-const progressAnimation = () => {
-  pageNum.innerText = `${page_num} / 12`;
-  if (page_num == 1) progressBar.style.width = "8.3%";
-  else if (page_num == 2) progressBar.style.width = "16.6%";
-  else if (page_num == 3) progressBar.style.width = "24.9%";
-  else if (page_num == 4) progressBar.style.width = "33.2%";
-  else if (page_num == 5) progressBar.style.width = "41.5%";
-  else if (page_num == 6) progressBar.style.width = "49.8%";
-  else if (page_num == 7) progressBar.style.width = "58.1%";
-  else if (page_num == 8) progressBar.style.width = "66.4%";
-  else if (page_num == 9) progressBar.style.width = "74.7%";
-  else if (page_num == 10) progressBar.style.width = "83%";
-  else if (page_num == 11) progressBar.style.width = "91.3%";
-  else if (page_num == 12) progressBar.style.width = "100%";
-};
-
-const questionAnimation = () => {
-  questionBtn.style.opacity = "0";
-  question_wrapper.classList.add("fade-in");
-  A.style.pointerEvents = "none";
-  B.style.pointerEvents = "none";
-
-  setTimeout(() => {
-    questionBtn.style.opacity = "1";
-    questionBtn.classList.add("fade-in");
-    A.style.pointerEvents = "auto";
-    B.style.pointerEvents = "auto";
+    elements.questionBtn.style.opacity = '1';
+    elements.questionBtn.classList.add('fade-in');
+    elements.optionA.style.pointerEvents = 'auto';
+    elements.optionB.style.pointerEvents = 'auto';
+    
     setTimeout(removeFadeIn, 500);
   }, 300);
 };
 
-const init = () => {
-  nextQuestion();
+const removeFadeIn = (): void => {
+  elements.questionWrapper.classList.remove('fade-in');
+  elements.questionBtn.classList.remove('fade-in');
+  
+  elements.optionA.addEventListener('click', handleOptionClick, { once: true });
+  elements.optionB.addEventListener('click', handleOptionClick, { once: true });
 };
 
-if (questionPage) {
-  init();
+const handleOptionClick = (event: MouseEvent): void => {
+  const target = event.target as HTMLElement;
+  target.style.background = '#ff7d4d';
+  const optionId = target.id;
+  const type = quest[currentPage][optionId].type;
+
+  elements.optionA.setAttribute('disabled', 'true');
+  elements.optionB.setAttribute('disabled', 'true');
+
+  if (type) {
+    finalResult[type as keyof Omit<PersonalityResult, 'RESULT'>] += 1;
+  }
+
+  setTimeout(() => {
+    target.style.background = '';
+    currentPage++;
+    
+    elements.optionA.removeAttribute('disabled');
+    elements.optionB.removeAttribute('disabled');
+    
+    showNextQuestion();
+  }, 300);
+};
+
+const updateProgress = (): void => {
+  elements.pageNum.innerText = `${currentPage} / 12`;
+  const progressPercentage = (currentPage / 12) * 100;
+  elements.progressBar.style.width = `${progressPercentage}%`;
+};
+
+const calculateResult = (): void => {
+  finalResult.RESULT = '';
+  finalResult.RESULT += finalResult.E > finalResult.I ? 'E' : 'I';
+  finalResult.RESULT += finalResult.S > finalResult.N ? 'S' : 'N';
+  finalResult.RESULT += finalResult.F > finalResult.T ? 'F' : 'T';
+  finalResult.RESULT += finalResult.P > finalResult.J ? 'P' : 'J';
+};
+
+const finishQuiz = (): void => {
+  elements.questionPage.style.display = 'none';
+  elements.loadingPage.style.display = 'block';
+  
+  calculateResult();
+  postToUrl('/loading', finalResult);
+};
+
+const postToUrl = (path: string, params: Record<string, any>, method: string = 'post'): void => {
+  const form = document.createElement('form');
+  form.setAttribute('method', method);
+  form.setAttribute('action', path);
+  
+  Object.entries(params).forEach(([key, value]) => {
+    const hiddenField = document.createElement('input');
+    hiddenField.setAttribute('type', 'hidden');
+    hiddenField.setAttribute('name', key);
+    hiddenField.setAttribute('value', value.toString());
+    form.appendChild(hiddenField);
+  });
+  
+  document.body.appendChild(form);
+  form.submit();
+};
+
+if (elements.questionPage) {
+  showNextQuestion();
 }
