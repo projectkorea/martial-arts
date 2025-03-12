@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "strict": false,                      // 모든 strict 체크를 비활성화
     "strictNullChecks": false,            // null 체크 비활성화
     "strictPropertyInitialization": false, // 프로퍼티 초기화 체크 비활성화
-    //위는 추후 점진적으로 마이그레이션 하면서 삭제할 것들
+    // 점진적 마이그레이션 할 것들
     "noImplicitAny": false,
     "target": "es5",
     "module": "ESNext",
