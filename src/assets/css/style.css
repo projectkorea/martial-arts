@@ -26,3 +26,17 @@ i {
   width: 200px;
   height: 200px;
 }
+
+.link-icon.twitter {
+  background-image: url('../images/icon-twitter.png');
+}
+.link-icon.facebook {
+  background-image: url('../images/icon-facebook.png');
+}
+.link-icon.kakao {
+  background-image: url('../images/icon-kakao.png');
+}
+.link-icon.link {
+  background-image: url('../images/icon-link.png');
+}
+

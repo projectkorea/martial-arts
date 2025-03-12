@@ -1,7 +1,6 @@
 import "./start";
 import "./question";
 import "./result";
-import "./value";
 import "./sentence";
 import "./share";
 

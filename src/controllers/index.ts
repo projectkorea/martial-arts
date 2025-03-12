@@ -81,7 +81,8 @@ export const renderMBTIResult = async (
       result: type,
     });
     const totalNumber = await MartialArtsResult.countDocuments({});
-    const pageName = `result${type}`;
+    const pageName = `result${type.toUpperCase()}`;
+    console.log("TEST", type, pageName);
 
     res.render(pageName, { totalNumber, sameNumber });
   } catch (error) {

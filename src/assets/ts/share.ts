@@ -144,5 +144,5 @@ const initShare = (): void => {
 };
 
 if (elements.resultPage) {
-  initShare();
+  // initShare();
 }
