@@ -1,9 +1,27 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
+import { IMartialArtsResult, PersonalityProps } from "../types";
 
-const resultSchema = new mongoose.Schema({
-  prop: { type: Object },
-  result: { type: String },
+type ResultSchemaDefinition = {
+  prop: {
+    type: mongoose.SchemaDefinitionType<PersonalityProps>;
+    required: boolean;
+  };
+  result: {
+    type: mongoose.SchemaDefinitionType<string>;
+    required: boolean;
+  };
+};
+
+const resultSchema = new Schema<IMartialArtsResult, ResultSchemaDefinition>({
+  prop: { 
+    type: Object,
+    required: true 
+  },
+  result: { 
+    type: String,
+    required: true 
+  },
 });
 
-const model = mongoose.model("MartialArtsResult", resultSchema);
-export default model;
+const MartialArtsResult = mongoose.model<IMartialArtsResult>("MartialArtsResult", resultSchema);
+export default MartialArtsResult;

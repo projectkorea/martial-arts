@@ -7,43 +7,13 @@ import {
   validateMBTIType,
   renderMBTIResult,
 } from '../controllers';
-
-const mbtiTypes = {
-  estj: 'wrestling',
-  istj: 'judo',
-  esfj: 'taekwondo',
-  isfj: 'hapkido',
-  estp: 'mma',
-  istp: 'boxing',
-  esfp: 'wushu',
-  isfp: 'kendo',
-  entj: 'kravmaga',
-  intj: 'archery',
-  enfj: 'taichi',
-  infj: 'aikido',
-  entp: 'jiujitsu',
-  intp: 'fencing',
-  enfp: 'capoeira',
-  infp: 'baguazhang',
-};
-
-const baseRoutes = {
-  home: '/',
-  loading: '/loading',
-  question: '/question',
-  result: '/result/:type',
-};
-
-const HOME = baseRoutes.home;
-const QUESTION = baseRoutes.question;
-const LOADING = baseRoutes.loading;
-const RESULT = baseRoutes.result;
+import { Routes } from '../constants';
 
 const mbtiRouter = Router();
 
-mbtiRouter.get(HOME, renderHomePage);
-mbtiRouter.get(QUESTION, renderQuestionPage);
-mbtiRouter.post(LOADING, saveResultToDB, redirectBasedOnResult);
-mbtiRouter.get(RESULT, validateMBTIType, renderMBTIResult);
+mbtiRouter.get(Routes.HOME, renderHomePage);
+mbtiRouter.get(Routes.QUESTION, renderQuestionPage);
+mbtiRouter.post(Routes.LOADING, saveResultToDB, redirectBasedOnResult);
+mbtiRouter.get(Routes.RESULT, validateMBTIType, renderMBTIResult);
 
 export default mbtiRouter;
