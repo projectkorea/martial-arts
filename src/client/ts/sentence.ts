@@ -1,4 +1,16 @@
-export const quest = {
+export interface QuestItem {
+  title: string;
+  A: {
+    text: string;
+    type: string;
+  };
+  B: {
+    text: string;
+    type: string;
+  };
+}
+
+export const quest: Record<number, QuestItem> = {
   1: {
     "title": "<span class='half_HL'>싸움</span>에서 중요한 것은",
     "A": {

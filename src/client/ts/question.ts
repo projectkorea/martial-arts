@@ -79,7 +79,7 @@ const removeFadeIn = (): void => {
 const handleOptionClick = (event: MouseEvent): void => {
   const target = event.target as HTMLElement;
   target.style.background = '#ff7d4d';
-  const optionId = target.id;
+  const optionId = target.id as 'A' | 'B';
   const type = quest[currentPage][optionId].type;
 
   elements.optionA.setAttribute('disabled', 'true');
