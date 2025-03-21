@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const MODE = process.env.WEBPACK_ENV;
 const ENTRY_FILE = path.resolve(__dirname, "src", "client", "ts", "main.ts");
-const OUTPUT_DIR = path.join(__dirname, "static");
+const OUTPUT_DIR = path.join(__dirname, "build", "static");
 
 module.exports = {
   entry: ENTRY_FILE,

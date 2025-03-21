@@ -1,12 +1,11 @@
 {
   "name": "martial-arts",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
-    "build:server": "babel src -d build --extensions \".js,.ts\" --ignore \"src/client/**,src/static/**,webpack.config.js\"",
+    "build:server": "babel src -d build --extensions \".js,.ts\" --ignore \"src/client/**\"",
     "build:client": "cross-env WEBPACK_ENV=production webpack --config webpack.config.js",
-    "copyfiles": "copyfiles -u 1 \"src/static/**/*\" build && copyfiles -u 1 \"src/views/**/*\" build && copyfiles -u 1 \"src/.env\" build",
+    "copyfiles": "copyfiles -u 1 \"src/views/**/*\" build && copyfiles -u 1 \"src/.env\" build",
     "build": "rimraf build && npm run build:server && npm run build:client && npm run copyfiles",
     "type-check": "tsc --noEmit",
     "watch": "nodemon --watch src --ext js,ts,css --exec",
