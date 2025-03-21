@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const MODE = process.env.WEBPACK_ENV;
-const ENTRY_FILE = path.resolve(__dirname, "assets", "ts", "main.ts");
+const ENTRY_FILE = path.resolve(__dirname, "src", "client", "ts", "main.ts");
 const OUTPUT_DIR = path.join(__dirname, "static");
 
 module.exports = {
@@ -77,7 +77,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, "assets/images"),
+          from: path.resolve(__dirname, "src/client/images"),
           to: path.resolve(OUTPUT_DIR, "images")
         }
       ]

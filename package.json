@@ -4,10 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "build:server": "babel src -d build --extensions \".js,.ts\" --ignore \"src/assets/**,src/static/**,src/webpack.config.js\"",
-    "build:assets": "cross-env WEBPACK_ENV=production webpack --config src/webpack.config.js",
+    "build:server": "babel src -d build --extensions \".js,.ts\" --ignore \"src/client/**,src/static/**,webpack.config.js\"",
+    "build:client": "cross-env WEBPACK_ENV=production webpack --config webpack.config.js",
     "copyfiles": "copyfiles -u 1 \"src/static/**/*\" build && copyfiles -u 1 \"src/views/**/*\" build && copyfiles -u 1 \"src/.env\" build",
-    "build": "rimraf build && npm run build:server && npm run build:assets && npm run copyfiles",
+    "build": "rimraf build && npm run build:server && npm run build:client && npm run copyfiles",
     "type-check": "tsc --noEmit",
     "watch": "nodemon --watch src --ext js,ts,css --exec",
     "dev": "npm run watch \"npm run type-check && npm run build && cross-env NODE_ENV=development node build/app.js\"",
