@@ -1,7 +1,7 @@
 import { ShareData } from '../store/useStore';
 
-const KAKAO_API_KEY = 'be836ab6aa99b7ff880010214a29ffd8';
-const BASE_URL = 'https://www.martialartstest.com';
+const KAKAO_API_KEY = process.env.REACT_APP_KAKAO_API_KEY;
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export const initKakaoSDK = () => {
   if (typeof window !== 'undefined' && window.Kakao) {
