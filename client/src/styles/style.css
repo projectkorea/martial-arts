@@ -1,0 +1,53 @@
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+li {
+  list-style-type: none;
+  padding-bottom: 15px;
+}
+
+i {
+  padding: 5px;
+}
+
+.removeAlign {
+  -webkit-box-align: unset;
+  -ms-flex-align: unset;
+  align-items: unset;
+}
+
+.adsense-box {
+  width: 200px;
+  height: 200px;
+}
+
+.link-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0 5px;
+}
+
+.link-icon.twitter {
+  background-image: url('../assets/images/icon-twitter.png');
+}
+
+.link-icon.facebook {
+  background-image: url('../assets/images/icon-facebook.png');
+}
+
+.link-icon.kakao {
+  background-image: url('../assets/images/icon-kakao.png');
+}
+
+.link-icon.link {
+  background-image: url('../assets/images/icon-link.png');
+} 
