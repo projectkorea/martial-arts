@@ -1,33 +1,5 @@
-import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
-import Layout from '../components/Layout';
-import Button from '../components/Button';
-
-const Container = styled.div`
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  text-align: center;
-`;
-
-const Title = styled.h1`
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: #333;
-`;
-
-const Description = styled.p`
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 40px;
-  line-height: 1.6;
-`;
-
-const StartButton = styled(Button)`
-  font-size: 20px;
-  padding: 16px 48px;
-`;
+import Layout from '@components/Layout';
 
 const Start = () => {
   const navigate = useNavigate();
@@ -36,18 +8,33 @@ const Start = () => {
     navigate('/question');
   };
 
+  const handleRandom = () => {
+    // 랜덤 결과 페이지로 이동하는 로직
+    const mbtiTypes = ['INFP', 'ENFP', 'INFJ', 'ENFJ', 'INTJ', 'ENTJ', 'INTP', 'ENTP', 
+                       'ISFP', 'ESFP', 'ISFJ', 'ESFJ', 'ISTJ', 'ESTJ', 'ISTP', 'ESTP'];
+    const randomType = mbtiTypes[Math.floor(Math.random() * mbtiTypes.length)];
+    navigate(`/mbti/${randomType}`);
+  };
+
   return (
     <Layout>
-      <Container>
-        <Title>격투기 종목 테스트</Title>
-        <Description>
-          복싱, 주짓수, 태극권, 카포에라..<br />
-          나와 가장 잘 맞는 격투기 종목은?
-        </Description>
-        <StartButton onClick={handleStart} variant="primary" fullWidth>
-          테스트 시작하기
-        </StartButton>
-      </Container>
+      <div className="container fade-in--quick">
+        <main className="start-page">
+          <img className="start-img" src="/images/kick.jpg" alt="Martial Arts Kick" />
+          <div className="start title wrapper">
+            <div className="start-title">
+              나와 가장
+              <br />
+              잘 어울리는
+            </div>
+            <div className="space"></div>
+            <div className="start-title-effect">격투기</div>
+            <div className="start-title-space">종목은?</div>
+          </div>
+          <button className="start-btn" onClick={handleStart}>테스트 시작</button>
+          <button className="start-btn random" onClick={handleRandom}>랜덤 결과</button>
+        </main>
+      </div>
     </Layout>
   );
 };

@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import Layout from '../components/Layout';
-import ResultCard from '../components/ResultCard';
-import Share from '../components/Share';
-import Button from '../components/Button';
-import { initKakaoSDK, shareTwitter, shareFacebook, shareKakao, copyToClipboard } from '../utils/share';
-import useStore from '../store/useStore';
+import Layout from '@components/Layout';
+import ResultCard from '@components/ResultCard';
+import Share from '@components/Share';
+import Button from '@components/Button';
+import { initKakaoSDK, shareTwitter, shareFacebook, shareKakao, copyToClipboard } from '@utils/share';
+import useStore from '@/store/useStore';
 
 const Container = styled.div`
   max-width: 600px;
@@ -83,7 +83,8 @@ const Result = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { setShareData } = useStore();
-  const result = results[id as keyof typeof results];
+  const numericId = id ? parseInt(id) : 1;
+  const result = results[numericId as keyof typeof results] || results[1];
 
   useEffect(() => {
     initKakaoSDK();

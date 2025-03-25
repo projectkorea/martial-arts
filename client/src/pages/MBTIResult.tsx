@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import Layout from '../components/Layout';
-import ResultCard from '../components/ResultCard';
-import Share from '../components/Share';
-import Button from '../components/Button';
-import { MBTI_RESULTS } from '../types/mbti';
-import { initKakaoSDK, shareTwitter, shareFacebook, shareKakao, copyToClipboard } from '../utils/share';
-import useStore from '../store/useStore';
+import Layout from '@components/Layout';
+import ResultCard from '@components/ResultCard';
+import Share from '@components/Share';
+import Button from '@components/Button';
+import { MBTI_RESULTS } from '@/types/mbti';
+import { initKakaoSDK, shareTwitter, shareFacebook, shareKakao, copyToClipboard } from '@utils/share';
+import useStore from '@/store/useStore';
 
 const Container = styled.div`
   max-width: 600px;

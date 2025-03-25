@@ -1,11 +1,11 @@
 import { ShareData } from '../store/useStore';
 
-const KAKAO_API_KEY = process.env.REACT_APP_KAKAO_API_KEY;
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+const KAKAO_API_KEY = import.meta.env.VITE_KAKAO_API_KEY;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const initKakaoSDK = () => {
   if (typeof window !== 'undefined' && window.Kakao) {
-    window.Kakao.init(KAKAO_API_KEY);
+    window.Kakao.init(KAKAO_API_KEY || '');
   }
 };
 

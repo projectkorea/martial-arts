@@ -1,114 +1,114 @@
-import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
-import Layout from '../components/Layout';
-import Button from '../components/Button';
-import useStore from '../store/useStore';
+import Layout from '@components/Layout';
+import useStore from '@/store/useStore';
+import Loading from '@components/Loading';
+import { quest, QuestItem } from '@utils/sentence';
 
-const Container = styled.div`
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 40px 20px;
-`;
+const questions = Object.entries(quest).map(([id, item]: [string, QuestItem]) => ({
+  id: parseInt(id),
+  question: item.title,
+  options: [
+    { id: 'A', text: item.A.text, type: item.A.type },
+    { id: 'B', text: item.B.text, type: item.B.type }
+  ]
+}));
 
-const QuestionText = styled.h2`
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 30px;
-  color: #333;
-  text-align: center;
-`;
-
-const OptionsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 40px;
-`;
-
-const OptionButton = styled(Button)`
-  text-align: left;
-  padding: 20px;
-  font-size: 18px;
-  background-color: white;
-  border: 2px solid #e0e0e0;
-  color: #333;
-  
-  &:hover {
-    background-color: #f5f5f5;
-    border-color: #007AFF;
-  }
-`;
-
-const ProgressBar = styled.div`
-  width: 100%;
-  height: 8px;
-  background-color: #e0e0e0;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  overflow: hidden;
-`;
-
-const Progress = styled.div<{ progress: number }>`
-  width: ${props => props.progress}%;
-  height: 100%;
-  background-color: #007AFF;
-  transition: width 0.3s ease;
-`;
-
-const questions = [
-  {
-    id: 1,
-    question: "당신의 체격은 어떤가요?",
-    options: ["마른 편", "보통", "근육질", "통통한 편"]
-  },
-  {
-    id: 2,
-    question: "운동 경험이 있나요?",
-    options: ["없음", "1년 미만", "1-3년", "3년 이상"]
-  },
-  {
-    id: 3,
-    question: "어떤 운동을 선호하시나요?",
-    options: ["격렬한 운동", "유연성 운동", "균형잡힌 운동", "기술적인 운동"]
-  }
-];
+interface PersonalityResult {
+  E: number;
+  I: number;
+  S: number;
+  N: number;
+  F: number;
+  T: number;
+  P: number;
+  J: number;
+}
 
 const Question = () => {
   const navigate = useNavigate();
-  const { currentStep, setCurrentStep, addAnswer } = useStore();
+  const { currentStep, setCurrentStep, addAnswer, answers } = useStore();
   const currentQuestion = questions[currentStep];
 
-  const handleAnswer = (answer: string) => {
-    addAnswer(answer);
+  const handleAnswer = (answerId: string) => {
+    // 선택한 답변의 타입 찾기
+    const selectedOption = currentQuestion.options.find(option => option.id === answerId);
+    const selectedType = selectedOption?.type || '';
+    
+    // 답변 저장
+    addAnswer(selectedType);
+    
     if (currentStep < questions.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
-      // 결과 계산 로직
-      navigate('/result/1');
+      // 마지막 질문 후 결과 계산
+      const result = calculateMBTI(answers.concat(selectedType));
+      navigate(`/mbti/${result}`);
     }
+  };
+
+  // MBTI 결과 계산 함수
+  const calculateMBTI = (answersList: string[]): string => {
+    const result: PersonalityResult = {
+      E: 0, I: 0, S: 0, N: 0, F: 0, T: 0, P: 0, J: 0
+    };
+    
+    // 각 답변에 대해 해당하는 유형 카운트 증가
+    answersList.forEach(type => {
+      if (type && type in result) {
+        result[type as keyof PersonalityResult] += 1;
+      }
+    });
+    
+    // 최종 MBTI 결과 계산
+    let mbtiResult = '';
+    mbtiResult += result.E > result.I ? 'E' : 'I';
+    mbtiResult += result.S > result.N ? 'S' : 'N';
+    mbtiResult += result.F > result.T ? 'F' : 'T';
+    mbtiResult += result.P > result.J ? 'P' : 'J';
+    
+    return mbtiResult;
   };
 
   const progress = ((currentStep + 1) / questions.length) * 100;
 
   return (
     <Layout>
-      <Container>
-        <ProgressBar>
-          <Progress progress={progress} />
-        </ProgressBar>
-        <QuestionText>{currentQuestion.question}</QuestionText>
-        <OptionsContainer>
-          {currentQuestion.options.map((option, index) => (
-            <OptionButton
-              key={index}
-              onClick={() => handleAnswer(option)}
-              fullWidth
-            >
-              {option}
-            </OptionButton>
-          ))}
-        </OptionsContainer>
-      </Container>
+      <div className="container fade-in--quick">
+        <main className="question-page">
+          <div className="wrapper-progress">
+            <div className="progress progress-bootstrap" style={{ height: '8px' }}>
+              <div 
+                className="progress-bar" 
+                style={{ width: `${progress}%` }}
+                role="progressbar" 
+                aria-valuenow={progress} 
+                aria-valuemin={0} 
+                aria-valuemax={100}
+              />
+            </div>
+            <div className="progress-ground" />
+            <div className="progress-page-num">
+              {currentStep + 1} / {questions.length}
+            </div>
+          </div>
+          <div className="wrapper-question">
+            <div className="question-title" dangerouslySetInnerHTML={{ __html: currentQuestion.question }} />
+            <div className="question-btn noselect">
+              {currentQuestion.options.map((option) => (
+                <button 
+                  key={option.id} 
+                  id={option.id} 
+                  className="btn-fade" 
+                  onClick={() => handleAnswer(option.id)}
+                >
+                  {option.text}
+                </button>
+              ))}
+            </div>
+          </div>
+          <Loading />
+        </main>
+      </div>
     </Layout>
   );
 };
