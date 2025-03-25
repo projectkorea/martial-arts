@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 import MartialArtsResult from "../models/MartialArtsResult";
 import { 
   PersonalityProps, 
@@ -11,14 +11,6 @@ import { MBTI_TYPES, ERROR_MESSAGES } from '../constants';
 interface MBTIPayload extends PersonalityProps {
   RESULT: string;
 }
-
-export const renderHomePage = (_: Request, res: Response): void => {
-  res.render('home');
-};
-
-export const renderQuestionPage = (_: Request, res: Response): void => {
-  res.render('question');
-};
 
 export const saveResultToDB = async (
   req: TypedRequestBody<MBTIPayload>, 
@@ -46,13 +38,13 @@ export const redirectBasedOnResult = async (
   try {
     const { RESULT: type } = req.body;
     if (type) {
-      res.redirect(`result/${type}`);
+      res.json({ success: true, redirectUrl: `/result/${type}` });
     } else {
-      res.status(404).redirect('/mbti');
+      res.status(404).json({ success: false, message: 'Invalid result type' });
     }
   } catch (error) {
     console.error(ERROR_MESSAGES.REDIRECT_ERROR, error);
-    res.status(500).redirect('/');
+    res.status(500).json({ success: false, message: 'Internal server error' });
   }
 };
 
@@ -67,7 +59,7 @@ export const validateMBTIType = (
   if (MBTI_TYPES.hasOwnProperty(path)) {
     next();
   } else {
-    res.status(404).redirect('/mbti');
+    res.status(404).json({ success: false, message: 'Invalid MBTI type' });
   }
 };
 
@@ -81,12 +73,18 @@ export const renderMBTIResult = async (
       result: type,
     });
     const totalNumber = await MartialArtsResult.countDocuments({});
-    const pageName = `result${type.toUpperCase()}`;
-    console.log("TEST", type, pageName);
 
-    res.render(pageName, { totalNumber, sameNumber });
+    res.json({
+      success: true,
+      data: {
+        type,
+        sameNumber,
+        totalNumber,
+        percentage: (sameNumber / totalNumber) * 100
+      }
+    });
   } catch (error) {
     console.error(ERROR_MESSAGES.RENDER_ERROR, error);
-    res.redirect('/');
+    res.status(500).json({ success: false, message: 'Internal server error' });
   }
 };

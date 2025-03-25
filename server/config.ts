@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import path from "path";
 import { ERROR_MESSAGES } from './constants';
 
-dotenv.config({ path: path.resolve(__dirname, '.env') });
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 interface Config {
   mongoUrl: string;
@@ -16,7 +16,7 @@ if (!process.env.MONGO_URL_MBTI) {
 
 const config: Config = {
   mongoUrl: process.env.MONGO_URL_MBTI,
-  port: parseInt(process.env.PORT || '3000', 10),
+  port: parseInt(process.env.PORT || '4000', 10),
 };
 
 export default config;

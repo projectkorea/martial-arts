@@ -1,7 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import morgan from "morgan";
 import helmet from "helmet";
-import path from "path";
 import config from "./config";
 import "./db";
 import "./models/MartialArtsResult";
@@ -19,10 +18,6 @@ app.use(
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.set("views", path.join(__dirname, "views/pages"));
-app.set("view engine", "pug");
-
-app.use("/static", express.static(path.join(__dirname, "static")));
 app.use("/", router);
 
 app.use((_: Request, res: Response) => {

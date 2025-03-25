@@ -26,7 +26,6 @@ const Result = () => {
   const handleShare = (platform: string) => {
     const shareData = {
       title: result.title,
-      description: result.description,
       explanation: result.explanation.join('\n'),
       currentUrl: window.location.href,
       resultImageUrl: result.imageUrl

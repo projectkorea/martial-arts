@@ -2,7 +2,6 @@ import { create } from 'zustand';
 
 export interface ShareData {
   title: string;
-  description: string;
   explanation: string;
   currentUrl: string;
   resultImageUrl: string;
@@ -21,7 +20,6 @@ interface StoreState {
 const useStore = create<StoreState>((set) => ({
   shareData: {
     title: '',
-    description: '',
     explanation: '',
     currentUrl: '',
     resultImageUrl: '',

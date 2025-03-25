@@ -8,6 +8,19 @@ export default defineConfig({
   server: {
     port: 3000
   },
+  build: {
+    outDir: '../build/client',
+    emptyOutDir: true,
+    sourcemap: true,
+    // for caching these are not changed until version update
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+        }
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

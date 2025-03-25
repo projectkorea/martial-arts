@@ -26,7 +26,6 @@ export const shareKakao = (data: ShareData) => {
       objectType: 'feed',
       content: {
         title: data.title,
-        description: data.description,
         imageUrl: data.resultImageUrl,
         link: {
           mobileWebUrl: data.currentUrl,

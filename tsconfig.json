@@ -23,12 +23,12 @@
     "checkJs": false,
     // about build
     "outDir": "./build",
-    "rootDir": "src",
+    "rootDir": "server",
     "baseUrl": ".",
     "paths": {
-      "*": ["node_modules/*", "src/*"]
+      "*": ["node_modules/*", "server/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["server/**/*.ts"],
   "exclude": ["node_modules", "build"]
 } 

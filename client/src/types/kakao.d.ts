@@ -5,7 +5,6 @@ declare namespace Kakao {
       objectType: string;
       content: {
         title: string;
-        description: string;
         imageUrl: string;
         link: {
           mobileWebUrl: string;
