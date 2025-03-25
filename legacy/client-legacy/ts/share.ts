@@ -17,6 +17,7 @@ declare namespace Kakao {
   }
   
   function init(apiKey: string): void;
+  function isInitialized(): boolean;
 }
 
 const URLS = {
@@ -134,7 +135,9 @@ const initShareButtons = (): void => {
 };
 
 const initShare = (): void => {
-  Kakao.init('be836ab6aa99b7ff880010214a29ffd8');
+  if (!Kakao.isInitialized()) {
+    Kakao.init('be836ab6aa99b7ff880010214a29ffd8');
+  }
   
   initShareButtons();
   initShareData();

@@ -16,4 +16,5 @@ declare namespace Kakao {
   }
   
   function init(apiKey: string): void;
+  function isInitialized(): boolean;
 } 
