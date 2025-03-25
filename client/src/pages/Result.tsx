@@ -1,90 +1,23 @@
-import styled from '@emotion/styled';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Layout from '@components/Layout';
-import ResultCard from '@components/ResultCard';
 import Share from '@components/Share';
-import Button from '@components/Button';
 import { initKakaoSDK, shareTwitter, shareFacebook, shareKakao, copyToClipboard } from '@utils/share';
 import useStore from '@/store/useStore';
-
-const Container = styled.div`
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-`;
-
-const ResultImage = styled.img`
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  margin: 0 auto 24px;
-  display: block;
-  border-radius: 12px;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-top: 24px;
-`;
-
-const results = {
-  1: {
-    title: "복싱",
-    description: "당신은 복싱이 어울립니다!",
-    traits: [
-      {
-        title: "빠른 반응",
-        description: "복싱은 빠른 반응과 정확한 기술이 필요한 격투기입니다."
-      },
-      {
-        title: "체력",
-        description: "복싱을 통해 전신 체력을 향상시킬 수 있습니다."
-      },
-      {
-        title: "자신감",
-        description: "복싱을 통해 자신감을 키울 수 있습니다."
-      },
-      {
-        title: "스트레스 해소",
-        description: "복싱은 스트레스 해소에 매우 효과적입니다."
-      }
-    ],
-    imageUrl: "/images/result-boxing.jpg"
-  },
-  2: {
-    title: "주짓수",
-    description: "당신은 주짓수가 어울립니다!",
-    traits: [
-      {
-        title: "기술",
-        description: "주짓수는 기술과 전략이 중요한 격투기입니다."
-      },
-      {
-        title: "근력",
-        description: "주짓수를 통해 근력을 향상시킬 수 있습니다."
-      },
-      {
-        title: "유연성",
-        description: "주짓수는 유연성 향상에 도움이 됩니다."
-      },
-      {
-        title: "집중력",
-        description: "주짓수는 집중력 향상에 효과적입니다."
-      }
-    ],
-    imageUrl: "/images/result-jiujitsu.jpg"
-  }
-};
+import { mbtiResults, getMBTITypeById, defaultStats } from '@utils/mbtiResults';
 
 const Result = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { setShareData } = useStore();
-  const numericId = id ? parseInt(id) : 1;
-  const result = results[numericId as keyof typeof results] || results[1];
+  
+  // ID를 통해 MBTI 유형 찾기
+  const mbtiType = getMBTITypeById(id);
+  const result = mbtiResults[mbtiType];
+  
+  const [showMore, setShowMore] = useState(false);
+  // 통계 데이터 - 데이터베이스에서 가져오거나 기본값 사용
+  const [stats] = useState(result.stats || defaultStats);
 
   useEffect(() => {
     initKakaoSDK();
@@ -94,7 +27,7 @@ const Result = () => {
     const shareData = {
       title: result.title,
       description: result.description,
-      explanation: result.traits.map(t => t.description).join('\n'),
+      explanation: result.explanation.join('\n'),
       currentUrl: window.location.href,
       resultImageUrl: result.imageUrl
     };
@@ -116,30 +49,109 @@ const Result = () => {
     }
   };
 
-  const handleRestart = () => {
-    navigate('/');
-  };
-
   if (!result) {
     return <div>잘못된 결과입니다.</div>;
   }
 
   return (
     <Layout>
-      <Container>
-        <ResultImage src={result.imageUrl} alt={result.title} />
-        <ResultCard
-          title={result.title}
-          description={result.description}
-          traits={result.traits}
-        />
-        <Share onShare={handleShare} />
-        <ButtonContainer>
-          <Button onClick={handleRestart} variant="outline">
-            다시 테스트하기
-          </Button>
-        </ButtonContainer>
-      </Container>
+      <div className="container-ie fade-in">
+        <main className="result-page">
+          <div className="result-top wrapper-top">
+            <div className="result char_result">
+              <div className="result-text-white">나랑 가장 잘 맞는 격투기 종목은</div>
+              <div className="result-title animate__animated animate__pulse">{result.title}</div>
+              <div className="result-sub-title animate__animated animate__pulse">{result.mbti}</div>
+              <img className="result-img" src={result.imageUrl} alt={result.title} />
+              <div className="result-subtitle">
+                <div className="icon-quote">
+                  <span className="icon-left">❝</span>
+                  <span className="icon-right">❞</span>
+                </div>
+                {result.quote}
+                <div className="icon-right"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="result-middle">
+            <div className="result-rank">
+              전체 참여자
+              <div className="total-number result-rank-ment">{stats.totalNumber}</div>
+              명 중
+              <br />
+              나와 같은 격투가 유형은
+              <br />
+              <label className="percentage">{(stats.sameNumber/stats.totalNumber*100).toFixed(2)}%</label>
+              입니다.
+            </div>
+            
+            <div className="result-explannation result-text-left wrapper-explanation">
+              {result.explanation.map((text, index) => (
+                <li key={index}>
+                  <span className="icon">✊</span>
+                  {' '}{text}
+                </li>
+              ))}
+              
+              <div className="folder">
+                <button className="folder-button" onClick={() => setShowMore(true)}>
+                  <span className="icon">↓</span>
+                  {' '}설명 더 보기
+                </button>
+              </div>
+              
+              {showMore && (
+                <div className="folder-content">
+                  {result.additionalInfo.map((text, index) => (
+                    <li key={index}>
+                      <span className="icon">✊</span>
+                      {' '}{text}
+                    </li>
+                  ))}
+                </div>
+              )}
+              
+              {showMore && (
+                <div className="folder-footer">
+                  <button className="folder-button-down" onClick={() => setShowMore(false)}>
+                    <span className="icon">↑</span>
+                    {' '}접기
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+          
+          <div className="result-bottom partner-wrapper wrapper">
+            <a className="best-partner" href={`/mbti/result/${result.bestPartner.type}`}>
+              <div className="result-text-black-best">최고의 파트너</div>
+              <div className="result-char-wrapper">
+                <div className="result-title-black">{result.bestPartner.title}</div>
+                <br />
+                <img className="result-partner-img" src={result.bestPartner.imageUrl} alt={result.bestPartner.title} />
+              </div>
+            </a>
+            
+            <a className="worst-partner" href={`/mbti/result/${result.worstPartner.type}`}>
+              <div className="result-text-black-worst">최악의 파트너</div>
+              <div className="result-char-wrapper">
+                <div className="result-title-black">{result.worstPartner.title}</div>
+                <br />
+                <img className="result-partner-img" src={result.worstPartner.imageUrl} alt={result.worstPartner.title} />
+              </div>
+            </a>
+          </div>
+          
+          <Share onShare={handleShare} />
+          
+          <div className="result-footer">
+            <button className="restart-button" onClick={() => navigate('/')}>
+              다시 테스트하기
+            </button>
+          </div>
+        </main>
+      </div>
     </Layout>
   );
 };
