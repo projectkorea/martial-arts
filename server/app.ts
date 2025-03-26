@@ -6,6 +6,7 @@ import "./db";
 import "./models/MartialArtsResult";
 import router from "./router";
 import { SUCCESS_MESSAGES } from "./constants";
+import path from "path";
 
 const app: Express = express();
 
@@ -18,10 +19,11 @@ app.use(
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use("/", router);
+app.use(express.static(path.join(__dirname, '../build/client')));
 
-app.use((_: Request, res: Response) => {
-  res.status(404).redirect("/");
+app.use("/api", router);
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/client/index.html'));
 });
 
 const PORT = config.port;

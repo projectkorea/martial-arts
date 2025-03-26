@@ -26,12 +26,12 @@
 }
 
 .start-btn {
+  width: 230px;
   background-color: #c47135;
   border: none;
   color: #ffffff;
   cursor: pointer;
   display: inline-block;
-  font-size: 1em;
   font-size: 28px;
   line-height: 1.5em;
   margin: 15px 40px;

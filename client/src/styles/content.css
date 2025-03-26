@@ -35,7 +35,7 @@ body {
   display: inline-block;
   letter-spacing: -5px;
   color: #ffffff;
-  margin: -10px;
+  margin: -10px 2px;
   font-family: ROKABold;
   font-size: 72px;
 }

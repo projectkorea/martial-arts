@@ -8,6 +8,7 @@ const Container = styled.div`
 `;
 
 const Main = styled.main`
+  display: flex;
   flex: 1;
   width: 100%;
   max-width: 600px;
@@ -18,7 +19,6 @@ const Main = styled.main`
 const Footer = styled.footer`
   text-align: center;
   padding: 20px;
-  background-color: #f8f9fa;
   font-size: 14px;
   color: #666;
 `;
@@ -34,7 +34,7 @@ const Layout = ({ children, showFooter = true }: LayoutProps) => {
       <Main>{children}</Main>
       {showFooter && (
         <Footer>
-          <p>© 2024 Martial Arts Test. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Martial Arts Test. All rights reserved.</p>
         </Footer>
       )}
     </Container>

@@ -6,11 +6,10 @@
     "postinstall": "cd client && npm install",
     "build:client": "cd client && npm run build",
     "build:server": "babel server -d build --extensions \".js,.ts\"",
-    "build": "rimraf build && npm run build:server && npm run build:client",
-    "type-check": "tsc --noEmit",
-    "watch": "nodemon --watch server --ext js,ts,css --exec",
-    "dev": "npm run watch \"npm run type-check && npm run build && cross-env NODE_ENV=development node build/app.js\"",
-    "prod": "npm run type-check && npm run build && cross-env NODE_ENV=production node build/app.js"
+    "build": "tsc --noEmit && rimraf build && npm run build:server && npm run build:client",
+    "watch": "nodemon --watch ./server --watch ./client --ignore '*/node_modules/*' --ignore '*/build/*' --ext js,ts,css,tsx --exec",
+    "dev": "npm run watch \"npm run build && cross-env NODE_ENV=development node build/app.js\"",
+    "prod": "npm run build && cross-env NODE_ENV=production node build/app.js"
   },
   "license": "ISC",
   "dependencies": {

@@ -5,11 +5,10 @@ import {
   validateMBTIType,
   renderMBTIResult,
 } from '../controllers';
-import { Routes } from '../constants';
 
-const mbtiRouter = Router();
+const router = Router();
 
-mbtiRouter.post('/api/result', saveResultToDB, redirectBasedOnResult);
-mbtiRouter.get('/api/result/:type', validateMBTIType, renderMBTIResult);
+router.post('/result', saveResultToDB, redirectBasedOnResult);
+router.get('/result/:type', validateMBTIType, renderMBTIResult);
 
-export default mbtiRouter;
+export default router;

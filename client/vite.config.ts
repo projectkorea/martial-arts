@@ -5,6 +5,7 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: '/',
   server: {
     port: 3000
   },
@@ -12,12 +13,14 @@ export default defineConfig({
     outDir: '../build/client',
     emptyOutDir: true,
     sourcemap: true,
+    assetsDir: 'assets',
     // for caching these are not changed until version update
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
-        }
+        },
+        assetFileNames: 'assets/[name]-[hash][extname]'
       }
     }
   },

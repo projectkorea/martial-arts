@@ -6,8 +6,8 @@ import {
   TypedRequestBody, 
   TypedRequestParams 
 } from '../types';
-import { MBTI_TYPES, ERROR_MESSAGES } from '../constants';
-
+import { ERROR_MESSAGES } from '../constants';
+import { MBTI_TYPES } from '../router/constants';
 interface MBTIPayload extends PersonalityProps {
   RESULT: string;
 }
