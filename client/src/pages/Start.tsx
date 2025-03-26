@@ -9,7 +9,6 @@ const Start = () => {
   };
 
   const handleRandom = () => {
-    // 랜덤 결과 페이지로 이동하는 로직
     const mbtiTypes = ['INFP', 'ENFP', 'INFJ', 'ENFJ', 'INTJ', 'ENTJ', 'INTP', 'ENTP', 
                        'ISFP', 'ESFP', 'ISFJ', 'ESFJ', 'ISTJ', 'ESTJ', 'ISTP', 'ESTP'];
     const randomType = mbtiTypes[Math.floor(Math.random() * mbtiTypes.length)];

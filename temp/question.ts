@@ -1,43 +1,3 @@
-import { quest } from './sentence';
-
-interface PersonalityResult {
-  E: number;
-  I: number;
-  S: number;
-  N: number;
-  F: number;
-  T: number;
-  P: number;
-  J: number;
-  RESULT: string;
-}
-
-const elements = {
-  questionPage: document.querySelector('.question-page') as HTMLElement,
-  loadingPage: document.querySelector('.loading-page') as HTMLElement,
-  pageNum: document.querySelector('.progress-page-num') as HTMLElement,
-  progressBar: document.querySelector('.progress-bar') as HTMLElement,
-  questionWrapper: document.querySelector('.wrapper-question') as HTMLElement,
-  questionTitle: document.querySelector('.question-title') as HTMLElement,
-  questionBtn: document.querySelector('.question-btn') as HTMLElement,
-  optionA: document.querySelector('#A') as HTMLElement,
-  optionB: document.querySelector('#B') as HTMLElement
-};
-
-// State
-let finalResult: PersonalityResult = {
-  E: 0,
-  I: 0,
-  S: 0,
-  N: 0,
-  F: 0,
-  T: 0,
-  P: 0,
-  J: 0,
-  RESULT: ''
-};
-let currentPage = 1;
-
 const showNextQuestion = (): void => {
   if (currentPage <= 12) {
     const current = quest[currentPage];
@@ -138,7 +98,3 @@ const postToUrl = (path: string, params: Record<string, any>, method: string = '
   document.body.appendChild(form);
   form.submit();
 };
-
-if (elements.questionPage) {
-  showNextQuestion();
-}

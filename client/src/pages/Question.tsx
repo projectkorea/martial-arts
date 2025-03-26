@@ -13,7 +13,7 @@ const questions = Object.entries(quest).map(([id, item]: [string, QuestItem]) =>
   ]
 }));
 
-interface PersonalityResult {
+interface MBTITypeScore  {
   E: number;
   I: number;
   S: number;
@@ -46,20 +46,17 @@ const Question = () => {
     }
   };
 
-  // MBTI 결과 계산 함수
   const calculateMBTI = (answersList: string[]): string => {
-    const result: PersonalityResult = {
+    const result: MBTITypeScore  = {
       E: 0, I: 0, S: 0, N: 0, F: 0, T: 0, P: 0, J: 0
     };
     
-    // 각 답변에 대해 해당하는 유형 카운트 증가
     answersList.forEach(type => {
       if (type && type in result) {
-        result[type as keyof PersonalityResult] += 1;
+        result[type as keyof MBTITypeScore ] += 1;
       }
     });
     
-    // 최종 MBTI 결과 계산
     let mbtiResult = '';
     mbtiResult += result.E > result.I ? 'E' : 'I';
     mbtiResult += result.S > result.N ? 'S' : 'N';
