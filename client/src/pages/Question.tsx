@@ -30,20 +30,18 @@ const Question = () => {
   const currentQuestion = questions[currentStep];
 
   const handleAnswer = (answerId: string) => {
-    // 선택한 답변의 타입 찾기
     const selectedOption = currentQuestion.options.find(option => option.id === answerId);
     const selectedType = selectedOption?.type || '';
-    
-    // 답변 저장
+
     addAnswer(selectedType);
     
     if (currentStep < questions.length - 1) {
       setCurrentStep(currentStep + 1);
-    } else {
-      // 마지막 질문 후 결과 계산
-      const result = calculateMBTI(answers.concat(selectedType));
-      navigate(`/mbti/${result}`);
+      return;
     }
+    
+    const result = calculateMBTI(answers.concat(selectedType));
+    navigate(`/result/${result}`);
   };
 
   const calculateMBTI = (answersList: string[]): string => {

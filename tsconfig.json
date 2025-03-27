@@ -21,7 +21,7 @@
     "noEmit": true,
     "allowJs": true,
     "checkJs": false,
-    // about build
+    // build
     "outDir": "./build",
     "rootDir": "server",
     "baseUrl": ".",

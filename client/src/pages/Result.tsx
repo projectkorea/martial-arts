@@ -1,31 +1,28 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Layout from '@components/Layout';
 import Share from '@components/Share';
+import Button from '@components/Button';
 import { initKakaoSDK, shareTwitter, shareFacebook, shareKakao, copyToClipboard } from '@utils/share';
 import useStore from '@/store/useStore';
-import { mbtiResults, getMBTITypeById, defaultStats } from '@utils/mbtiResults';
+import { MBTI_RESULTS } from '@/utils/mbtiResults';
 
 const Result = () => {
-  const { id } = useParams();
+  const { type } = useParams();
   const navigate = useNavigate();
   const { setShareData } = useStore();
-  
-  // ID를 통해 MBTI 유형 찾기
-  const mbtiType = getMBTITypeById(id);
-  const result = mbtiResults[mbtiType];
-  
-  const [showMore, setShowMore] = useState(false);
-  // 통계 데이터 - 데이터베이스에서 가져오거나 기본값 사용
-  const [stats] = useState(result.stats || defaultStats);
+  const result = MBTI_RESULTS[type || 'ENFJ'];
+  const [isContentOpen, setIsContentOpen] = useState(false);
 
   useEffect(() => {
     initKakaoSDK();
+    window.scrollTo(0, 0);
   }, []);
 
   const handleShare = (platform: string) => {
     const shareData = {
       title: result.title,
+      description: result.quote,
       explanation: result.explanation.join('\n'),
       currentUrl: window.location.href,
       resultImageUrl: result.imageUrl
@@ -48,14 +45,27 @@ const Result = () => {
     }
   };
 
+  const handleRestart = () => {
+    navigate('/');
+  };
+
+  const toggleContent = () => {
+    setIsContentOpen(!isContentOpen);
+  };
+
   if (!result) {
     return <div>잘못된 결과입니다.</div>;
   }
 
+  // 참여자 통계 데이터 가져오기
+  const totalNumber = result.stats?.totalNumber || 0;
+  const sameNumber = result.stats?.sameNumber || 0;
+  const percentage = totalNumber > 0 ? (sameNumber / totalNumber * 100).toFixed(2) : '0.00';
+
   return (
     <Layout>
-      <div className="container-ie fade-in">
-        <main className="result-page">
+      <div className="container">
+        <div className="result-page">
           <div className="result-top wrapper-top">
             <div className="result char_result">
               <div className="result-text-white">나랑 가장 잘 맞는 격투기 종목은</div>
@@ -64,92 +74,91 @@ const Result = () => {
               <img className="result-img" src={result.imageUrl} alt={result.title} />
               <div className="result-subtitle">
                 <div className="icon-quote">
-                  <span className="icon-left">❝</span>
-                  <span className="icon-right">❞</span>
+                  <i className="fas fa-quote-left icon-left"></i>
+                  <i className="fas fa-quote-right icon-right"></i>
                 </div>
                 {result.quote}
-                <div className="icon-right"></div>
               </div>
             </div>
           </div>
-          
+
           <div className="result-middle">
             <div className="result-rank">
-              전체 참여자
-              <div className="total-number result-rank-ment">{stats.totalNumber}</div>
-              명 중
+              전체 참여자 <div className="total-number result-rank-ment">{totalNumber}</div> 명 중
               <br />
               나와 같은 격투가 유형은
               <br />
-              <label className="percentage">{(stats.sameNumber/stats.totalNumber*100).toFixed(2)}%</label>
-              입니다.
+              <label className="percentage">{percentage}%</label> 입니다.
             </div>
-            
+
             <div className="result-explannation result-text-left wrapper-explanation">
-              {result.explanation.map((text, index) => (
-                <li key={index}>
-                  <span className="icon">✊</span>
-                  {' '}{text}
-                </li>
-              ))}
-              
+              <ul>
+                {result.explanation.map((item, index) => (
+                  <li key={index}>
+                    <i className="fas fa-fist-raised"></i>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
               <div className="folder">
-                <button className="folder-button" onClick={() => setShowMore(true)}>
-                  <span className="icon">↓</span>
-                  {' '}설명 더 보기
-                </button>
-              </div>
-              
-              {showMore && (
-                <div className="folder-content">
-                  {result.additionalInfo.map((text, index) => (
-                    <li key={index}>
-                      <span className="icon">✊</span>
-                      {' '}{text}
-                    </li>
-                  ))}
-                </div>
-              )}
-              
-              {showMore && (
-                <div className="folder-footer">
-                  <button className="folder-button-down" onClick={() => setShowMore(false)}>
-                    <span className="icon">↑</span>
-                    {' '}접기
+                {!isContentOpen ? (
+                  <button className="folder-button" onClick={toggleContent}>
+                    <i className="fas fa-arrow-down"></i>
+                    설명 더 보기
                   </button>
+                ) : null}
+                <div className="folder-content" style={{ display: isContentOpen ? 'block' : 'none' }}>
+                  <ul>
+                    {result.additionalInfo.map((item, index) => (
+                      <li key={index}>
+                        <i className="fas fa-fist-raised"></i>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="folder-footer">
+                    <button className="folder-button-down" onClick={toggleContent}>
+                      <i className="fas fa-arrow-up"></i>
+                      접기
+                    </button>
+                  </div>
                 </div>
-              )}
+              </div>
             </div>
           </div>
-          
+
           <div className="result-bottom partner-wrapper wrapper">
-            <a className="best-partner" href={`/mbti/result/${result.bestPartner.type}`}>
-              <div className="result-text-black-best">최고의 파트너</div>
-              <div className="result-char-wrapper">
-                <div className="result-title-black">{result.bestPartner.title}</div>
-                <br />
-                <img className="result-partner-img" src={result.bestPartner.imageUrl} alt={result.bestPartner.title} />
+            <Link className="best-partner" to={`/result/${result.bestPartner.type}`}>
+              <div>
+                <div className="result-text-black-best">최고의 파트너</div>
+                <div className="result-char-wrapper">
+                  <div className="result-title-black">{result.bestPartner.title}</div>
+                  <br />
+                  <img className="result-partner-img" src={result.bestPartner.imageUrl} alt={result.bestPartner.title} />
+                </div>
               </div>
-            </a>
-            
-            <a className="worst-partner" href={`/mbti/result/${result.worstPartner.type}`}>
-              <div className="result-text-black-worst">최악의 파트너</div>
-              <div className="result-char-wrapper">
-                <div className="result-title-black">{result.worstPartner.title}</div>
-                <br />
-                <img className="result-partner-img" src={result.worstPartner.imageUrl} alt={result.worstPartner.title} />
+            </Link>
+            <Link className="worst-partner" to={`/result/${result.worstPartner.type}`}>
+              <div>
+                <div className="result-text-black-worst">최악의 파트너</div>
+                <div className="result-char-wrapper">
+                  <div className="result-title-black">{result.worstPartner.title}</div>
+                  <br />
+                  <img className="result-partner-img" src={result.worstPartner.imageUrl} alt={result.worstPartner.title} />
+                </div>
               </div>
-            </a>
+            </Link>
           </div>
-          
+
           <Share onShare={handleShare} />
-          
-          <div className="result-footer">
-            <button className="restart-button" onClick={() => navigate('/')}>
+
+          <div>
+            <Button onClick={handleRestart} variant="outline">
               다시 테스트하기
-            </button>
+            </Button>
           </div>
-        </main>
+        </div>
       </div>
     </Layout>
   );

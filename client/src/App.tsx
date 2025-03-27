@@ -3,7 +3,6 @@ import GlobalStyles from './styles/GlobalStyles';
 import Start from './pages/Start';
 import Question from './pages/Question';
 import Result from './pages/Result';
-import MBTIResult from './pages/MBTIResult';
 
 const router = createBrowserRouter([
   {
@@ -15,12 +14,8 @@ const router = createBrowserRouter([
     element: <Question />,
   },
   {
-    path: '/result/:id',
+    path: '/result/:type',
     element: <Result />,
-  },
-  {
-    path: '/mbti/:type',
-    element: <MBTIResult />,
   },
 ]);
 

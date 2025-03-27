@@ -12,7 +12,7 @@ const Start = () => {
     const mbtiTypes = ['INFP', 'ENFP', 'INFJ', 'ENFJ', 'INTJ', 'ENTJ', 'INTP', 'ENTP', 
                        'ISFP', 'ESFP', 'ISFJ', 'ESFJ', 'ISTJ', 'ESTJ', 'ISTP', 'ESTP'];
     const randomType = mbtiTypes[Math.floor(Math.random() * mbtiTypes.length)];
-    navigate(`/mbti/${randomType}`);
+    navigate(`/result/${randomType}`);
   };
 
   return (

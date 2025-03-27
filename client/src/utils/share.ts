@@ -36,11 +36,16 @@ export const shareKakao = (data: ShareData) => {
   }
 };
 
-export const copyToClipboard = async (text: string) => {
+export const copyToClipboard = (text: string) => {
   try {
-    await navigator.clipboard.writeText(text);
+    const tempInput = document.createElement('input');
+    tempInput.value = text;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
     alert('링크가 복사되었습니다.');
   } catch (err) {
     console.error('Failed to copy text: ', err);
   }
-}; 
+};

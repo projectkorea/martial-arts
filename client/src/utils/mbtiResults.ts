@@ -23,7 +23,7 @@ export interface MBTIResult {
 }
 
 // MBTI 결과 데이터
-export const mbtiResults: Record<string, MBTIResult> = {
+export const MBTI_RESULTS: Record<string, MBTIResult> = {
   "ENFJ": {
     title: "태극권",
     mbti: "ENFJ",
