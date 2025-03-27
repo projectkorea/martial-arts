@@ -69,7 +69,6 @@ const Question = () => {
   return (
     <Layout>
       <div className="container fade-in--quick">
-        <main className="question-page">
           <div className="wrapper-progress">
             <div className="progress progress-bootstrap" style={{ height: '8px' }}>
               <div 
@@ -102,7 +101,6 @@ const Question = () => {
             </div>
           </div>
           <Loading />
-        </main>
       </div>
     </Layout>
   );

@@ -10,7 +10,6 @@
 }
 
 .head1 {
-  -webkit-backface-visibility: hidden;
   position: relative;
   margin: -250px auto;
   width: 80px;
@@ -18,8 +17,6 @@
   background-color: #111;
   border-radius: 50px;
   box-shadow: inset -4px 2px 0px 0px rgba(240, 220, 220, 1);
-  -webkit-animation: headAnim 1.5s infinite alternate;
-  -webkit-animation-timing-function: ease-out;
 }
 
 .body {
@@ -30,36 +27,9 @@
   background-color: #111;
   border-radius: 50px/25px;
   box-shadow: inset -5px 2px 0px 0px rgba(240, 220, 220, 1);
-  -webkit-animation: bodyAnim 1.5s infinite alternate;
-  -webkit-animation-timing-function: ease-out;
-}
-
-@-webkit-keyframes headAnim {
-  0% {
-    top: 0px;
-  }
-  50% {
-    top: 10px;
-  }
-  100% {
-    top: 0px;
-  }
-}
-
-@-webkit-keyframes bodyAnim {
-  0% {
-    top: -5px;
-  }
-  50% {
-    top: 10px;
-  }
-  100% {
-    top: -5px;
-  }
 }
 
 .circ {
-  -webkit-backface-visibility: hidden;
   margin: 60px auto;
   width: 180px;
   height: 180px;
@@ -72,7 +42,6 @@
 }
 
 .hands {
-  -webkit-backface-visibility: hidden;
   margin-top: 140px;
   width: 120px;
   height: 120px;
@@ -80,10 +49,19 @@
   background-color: #111;
   border-radius: 20px;
   box-shadow: -1px -4px 0px 0px rgba(240, 220, 220, 1);
-  -webkit-transform: rotate(45deg);
   top: 75%;
   left: 16%;
   z-index: 1;
-  -webkit-animation: bodyAnim 1.5s infinite alternate;
-  -webkit-animation-timing-function: ease-out;
+}
+
+@keyframes headAnim {
+  0% { top: 0px; }
+  50% { top: 10px; }
+  100% { top: 0px; }
+}
+
+@keyframes bodyAnim {
+  0% { top: -5px; }
+  50% { top: 10px; }
+  100% { top: -5px; }
 }

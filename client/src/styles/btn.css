@@ -12,19 +12,6 @@
   }
 }
 
-.link-icon {
-  position: relative;
-  display: inline-block;
-  font-size: 12px;
-  color: #f7f9f9;
-  width: 50px;
-  align-content: center;
-  margin-right: 10px;
-  padding-top: 50px;
-  background-repeat: no-repeat;
-  cursor: pointer;
-}
-
 .start-btn {
   width: 230px;
   background-color: #c47135;
@@ -40,6 +27,7 @@
   position: relative;
   text-transform: uppercase;
   font-weight: 700;
+  font-family: "IBMPlexSansKR-Bold";
 }
 
 .start-btn:before,
@@ -149,8 +137,7 @@ start-btn.hover:before,
 .rotate {
   padding-top: 15px;
   max-width: 300px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 .btn-fade {
   background: #ffbaa1;
@@ -191,14 +178,10 @@ start-btn.hover:before,
   font-size: 16px;
   font-weight: bold;
 }
-.folder-content {
-  display: none;
-}
-
+.folder-content,
 .folder-footer {
   display: none;
 }
-
 .folder-button-down {
   display: block;
   margin-left: auto;

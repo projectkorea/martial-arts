@@ -1,3 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url(../images/ring.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+}
+
+@media (max-width: 426px) {
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+  }
+}
+
 @media (max-width: 426px) {
   html,
   body {
@@ -14,29 +41,7 @@
 
 @media (min-width: 427px) {
   body {
-    width: 426px !important;
-    height: 625px;
-    width: 90%;
-    padding: 0 !important;
-  }
-  html {
-    height: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    display: -ms-flexbox;
-  }
-}
-
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-  .container {
-    margin-left: 0px !important;
+      width: 426px !important;
   }
 }
 
@@ -56,22 +61,11 @@
   padding: 15px 0px;
 }
 .container {
-  width: 90%;
   padding: 0 !important;
   text-align: center;
   align-items: center;
   justify-content: center;
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  -webkit-box-pack: center;
-  -webkit-box-align: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-pack: center;
-  -ms-flex-align: center;
-  -ms-grid-column-align: center;
-  -ms-flex-align: center;
 }
 
 .container-ie {
@@ -81,15 +75,6 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  display: -webkit-box;
-  -webkit-box-pack: center;
-  -webkit-box-align: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-pack: center;
-  -ms-flex-align: center;
-  -ms-grid-column-align: center;
-  -ms-flex-align: center;
 }
 
 .wrapper {
@@ -129,8 +114,7 @@
 .wrapper-progress {
   position: absolute;
   width: 80%;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   left: 0;
   right: 0;
   text-align: center;
@@ -143,11 +127,30 @@
   width: 100%;
 }
 
-.result-page {
-  height: 100%;
+.loading-page {
   display: none;
 }
 
-.loading-page {
-  display: none;
+.layout-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-main {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.layout-footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #666;
 }
