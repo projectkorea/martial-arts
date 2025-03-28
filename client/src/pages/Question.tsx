@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import Layout from '@components/Layout';
 import useStore from '@/store/useStore';
-import Loading from '@components/Loading';
 import { quest, QuestItem } from '@utils/sentence';
+import './Question.css';
 
 const questions = Object.entries(quest).map(([id, item]: [string, QuestItem]) => ({
   id: parseInt(id),
@@ -70,24 +70,22 @@ const Question = () => {
     <Layout>
       <div className="container fade-in--quick">
           <div className="wrapper-progress">
-            <div className="progress progress-bootstrap" style={{ height: '8px' }}>
+            <div className="progress-page-num">
+              {currentStep + 1} / {questions.length}
+            </div>
+            <div className="progress" role="progressbar" style={{ height: '8px' }}>
               <div 
-                className="progress-bar" 
+                className="progress-bar bg-primary" 
                 style={{ width: `${progress}%` }}
-                role="progressbar" 
                 aria-valuenow={progress} 
                 aria-valuemin={0} 
                 aria-valuemax={100}
               />
             </div>
-            <div className="progress-ground" />
-            <div className="progress-page-num">
-              {currentStep + 1} / {questions.length}
-            </div>
           </div>
           <div className="wrapper-question">
             <div className="question-title" dangerouslySetInnerHTML={{ __html: currentQuestion.question }} />
-            <div className="question-btn noselect">
+            <div className="question-btns noselect">
               {currentQuestion.options.map((option) => (
                 <button 
                   key={option.id} 
@@ -100,7 +98,6 @@ const Question = () => {
               ))}
             </div>
           </div>
-          <Loading />
       </div>
     </Layout>
   );

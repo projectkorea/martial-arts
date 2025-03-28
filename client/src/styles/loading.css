@@ -1,3 +1,17 @@
+.percentage {
+  color: rgb(244, 201, 27);
+  font-size: 28px;
+}
+
+.loading-title {
+  font-size: 28px;
+  font-weight: bold;
+  padding: 20px 20px;
+  line-height: 40px;
+  margin-top: 20px;
+  color: #f7f9f9;
+}
+
 .eye {
   width: 20px;
   height: 8px;

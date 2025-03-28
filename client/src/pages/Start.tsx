@@ -18,21 +18,20 @@ const Start = () => {
   return (
     <Layout>
       <div className="container fade-in--quick">
-        <main className="start-page">
-          <img className="start-img" src="/images/kick.jpg" alt="Martial Arts Kick" />
-          <div className="start title wrapper">
-            <div className="start-title">
-              나와 가장
-              <br />
-              잘 어울리는
-            </div>
-            <div className="space"></div>
-            <div className="start-title-effect">격투기</div>
-            <div className="start-title-space">종목은?</div>
+        <img className="start-img" src="/images/kick.jpg" alt="Martial Arts Kick" />
+        <div className="start title wrapper">
+          <div className="start-title line-break">
+            나와 가장
+            <br />
+            잘 어울리는
           </div>
-          <button className="start-btn" onClick={handleStart}>테스트 시작</button>
+          <div className="start-title-bold">격투기</div>
+          <div className="start-title">종목은?</div>
+        </div>
+        <div className="start-btns">
+          <button className="start-btn" onClick={handleStart}>시작</button>
           <button className="start-btn random" onClick={handleRandom}>랜덤 결과</button>
-        </main>
+        </div>
       </div>
     </Layout>
   );

@@ -38,10 +38,6 @@ input, textarea, select {
   user-select: none;
 }
 
-.removeAlign {
-  align-items: unset;
-}
-
 .adsense-box {
   width: 200px;
   height: 200px;

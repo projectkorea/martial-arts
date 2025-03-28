@@ -155,7 +155,7 @@ const Result = () => {
 
           <div>
             <Button onClick={handleRestart} variant="outline">
-              다시 테스트하기
+              다시하기
             </Button>
           </div>
         </div>

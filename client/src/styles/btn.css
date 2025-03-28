@@ -72,12 +72,16 @@ start-btn.hover:before,
   width: 100%;
 }
 
-.question-btn button {
+.question-btns {
+  margin-top: 40px;
+}
+
+.question-btns button {
   font-family: "NanumBarunGothic" !important;
   width: 100%;
   margin-bottom: 15px;
   width: 100%;
-  padding: 40px 20px;
+  padding: 35px 20px;
   outline: none;
   font-size: 18px;
   border-radius: 15px;
