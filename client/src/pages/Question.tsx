@@ -2,7 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import Layout from '@components/Layout';
 import useStore from '@/store/useStore';
 import { quest, QuestItem } from '@utils/sentence';
-import './Question.css';
+import { MBTIScore } from '@/types/mbti';
+import Loading from '@components/Loading';
+import { useEffect, useState } from 'react';
+import { useSaveMBTIResult } from '@/api/mbtiQueries';
 
 const questions = Object.entries(quest).map(([id, item]: [string, QuestItem]) => ({
   id: parseInt(id),
@@ -13,23 +16,23 @@ const questions = Object.entries(quest).map(([id, item]: [string, QuestItem]) =>
   ]
 }));
 
-interface MBTITypeScore  {
-  E: number;
-  I: number;
-  S: number;
-  N: number;
-  F: number;
-  T: number;
-  P: number;
-  J: number;
-}
-
 const Question = () => {
   const navigate = useNavigate();
   const { currentStep, setCurrentStep, addAnswer, answers } = useStore();
   const currentQuestion = questions[currentStep];
+  const [isLoading, setIsLoading] = useState(false);
+  
+  // React Query mutations
+  const saveMutation = useSaveMBTIResult();
+  
+  // 로딩 상태가 변경되면 스크롤을 맨 위로
+  useEffect(() => {
+    if (isLoading) {
+      window.scrollTo(0, 0);
+    }
+  }, [isLoading]);
 
-  const handleAnswer = (answerId: string) => {
+  const handleAnswer = async (answerId: string) => {
     const selectedOption = currentQuestion.options.find(option => option.id === answerId);
     const selectedType = selectedOption?.type || '';
 
@@ -41,17 +44,37 @@ const Question = () => {
     }
     
     const result = calculateMBTI(answers.concat(selectedType));
-    navigate(`/result/${result}`);
+    setIsLoading(true);
+    
+    try {
+      // 결과를 서버에 저장
+      const saveResult = await saveMutation.mutateAsync(result);
+      
+      // 1.5초 후에 결과 페이지로 이동
+      setTimeout(() => {
+        if (saveResult.redirectUrl) {
+          navigate(saveResult.redirectUrl);
+        } else {
+          navigate(`/result/${result}`);
+        }
+      }, 1500);
+    } catch (error) {
+      console.error('Error processing result:', error);
+      // 에러 발생 시에도 결과 페이지로 이동
+      setTimeout(() => {
+        navigate(`/result/${result}`);
+      }, 1500);
+    }
   };
 
   const calculateMBTI = (answersList: string[]): string => {
-    const result: MBTITypeScore  = {
+    const result: MBTIScore = {
       E: 0, I: 0, S: 0, N: 0, F: 0, T: 0, P: 0, J: 0
     };
     
     answersList.forEach(type => {
       if (type && type in result) {
-        result[type as keyof MBTITypeScore ] += 1;
+        result[type as keyof MBTIScore] += 1;
       }
     });
     
@@ -92,12 +115,14 @@ const Question = () => {
                   id={option.id} 
                   className="btn-fade" 
                   onClick={() => handleAnswer(option.id)}
+                  disabled={isLoading}
                 >
                   {option.text}
                 </button>
               ))}
             </div>
           </div>
+          {isLoading && <Loading />}
       </div>
     </Layout>
   );

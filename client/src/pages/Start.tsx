@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Layout from '@components/Layout';
+import { MBTIType } from '@/types/mbti';
 
 const Start = () => {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ const Start = () => {
   };
 
   const handleRandom = () => {
-    const mbtiTypes = ['INFP', 'ENFP', 'INFJ', 'ENFJ', 'INTJ', 'ENTJ', 'INTP', 'ENTP', 
+    const mbtiTypes: MBTIType[] = ['INFP', 'ENFP', 'INFJ', 'ENFJ', 'INTJ', 'ENTJ', 'INTP', 'ENTP', 
                        'ISFP', 'ESFP', 'ISFJ', 'ESFJ', 'ISTJ', 'ESTJ', 'ISTP', 'ESTP'];
     const randomType = mbtiTypes[Math.floor(Math.random() * mbtiTypes.length)];
     navigate(`/result/${randomType}`);

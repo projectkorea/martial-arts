@@ -6,20 +6,47 @@ import Button from '@components/Button';
 import { initKakaoSDK, shareTwitter, shareFacebook, shareKakao, copyToClipboard } from '@utils/share';
 import useStore from '@/store/useStore';
 import { MBTI_RESULTS } from '@/utils/mbtiResults';
+import { MBTIResult } from '@/types/mbti';
+import { useMBTIStats } from '@/api/mbtiQueries';
+import Loading from '@components/Loading';
 
 const Result = () => {
-  const { type } = useParams();
+  const { type } = useParams<{ type: string }>();
   const navigate = useNavigate();
   const { setShareData } = useStore();
-  const result = MBTI_RESULTS[type || 'ENFJ'];
   const [isContentOpen, setIsContentOpen] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(true);
+  
+  // 결과 데이터 가져오기
+  const result = type ? MBTI_RESULTS[type] as MBTIResult : null;
+  
+  // React Query로 통계 데이터 가져오기
+  const { data: statsData, isLoading: isStatsLoading } = useMBTIStats(type, !!type);
+  
+  // type이 없거나 결과가 없으면 홈으로 리다이렉트
+  useEffect(() => {
+    if (!type || (!result && !isLoading)) {
+      navigate('/');
+    }
+  }, [type, navigate, result, isLoading]);
+  
   useEffect(() => {
     initKakaoSDK();
     window.scrollTo(0, 0);
-  }, []);
+    
+    // 데이터 로딩이 완료되면 로딩 상태 해제
+    if (result && !isStatsLoading) {
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 500); // 최소한의 로딩 시간을 보장
+      
+      return () => clearTimeout(timer);
+    }
+  }, [result, isStatsLoading]);
 
   const handleShare = (platform: string) => {
+    if (!result) return;
+    
     const shareData = {
       title: result.title,
       description: result.quote,
@@ -53,13 +80,28 @@ const Result = () => {
     setIsContentOpen(!isContentOpen);
   };
 
+  // 로딩 중이면 로딩 컴포넌트 표시
+  if (isLoading) {
+    return <Loading />;
+  }
+  
+  // 결과가 없으면 오류 메시지 표시
   if (!result) {
-    return <div>잘못된 결과입니다.</div>;
+    return (
+      <Layout>
+        <div className="container">
+          <div className="error-message">
+            <h2>잘못된 결과입니다.</h2>
+            <Button onClick={handleRestart}>처음으로</Button>
+          </div>
+        </div>
+      </Layout>
+    );
   }
 
-  // 참여자 통계 데이터 가져오기
-  const totalNumber = result.stats?.totalNumber || 0;
-  const sameNumber = result.stats?.sameNumber || 0;
+  // 통계 데이터 계산
+  const totalNumber = statsData?.totalNumber || 0;
+  const sameNumber = statsData?.sameNumber || 0;
   const percentage = totalNumber > 0 ? (sameNumber / totalNumber * 100).toFixed(2) : '0.00';
 
   return (
@@ -150,14 +192,8 @@ const Result = () => {
               </div>
             </Link>
           </div>
-
           <Share onShare={handleShare} />
-
-          <div>
-            <Button onClick={handleRestart} variant="outline">
-              다시하기
-            </Button>
-          </div>
+          <Button onClick={handleRestart} className="restart-btn">다시하기</Button>
         </div>
       </div>
     </Layout>
