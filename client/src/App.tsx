@@ -3,15 +3,11 @@ import GlobalStyles from './styles/GlobalStyles';
 import Start from './pages/Start';
 import Question from './pages/Question';
 import Result from './pages/Result';
-import Loading from './components/Loading';
+
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Start />,
-  },
-  {
-    path: '/loading',
-    element: <Loading />,
   },
   {
     path: '/question',

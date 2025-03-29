@@ -12,6 +12,8 @@ const Layout = ({ children, showFooter = true }: LayoutProps) => {
       {showFooter && (
         <footer className="layout-footer">
           <p>© {new Date().getFullYear()} Martial Arts Test. All rights reserved.</p>
+          <span className="footer__text">ProjectKorea</span>
+          <span className="footer__text">제보&문의: prodopark15@gmail.com</span>
         </footer>
       )}
     </div>

@@ -1,4 +1,3 @@
-// MBTI 결과 타입 정의
 export interface MBTIResult {
   title: string;              // 격투기 이름 (예: "태극권", "레슬링")
   mbti: string;               // MBTI 유형 (예: "ENFJ", "ESTJ")
@@ -15,10 +14,6 @@ export interface MBTIResult {
     type: string;             // 파트너 MBTI 유형
     title: string;            // 파트너 격투기 이름
     imageUrl: string;         // 파트너 이미지 URL
-  };
-  stats?: {                   // 선택적 통계 정보
-    totalNumber: number;      // 전체 참여자 수
-    sameNumber: number;       // 같은 유형의 참여자 수
   };
 }
 
@@ -49,10 +44,6 @@ export const MBTI_RESULTS: Record<string, MBTIResult> = {
       title: "종합격투기",
       imageUrl: "/images/mma.jpg"
     },
-    stats: {
-      totalNumber: 12543,
-      sameNumber: 1684
-    }
   },
   
   "ENFP": {
@@ -79,10 +70,6 @@ export const MBTI_RESULTS: Record<string, MBTIResult> = {
       type: "ESTJ",
       title: "레슬링",
       imageUrl: "/images/wrestling.jpg"
-    },
-    stats: {
-      totalNumber: 12543,
-      sameNumber: 1254
     }
   },
   
@@ -111,10 +98,6 @@ export const MBTI_RESULTS: Record<string, MBTIResult> = {
       type: "ESFP",
       title: "우슈",
       imageUrl: "/images/wushu.jpg"
-    },
-    stats: {
-      totalNumber: 12543,
-      sameNumber: 1254
     }
   },
 
@@ -143,10 +126,6 @@ export const MBTI_RESULTS: Record<string, MBTIResult> = {
       type: "ESFJ",
       title: "태권도",
       imageUrl: "/images/taekwondo.png"
-    },
-    stats: {
-      totalNumber: 12543,
-      sameNumber: 1254
     }
   },
 
@@ -174,10 +153,6 @@ export const MBTI_RESULTS: Record<string, MBTIResult> = {
       type: "ENTJ",
       title: "주짓수",
       imageUrl: "/images/jiujitsu.jpg"
-    },
-    stats: {
-      totalNumber: 12543,
-      sameNumber: 1254
     }
   },
   
@@ -205,10 +180,6 @@ export const MBTI_RESULTS: Record<string, MBTIResult> = {
       type: "ENFP",
       title: "카포에라",
       imageUrl: "/images/capoeira.jpg"
-    },
-    stats: {
-      totalNumber: 12543,
-      sameNumber: 1254
     }
   },
 
@@ -237,10 +208,6 @@ export const MBTI_RESULTS: Record<string, MBTIResult> = {
       type: "ENTJ",
       title: "크라브마가",
       imageUrl: "/images/kravmaga.jpg"
-    },
-    stats: {
-      totalNumber: 12543,
-      sameNumber: 1254
     }
   },
 
@@ -268,10 +235,6 @@ export const MBTI_RESULTS: Record<string, MBTIResult> = {
       type: "ENFJ",
       title: "태극권",
       imageUrl: "/images/taichi.jpg"
-    },
-    stats: {
-      totalNumber: 12543,
-      sameNumber: 1254
     }
   },
 
@@ -300,10 +263,6 @@ export const MBTI_RESULTS: Record<string, MBTIResult> = {
       type: "ISTP",
       title: "복싱",
       imageUrl: "/images/boxing.jpg"
-    },
-    stats: {
-      totalNumber: 12543,
-      sameNumber: 1254
     }
   },
 
@@ -331,10 +290,6 @@ export const MBTI_RESULTS: Record<string, MBTIResult> = {
       type: "ISTJ",
       title: "유도",
       imageUrl: "/images/judo.jpg"
-    },
-    stats: {
-      totalNumber: 12543,
-      sameNumber: 1254
     }
   },
 
@@ -362,10 +317,6 @@ export const MBTI_RESULTS: Record<string, MBTIResult> = {
       type: "ISFP",
       title: "검도",
       imageUrl: "/images/kendo.jpg"
-    },
-    stats: {
-      totalNumber: 12543,
-      sameNumber: 1254
     }
   },
 
@@ -393,10 +344,6 @@ export const MBTI_RESULTS: Record<string, MBTIResult> = {
       type: "ISFJ",
       title: "합기도",
       imageUrl: "/images/hapkido.jpg"
-    },
-    stats: {
-      totalNumber: 12543,
-      sameNumber: 1254
     }
   },
 
@@ -425,10 +372,6 @@ export const MBTI_RESULTS: Record<string, MBTIResult> = {
       type: "INTP",
       title: "펜싱",
       imageUrl: "/images/fencing.jpg"
-    },
-    stats: {
-      totalNumber: 12543,
-      sameNumber: 1254
     }
   },
 
@@ -456,10 +399,6 @@ export const MBTI_RESULTS: Record<string, MBTIResult> = {
       type: "INTJ",
       title: "양궁",
       imageUrl: "/images/archery.jpg"
-    },
-    stats: {
-      totalNumber: 12543,
-      sameNumber: 1254
     }
   },
 
@@ -487,10 +426,6 @@ export const MBTI_RESULTS: Record<string, MBTIResult> = {
       type: "INFP",
       title: "팔괘장",
       imageUrl: "/images/baguazhang.jpg"
-    },
-    stats: {
-      totalNumber: 12543,
-      sameNumber: 1254
     }
   },
 
@@ -519,31 +454,21 @@ export const MBTI_RESULTS: Record<string, MBTIResult> = {
       type: "INFJ",
       title: "아이키도",
       imageUrl: "/images/aikido.jpg"
-    },
-    stats: {
-      totalNumber: 12543,
-      sameNumber: 1254
     }
   }
-
-  // 모든 16개 MBTI 유형에 대한 데이터가 추가되었습니다.
 };
 
-// 결과 페이지에서 사용할 통계 데이터 기본값
-export const defaultStats = {
-  totalNumber: 12543,
-  sameNumber: 1254
+const mbtiResults = Object.keys(MBTI_RESULTS);
+
+// MBTI 유형으로 ID 찾기
+export const getIdByMBTIType = (mbtiType: string): number => {
+  const index = mbtiResults.indexOf(mbtiType);
+  return index !== -1 ? index + 1 : 1;
 };
 
 // ID로 MBTI 유형 찾기 (1부터 시작)
 export const getMBTITypeById = (id: string | undefined): string => {
   if (!id) return 'ENFJ';
   const index = parseInt(id) - 1;
-  return Object.keys(mbtiResults)[index] || 'ENFJ';
-};
-
-// MBTI 유형으로 ID 찾기
-export const getIdByMBTIType = (mbtiType: string): number => {
-  const index = Object.keys(mbtiResults).indexOf(mbtiType);
-  return index !== -1 ? index + 1 : 1;
+  return mbtiResults[index] || 'ENFJ';
 }; 

@@ -22,10 +22,8 @@ const Question = () => {
   const currentQuestion = questions[currentStep];
   const [isLoading, setIsLoading] = useState(false);
   
-  // React Query mutations
   const saveMutation = useSaveMBTIResult();
   
-  // 로딩 상태가 변경되면 스크롤을 맨 위로
   useEffect(() => {
     if (isLoading) {
       window.scrollTo(0, 0);
@@ -60,10 +58,7 @@ const Question = () => {
       }, 1500);
     } catch (error) {
       console.error('Error processing result:', error);
-      // 에러 발생 시에도 결과 페이지로 이동
-      setTimeout(() => {
-        navigate(`/result/${result}`);
-      }, 1500);
+      navigate(`/result/${result}`);
     }
   };
 
@@ -90,8 +85,10 @@ const Question = () => {
   const progress = ((currentStep + 1) / questions.length) * 100;
 
   return (
-    <Layout>
-      <div className="container fade-in--quick">
+    <>
+      {isLoading ? <Loading /> : (
+        <Layout>
+          <div className="container fade-in--quick">
           <div className="wrapper-progress">
             <div className="progress-page-num">
               {currentStep + 1} / {questions.length}
@@ -122,9 +119,10 @@ const Question = () => {
               ))}
             </div>
           </div>
-          {isLoading && <Loading />}
-      </div>
-    </Layout>
+          </div>
+        </Layout>
+      )}
+    </>
   );
 };
 
