@@ -1,23 +1,6 @@
-export interface MBTIResult {
-  title: string;              // 격투기 이름 (예: "태극권", "레슬링")
-  mbti: string;               // MBTI 유형 (예: "ENFJ", "ESTJ")
-  quote: string;              // 격투기 관련 짧은 인용구
-  explanation: string[];      // 주요 설명 (리스트 형태)
-  additionalInfo: string[];   // 추가 설명 (접었다 펼칠 수 있는 내용)
-  imageUrl: string;           // 격투기 이미지 URL
-  bestPartner: {              // 최고의 파트너 격투기
-    type: string;             // 파트너 MBTI 유형
-    title: string;            // 파트너 격투기 이름
-    imageUrl: string;         // 파트너 이미지 URL
-  };
-  worstPartner: {             // 최악의 파트너 격투기
-    type: string;             // 파트너 MBTI 유형
-    title: string;            // 파트너 격투기 이름
-    imageUrl: string;         // 파트너 이미지 URL
-  };
-}
+import { MBTIType, MBTIResult } from '@/types/mbti';
+import { getAssetPath } from './assets';
 
-// MBTI 결과 데이터
 export const MBTI_RESULTS: Record<string, MBTIResult> = {
   "ENFJ": {
     title: "태극권",
@@ -466,9 +449,37 @@ export const getIdByMBTIType = (mbtiType: string): number => {
   return index !== -1 ? index + 1 : 1;
 };
 
-// ID로 MBTI 유형 찾기 (1부터 시작)
+// ID로 MBTI 유형 찾기
 export const getMBTITypeById = (id: string | undefined): string => {
-  if (!id) return 'ENFJ';
+  if (!id) return mbtiResults[0];
   const index = parseInt(id) - 1;
-  return mbtiResults[index] || 'ENFJ';
+  return index >= 0 && index < mbtiResults.length ? mbtiResults[index] : mbtiResults[0];
+};
+
+/**
+ * Get MBTI result with corrected asset paths for images
+ * @param mbtiType MBTI type to get results for
+ * @returns MBTI result with correct asset paths
+ */
+export const getMBTIResultWithAssets = (mbtiType: MBTIType): MBTIResult => {
+  const result = { ...MBTI_RESULTS[mbtiType] } as MBTIResult;
+  
+  // Fix image paths
+  result.imageUrl = getAssetPath(result.imageUrl);
+  
+  if (result.bestPartner) {
+    result.bestPartner = {
+      ...result.bestPartner,
+      imageUrl: getAssetPath(result.bestPartner.imageUrl)
+    };
+  }
+  
+  if (result.worstPartner) {
+    result.worstPartner = {
+      ...result.worstPartner,
+      imageUrl: getAssetPath(result.worstPartner.imageUrl)
+    };
+  }
+  
+  return result;
 }; 

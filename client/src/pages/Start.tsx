@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Layout from '@components/Layout';
 import { MBTIType } from '@/types/mbti';
+import { getAssetPath } from '@utils/assets';
 
 const Start = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Start = () => {
   return (
     <Layout>
       <div className="container fade-in--quick">
-        <img className="start-img" src="/images/kick.jpg" alt="Martial Arts Kick" />
+        <img className="start-img" src={getAssetPath('images/kick.jpg')} alt="Martial Arts Kick" />
         <div className="start title wrapper">
           <div className="start-title line-break">
             나와 가장

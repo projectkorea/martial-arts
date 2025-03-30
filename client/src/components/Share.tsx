@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { getAssetPath } from '@/utils/assets';
 
 const ShareButton = styled.button`
   position: relative;
@@ -12,19 +13,19 @@ const ShareButton = styled.button`
   background-repeat: no-repeat;
 
   &.twitter {
-    background-image: url('/images/icon-twitter.png');
+    background-image: url(${getAssetPath('images/icon-twitter.png')});
   }
 
   &.facebook {
-    background-image: url('/images/icon-facebook.png');
+    background-image: url(${getAssetPath('images/icon-facebook.png')});
   }
 
   &.kakao {
-    background-image: url('/images/icon-kakao.png');
+    background-image: url(${getAssetPath('images/icon-kakao.png')});
   }
 
   &.link {
-    background-image: url('/images/icon-link.png');
+    background-image: url(${getAssetPath('images/icon-link.png')});
   }
 `;
 

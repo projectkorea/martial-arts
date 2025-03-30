@@ -4,8 +4,8 @@ import Layout from '@components/Layout';
 import Share from '@components/Share';
 import { initKakaoSDK, shareTwitter, shareFacebook, shareKakao, copyToClipboard } from '@utils/share';
 import useStore from '@/store/useStore';
-import { MBTI_RESULTS } from '@/utils/mbtiResults';
-import { MBTIResult } from '@/types/mbti';
+import { MBTI_RESULTS, getMBTIResultWithAssets } from '@/utils/mbtiResults';
+import { MBTIType } from '@/types/mbti';
 import { useMBTIStats } from '@/api/mbtiQueries';
 import Loading from '@components/Loading';
 import ResultHeader from '@components/ResultHeader';
@@ -20,14 +20,15 @@ const Result = () => {
   const { setShareData } = useStore();
   const [isLoading, setIsLoading] = useState(true);
   
-  const result = type ? MBTI_RESULTS[type] as MBTIResult : null;
+  const rawResult = type ? MBTI_RESULTS[type] : null;
+  const result = type && rawResult ? getMBTIResultWithAssets(type as MBTIType) : null;
   const { data: statsData, isLoading: isStatsLoading } = useMBTIStats(type, !!type);
   
   useEffect(() => {
-    if (!type || (!result && !isLoading)) {
+    if (!type || (!rawResult && !isLoading)) {
       navigate('/');
     }
-  }, [type, navigate, result, isLoading]);
+  }, [type, navigate, rawResult, isLoading]);
   
   useEffect(() => {
     initKakaoSDK();

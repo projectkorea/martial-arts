@@ -4,20 +4,25 @@ import Start from './pages/Start';
 import Question from './pages/Question';
 import Result from './pages/Result';
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Start />,
+    },
+    {
+      path: "/question",
+      element: <Question />,
+    },
+    {
+      path: "/result/:type",
+      element: <Result />,
+    },
+  ],
   {
-    path: '/',
-    element: <Start />,
-  },
-  {
-    path: '/question',
-    element: <Question />,
-  },
-  {
-    path: '/result/:type',
-    element: <Result />,
-  },
-]);
+    basename: "/mbti",
+  }
+);
 
 function App() {
   return (

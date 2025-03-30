@@ -16,7 +16,7 @@ if (!process.env.MONGO_URL_MBTI) {
 
 const config: Config = {
   mongoUrl: process.env.MONGO_URL_MBTI,
-  port: parseInt(process.env.PORT || '4000', 10),
+  port: parseInt(process.env.PORT || '3000', 10),
 };
 
 export default config;
