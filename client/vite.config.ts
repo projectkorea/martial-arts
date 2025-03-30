@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react-swc'
 import path from 'path'
 
 export default defineConfig(({ mode }) => {
-  const base = mode === 'production' && process.env.BASE_URL ? process.env.BASE_URL : '/static/mbti/'
-  // const base = mode === 'production' && process.env.BASE_URL ? process.env.BASE_URL : '/'
+  // const base = mode === 'production' && process.env.BASE_URL ? process.env.BASE_URL : '/static/mbti/'
+  const base = mode === 'production' && process.env.BASE_URL ? process.env.BASE_URL : '/'
   
   return {
     plugins: [

@@ -21,7 +21,7 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, '../build/client')));
 
-app.use("/api", router);
+app.use("/api/mbti", router);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../build/client/index.html'));
 });
