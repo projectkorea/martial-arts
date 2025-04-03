@@ -4,7 +4,7 @@ import { MBTIType } from '@/types/mbti';
 
 export const useSaveMBTIResult = () => {
   return useMutation({
-    mutationFn: (mbtiResult: string) => saveMBTIResult(mbtiResult),
+    mutationFn: (mbtiType: string) => saveMBTIResult(mbtiType),
   });
 };
 

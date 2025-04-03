@@ -6,7 +6,7 @@ type ResultSchemaDefinition = {
     type: mongoose.SchemaDefinitionType<PersonalityProps>;
     required: boolean;
   };
-  result: {
+  mbtiType: {
     type: mongoose.SchemaDefinitionType<string>;
     required: boolean;
   };
@@ -17,7 +17,7 @@ const resultSchema = new Schema<IMartialArtsResult, ResultSchemaDefinition>({
     type: Object,
     required: true 
   },
-  result: { 
+  mbtiType: { 
     type: String,
     required: true 
   },

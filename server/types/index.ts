@@ -20,7 +20,7 @@ export interface PersonalityProps {
  */
 export interface IMartialArtsResult extends Document {
   prop: PersonalityProps;
-  result: string;
+  mbtiType: string;
 }
 
 /**

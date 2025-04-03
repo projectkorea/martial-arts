@@ -5,14 +5,14 @@ export interface ResultStats {
   sameNumber: number;
 }
 
-export const saveMBTIResult = async (mbtiResult: string): Promise<{ redirectUrl: string }> => {
+export const saveMBTIResult = async (mbtiType: string): Promise<{ redirectUrl: string }> => {
   const response = await fetch('/api/mbti/result', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ 
-      RESULT: mbtiResult,
+      mbtiType,
       E: 0, I: 0, S: 0, N: 0, F: 0, T: 0, P: 0, J: 0
     }),
   });

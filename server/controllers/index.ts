@@ -8,8 +8,9 @@ import {
 } from '../types';
 import { ERROR_MESSAGES } from '../constants';
 import { MBTI_TYPES } from '../router/constants';
+
 interface MBTIPayload extends PersonalityProps {
-  RESULT: string;
+  mbtiType: string;
 }
 
 export const saveResultToDB = async (
@@ -17,14 +18,15 @@ export const saveResultToDB = async (
   res: Response, 
   next: NextFunction
 ): Promise<void> => {
-  const { E, I, S, N, F, T, P, J, RESULT } = req.body;
+  const { E, I, S, N, F, T, P, J, mbtiType } = req.body;
 
   try {
     await MartialArtsResult.create({
       prop: { E, I, S, N, F, T, P, J },
-      result: RESULT,
+      mbtiType,
     });
     next();
+    
   } catch (error) {
     console.error(error);
     next(error);
@@ -36,9 +38,9 @@ export const redirectBasedOnResult = async (
   res: Response
 ): Promise<void> => {
   try {
-    const { RESULT: type } = req.body;
-    if (type) {
-      res.json({ success: true, redirectUrl: `/result/${type}` });
+    const { mbtiType } = req.body;
+    if (mbtiType) {
+      res.json({ success: true, redirectUrl: `/result/${mbtiType}` });
     } else {
       res.status(404).json({ success: false, message: 'Invalid result type' });
     }
@@ -70,7 +72,7 @@ export const renderMBTIResult = async (
   try {
     const { type } = req.params;
     const sameNumber = await MartialArtsResult.countDocuments({
-      result: type,
+      mbtiType: type,
     });
     const totalNumber = await MartialArtsResult.countDocuments({});
 
