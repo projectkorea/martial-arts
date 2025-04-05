@@ -1,8 +1,8 @@
 import { Response, NextFunction } from 'express';
-import MartialArtsResult from "../models/MartialArtsResult";
+import MBTIResult from "../models/MBTIResult";
+import MBTIStat from '../models/MBTIStat';
 import { 
   PersonalityProps, 
-  IMartialArtsResult, 
   TypedRequestBody, 
   TypedRequestParams 
 } from '../types';
@@ -13,7 +13,7 @@ interface MBTIPayload extends PersonalityProps {
   mbtiType: string;
 }
 
-export const saveResultToDB = async (
+export const saveResult = async (
   req: TypedRequestBody<MBTIPayload>, 
   res: Response, 
   next: NextFunction
@@ -21,10 +21,23 @@ export const saveResultToDB = async (
   const { E, I, S, N, F, T, P, J, mbtiType } = req.body;
 
   try {
-    await MartialArtsResult.create({
-      prop: { E, I, S, N, F, T, P, J },
+    await MBTIResult.create({
+      score: { E, I, S, N, F, T, P, J },
       mbtiType,
     });
+
+    await MBTIStat.findOneAndUpdate(
+      { _id: mbtiType },
+      { $inc: { count: 1 } },
+      { upsert: true }
+    );
+
+    await MBTIStat.findOneAndUpdate(
+      { _id: 'TOTAL' },
+      { $inc: { count: 1 } },
+      { upsert: true }
+    );
+    
     next();
     
   } catch (error) {
@@ -33,7 +46,7 @@ export const saveResultToDB = async (
   }
 };
 
-export const redirectBasedOnResult = async (
+export const redirectToResult = async (
   req: TypedRequestBody<MBTIPayload>, 
   res: Response
 ): Promise<void> => {
@@ -50,7 +63,7 @@ export const redirectBasedOnResult = async (
   }
 };
 
-export const validateMBTIType = (
+export const checkValidType = (
   req: TypedRequestParams<{ type: string }>, 
   res: Response, 
   next: NextFunction
@@ -65,24 +78,23 @@ export const validateMBTIType = (
   }
 };
 
-export const renderMBTIResult = async (
+export const getResultStats = async (
   req: TypedRequestParams<{ type: string }>, 
   res: Response
 ): Promise<void> => {
   try {
     const { type } = req.params;
-    const sameNumber = await MartialArtsResult.countDocuments({
-      mbtiType: type,
-    });
-    const totalNumber = await MartialArtsResult.countDocuments({});
+    const typeStat = await MBTIStat.findById(type);
+    const totalStat = await MBTIStat.findById('TOTAL');
+    const typeCount = typeStat?.count ?? 0;
+    const totalCount = totalStat?.count ?? 0;
 
     res.json({
       success: true,
       data: {
         type,
-        sameNumber,
-        totalNumber,
-        percentage: (sameNumber / totalNumber) * 100
+        typeCount,
+        totalCount,
       }
     });
   } catch (error) {

@@ -1,10 +1,10 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { saveMBTIResult, fetchMBTIStats } from './mbtiService';
-import { MBTIType } from '@/types/mbti';
+import { MBTIType, MBTIScore } from '@/types/mbti';
 
 export const useSaveMBTIResult = () => {
   return useMutation({
-    mutationFn: (mbtiType: string) => saveMBTIResult(mbtiType),
+    mutationFn: ({ mbtiType, score }: { mbtiType: string; score: MBTIScore }) => saveMBTIResult(mbtiType, score),
   });
 };
 

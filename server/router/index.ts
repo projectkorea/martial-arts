@@ -1,14 +1,14 @@
 import { Router } from 'express';
 import {
-  saveResultToDB,
-  redirectBasedOnResult,
-  validateMBTIType,
-  renderMBTIResult,
+  saveResult,
+  redirectToResult,
+  checkValidType,
+  getResultStats,
 } from '../controllers';
 
 const router = Router();
 
-router.post('/result', saveResultToDB, redirectBasedOnResult);
-router.get('/result/:type', validateMBTIType, renderMBTIResult);
+router.post('/result', saveResult, redirectToResult);
+router.get('/result/:type', checkValidType, getResultStats);
 
 export default router;

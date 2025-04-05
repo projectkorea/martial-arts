@@ -45,17 +45,16 @@ const Question = () => {
     setIsLoading(true);
     
     try {
-      // 결과를 서버에 저장
-      const saveResult = await saveMutation.mutateAsync(result);
+      const mbtiScore = getMBTIScore(answers.concat(selectedType));
+      const saveResult = await saveMutation.mutateAsync({ mbtiType: result, score: mbtiScore });
       
-      // 1.5초 후에 결과 페이지로 이동
       setTimeout(() => {
         if (saveResult.redirectUrl) {
           navigate(saveResult.redirectUrl);
         } else {
           navigate(`/result/${result}`);
         }
-      }, 1500);
+      }, 1000);
     } catch (error) {
       console.error('Error processing result:', error);
       navigate(`/result/${result}`);
@@ -80,6 +79,20 @@ const Question = () => {
     mbtiResult += result.P > result.J ? 'P' : 'J';
     
     return mbtiResult;
+  };
+
+  const getMBTIScore = (answersList: string[]): MBTIScore => {
+    const counts: MBTIScore = {
+      E: 0, I: 0, S: 0, N: 0, F: 0, T: 0, P: 0, J: 0
+    };
+    
+    answersList.forEach(type => {
+      if (type && type in counts) {
+        counts[type as keyof MBTIScore] += 1;
+      }
+    });
+    
+    return counts;
   };
 
   const progress = ((currentStep + 1) / questions.length) * 100;

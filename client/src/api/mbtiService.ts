@@ -1,11 +1,11 @@
-import { MBTIType } from "@/types/mbti";
+import { MBTIType, MBTIScore } from '@/types/mbti';
 
 export interface ResultStats {
-  totalNumber: number;
-  sameNumber: number;
+  typeCount: number;
+  totalCount: number;
 }
 
-export const saveMBTIResult = async (mbtiType: string): Promise<{ redirectUrl: string }> => {
+export const saveMBTIResult = async (mbtiType: string, score: MBTIScore): Promise<{ redirectUrl: string }> => {
   const response = await fetch('/api/mbti/result', {
     method: 'POST',
     headers: {
@@ -13,7 +13,7 @@ export const saveMBTIResult = async (mbtiType: string): Promise<{ redirectUrl: s
     },
     body: JSON.stringify({ 
       mbtiType,
-      E: 0, I: 0, S: 0, N: 0, F: 0, T: 0, P: 0, J: 0
+      ...score
     }),
   });
 

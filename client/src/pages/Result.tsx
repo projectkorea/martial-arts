@@ -81,15 +81,15 @@ const Result = () => {
     return <ErrorResult onRestart={handleRestart} />;
   }
 
-  const totalNumber = statsData?.totalNumber || 0;
-  const sameNumber = statsData?.sameNumber || 0;
+  const typeCount = statsData?.typeCount || 0;
+  const totalCount = statsData?.totalCount || 0;
 
   return (
     <Layout>
       <div className="container fade-in--quick">
         <ResultHeader result={result} />
         <div className="result-middle">
-          <ResultStats totalNumber={totalNumber} sameNumber={sameNumber} />
+          <ResultStats typeCount={typeCount} totalCount={totalCount} />
           <ExplanationSection 
             explanation={result.explanation} 
             additionalInfo={result.additionalInfo} 

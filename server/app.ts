@@ -3,7 +3,7 @@ import morgan from "morgan";
 import helmet from "helmet";
 import config from "./config";
 import "./db";
-import "./models/MartialArtsResult";
+import "./models/MBTIResult";
 import router from "./router";
 import { SUCCESS_MESSAGES } from "./constants";
 import path from "path";
@@ -28,7 +28,7 @@ app.get('*', (req, res) => {
 
 const PORT = config.port;
 app.listen(PORT, () => 
-  console.log(`${SUCCESS_MESSAGES.SERVER_RUNNING} http://localhost:${PORT}`)
+  console.log(`${SUCCESS_MESSAGES.SERVER_RUNNING} http://localhost:${PORT}/mbti`)
 );
 
 export default app;

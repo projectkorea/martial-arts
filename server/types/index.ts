@@ -19,7 +19,7 @@ export interface PersonalityProps {
  * 모델 인터페이스 - model과 controller에서 공통으로 사용
  */
 export interface IMartialArtsResult extends Document {
-  prop: PersonalityProps;
+  score: PersonalityProps;
   mbtiType: string;
 }
 
