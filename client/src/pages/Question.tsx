@@ -18,7 +18,7 @@ const questions = Object.entries(quest).map(([id, item]: [string, QuestItem]) =>
 
 const Question = () => {
   const navigate = useNavigate();
-  const { currentStep, setCurrentStep, addAnswer, answers } = useStore();
+  const { currentStep, setCurrentStep, addAnswer, answers, resetAnswers, resetStep } = useStore();
   const currentQuestion = questions[currentStep];
   const [isLoading, setIsLoading] = useState(false);
   
@@ -47,7 +47,9 @@ const Question = () => {
     try {
       const mbtiScore = getMBTIScore(answers.concat(selectedType));
       const saveResult = await saveMutation.mutateAsync({ mbtiType: result, score: mbtiScore });
-      
+      resetAnswers();
+      resetStep();
+
       setTimeout(() => {
         if (saveResult.redirectUrl) {
           navigate(saveResult.redirectUrl);

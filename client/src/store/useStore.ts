@@ -15,6 +15,7 @@ interface StoreState {
   answers: string[];
   addAnswer: (answer: string) => void;
   resetAnswers: () => void;
+  resetStep: () => void;
 }
 
 const useStore = create<StoreState>((set) => ({
@@ -30,6 +31,7 @@ const useStore = create<StoreState>((set) => ({
   answers: [],
   addAnswer: (answer) => set((state) => ({ answers: [...state.answers, answer] })),
   resetAnswers: () => set({ answers: [] }),
+  resetStep: () => set({ currentStep: 0 }),
 }));
 
 export default useStore; 

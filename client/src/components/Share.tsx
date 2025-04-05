@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { getAssetPath } from '@/utils/assets';
+import { useNavigate } from 'react-router-dom';
 
 const ShareButton = styled.button`
   position: relative;
@@ -34,6 +35,7 @@ interface ShareProps {
 }
 
 const Share = ({ onShare }: ShareProps) => {
+  const navigate = useNavigate();
   return (
     <div className="share wrapper">
       <div className="result-share-text">내 결과 공유하기</div>
@@ -47,7 +49,7 @@ const Share = ({ onShare }: ShareProps) => {
         <ShareButton className="kakao" id="btnKakao1" onClick={() => onShare('kakao')}>카카오</ShareButton>
         <ShareButton className="link" onClick={() => onShare('link')}>링크복사</ShareButton>
       </div>
-      <button className="retest-btn" onClick={() => onShare('retest')}>테스트 다시하기</button>
+      <button className="retest-btn" onClick={() => navigate('/')}>테스트 다시하기</button>
     </div>
   );
 };
