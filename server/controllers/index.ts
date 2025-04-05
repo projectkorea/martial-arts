@@ -21,7 +21,7 @@ export const saveResult = async (
   const { E, I, S, N, F, T, P, J, mbtiType } = req.body;
 
   try {
-    Promise.all([
+    await Promise.all([
       MBTIResult.create({
         score: { E, I, S, N, F, T, P, J },
         mbtiType,
