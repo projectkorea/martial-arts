@@ -54,7 +54,7 @@ const Question = () => {
         } else {
           navigate(`/result/${result}`);
         }
-      }, 1000);
+      }, 500);
     } catch (error) {
       console.error('Error processing result:', error);
       navigate(`/result/${result}`);

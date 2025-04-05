@@ -35,11 +35,7 @@ const Result = () => {
     window.scrollTo(0, 0);
     
     if (result && !isStatsLoading) {
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 500); // Minimum waiting time for smooth transition
-      
-      return () => clearTimeout(timer);
+      setIsLoading(false);
     }
   }, [result, isStatsLoading]);
 
