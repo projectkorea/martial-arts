@@ -9,7 +9,7 @@ const handleOpen: DbConnectionHandler = () => console.log(SUCCESS_MESSAGES.DB_CO
 const handleError: DbErrorHandler = (error) => 
   console.log(`${ERROR_MESSAGES.DB_CONNECTION} ${error.message}`);
 
-mongoose.connect(config.mongoUrl)
+mongoose.connect(config.mongoUri)
   .catch((error) => {
     console.error(`${ERROR_MESSAGES.INITIAL_CONNECTION} ${error.message}`);
     process.exit(1);

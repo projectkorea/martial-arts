@@ -23,5 +23,5 @@ const resultSchema = new Schema<IMartialArtsResult, ResultSchemaDefinition>({
   },
 }, { versionKey: false });
 
-const MartialArtsResult = mongoose.model<IMartialArtsResult>("MartialArtsResult", resultSchema);
+const MartialArtsResult = mongoose.model<IMartialArtsResult>("mbti", resultSchema);
 export default MartialArtsResult;

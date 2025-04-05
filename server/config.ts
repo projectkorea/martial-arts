@@ -5,7 +5,7 @@ import { ERROR_MESSAGES } from './constants';
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 interface Config {
-  mongoUrl: string;
+  mongoUri: string;
   port: number;
 }
 
@@ -15,7 +15,7 @@ if (!process.env.MONGODB_URI_JUNHA) {
 }
 
 const config: Config = {
-  mongoUrl: process.env.MONGODB_URI_JUNHA,
+  mongoUri: process.env.MONGODB_URI_JUNHA,
   port: parseInt(process.env.PORT || '3000', 10),
 };
 
