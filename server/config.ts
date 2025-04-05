@@ -9,13 +9,13 @@ interface Config {
   port: number;
 }
 
-if (!process.env.MONGO_URL_MBTI) {
-  console.error(ERROR_MESSAGES.MISSING_MONGO_URL);
+if (!process.env.MONGODB_URI_JUNHA) {
+  console.error(ERROR_MESSAGES.MISSING_MONGO_URI);
   process.exit(1);
 }
 
 const config: Config = {
-  mongoUrl: process.env.MONGO_URL_MBTI,
+  mongoUrl: process.env.MONGODB_URI_JUNHA,
   port: parseInt(process.env.PORT || '3000', 10),
 };
 
