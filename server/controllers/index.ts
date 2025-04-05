@@ -21,23 +21,22 @@ export const saveResult = async (
   const { E, I, S, N, F, T, P, J, mbtiType } = req.body;
 
   try {
-    await MBTIResult.create({
-      score: { E, I, S, N, F, T, P, J },
-      mbtiType,
-    });
-
-    await MBTIStat.findOneAndUpdate(
-      { _id: mbtiType },
-      { $inc: { count: 1 } },
-      { upsert: true }
-    );
-
-    await MBTIStat.findOneAndUpdate(
-      { _id: 'TOTAL' },
-      { $inc: { count: 1 } },
-      { upsert: true }
-    );
-    
+    Promise.all([
+      MBTIResult.create({
+        score: { E, I, S, N, F, T, P, J },
+        mbtiType,
+      }),
+      MBTIStat.findOneAndUpdate(
+        { _id: mbtiType },
+        { $inc: { count: 1 } },
+        { upsert: true }
+      ),
+      MBTIStat.findOneAndUpdate(
+        { _id: 'TOTAL' },
+        { $inc: { count: 1 } },
+        { upsert: true }
+      ),
+    ]);
     next();
     
   } catch (error) {
@@ -84,8 +83,11 @@ export const getResultStats = async (
 ): Promise<void> => {
   try {
     const { type } = req.params;
-    const typeStat = await MBTIStat.findById(type);
-    const totalStat = await MBTIStat.findById('TOTAL');
+    const [typeStat, totalStat] = await Promise.all([
+      MBTIStat.findById(type),
+      MBTIStat.findById('TOTAL'),
+    ]);
+    
     const typeCount = typeStat?.count ?? 0;
     const totalCount = totalStat?.count ?? 0;
 
