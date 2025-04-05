@@ -21,7 +21,7 @@ const resultSchema = new Schema<IMartialArtsResult, ResultSchemaDefinition>({
     type: String,
     required: true 
   },
-});
+}, { versionKey: false });
 
 const MartialArtsResult = mongoose.model<IMartialArtsResult>("MartialArtsResult", resultSchema);
 export default MartialArtsResult;
