@@ -5,8 +5,8 @@
   "scripts": {
     "postinstall": "cd client && npm install",
     "build:client": "cd client && npm run build",
-    "build:server": "babel server -d build --extensions \".js,.ts\"",
-    "build": "tsc --noEmit && rimraf build && npm run build:server && npm run build:client",
+    "build:server": "cd server && babel . -d ../build --extensions \".js,.ts\"",
+    "build": "cd server && tsc --noEmit && cd .. && rimraf build && npm run build:server && npm run build:client",
     "watch": "nodemon --watch ./server --watch ./client --ignore '*/node_modules/*' --ignore '*/build/*' --ext js,ts,css,tsx --exec",
     "dev": "npm run watch \"npm run build && cross-env NODE_ENV=development node build/app.js\"",
     "prod": "npm run build && cross-env NODE_ENV=production node build/app.js"

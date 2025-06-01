@@ -22,13 +22,13 @@
     "allowJs": true,
     "checkJs": false,
     // build
-    "outDir": "./build",
-    "rootDir": "server",
+    "outDir": "../build",
+    "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "*": ["node_modules/*", "server/*"]
+      "*": ["../node_modules/*", "./*"]
     }
   },
-  "include": ["server/**/*.ts"],
-  "exclude": ["node_modules", "build"]
+  "include": ["**/*.ts"],
+  "exclude": ["../node_modules", "../build"]
 } 
