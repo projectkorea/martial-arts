@@ -1,14 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
-import path from 'path'
+import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig(({ mode }) => {
-  // const base = mode === 'production' && process.env.BASE_URL ? process.env.BASE_URL : '/static/mbti/'
   const base = mode === 'production' && process.env.BASE_URL ? process.env.BASE_URL : '/'
   
   return {
     plugins: [
       react(),
+      tsconfigPaths(),
       {
         name: 'html-transform',
         transformIndexHtml(html) {
@@ -35,13 +35,5 @@ export default defineConfig(({ mode }) => {
         }
       }
     },
-    resolve: {
-      alias: {
-        '@': path.resolve(__dirname, './src'),
-        '@components': path.resolve(__dirname, './src/components'),
-        '@pages': path.resolve(__dirname, './src/pages'),
-        '@utils': path.resolve(__dirname, './src/utils'),
-      }
-    }
   }
 })
