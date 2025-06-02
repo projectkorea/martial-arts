@@ -2,10 +2,10 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
-export default defineConfig(({ mode }) => {
-  const isProduction = mode === 'production'
-  const base = isProduction ? '/static/mbti' : '/'
-  const outDir = isProduction ? `../../public/${base}` : './build'
+export default defineConfig(({ command }) => {
+  const isBuild = command === 'build'
+  const base = isBuild ? '/static/mbti' : '/mbti'
+  const outDir = isBuild ? `../../public/${base}` : './build'
   
   return {
     plugins: [
